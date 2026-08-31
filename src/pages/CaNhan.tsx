@@ -7,6 +7,9 @@ import {
   Home as HomeIcon,
   Smartphone,
   ArrowRight,
+  GraduationCap,
+  Briefcase,
+  HeartHandshake,
 } from "lucide-react"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
 import { Link } from "react-router"
@@ -19,6 +22,28 @@ const PRODUCTS = [
   { icon: HomeIcon, title: "Vay mua nhà", body: "Vay mua, xây, sửa nhà — biết trước điều kiện, hồ sơ và lãi suất.", cues: ["Thời hạn tới 25 năm", "Giải ngân linh hoạt", "Ước tính khoản trả"], to: "/ca-nhan" },
   { icon: Car, title: "Vay mua ô tô", body: "Tài trợ mua xe mới và xe đã qua sử dụng, thủ tục nhanh gọn.", cues: ["Tỷ lệ vay cao", "Duyệt nhanh", "Trả góp đều"], to: "/ca-nhan" },
   { icon: Landmark, title: "Vay tiêu dùng", body: "Đáp ứng nhu cầu chi tiêu cá nhân với lãi suất và biểu phí công khai.", cues: ["Hồ sơ đơn giản", "Hạn mức rõ ràng", "Minh bạch chi phí"], to: "/ca-nhan" },
+]
+
+/* Audience-fit matrix — answers "is this relevant for me?" per journey-driven layout */
+const AUDIENCE_FIT = [
+  {
+    icon: GraduationCap,
+    title: "Sinh viên & người mới đi làm",
+    body: "Tài khoản số miễn phí duy trì, thẻ ghi nợ quản lý trên app, không yêu cầu chứng minh thu nhập.",
+    cta: {label: "Mở tài khoản", to: "/ngan-hang-so"},
+  },
+  {
+    icon: Briefcase,
+    title: "Người đi làm & gia đình trẻ",
+    body: "Tiết kiệm tích luỹ kỳ hạn linh hoạt, thẻ tín dụng hoàn tiền, vay mua nhà/ô tô với hồ sơ rõ ràng.",
+    cta: {label: "Khám phá sản phẩm", to: "/the"},
+  },
+  {
+    icon: HeartHandshake,
+    title: "Về hưu & tiết kiệm dài hạn",
+    body: "Tiết kiệm có kỳ hạn lãi suất ưu đãi, tất toán linh hoạt, hỗ trợ tận nhà qua hotline 24/7.",
+    cta: {label: "Tư vấn tiết kiệm", to: "/ho-tro"},
+  },
 ]
 
 export default function CaNhan() {
@@ -68,6 +93,58 @@ export default function CaNhan() {
             <FeatureRow key={p.title} {...p} cta="Xem chi tiết" />
           ))}
         </div>
+      </Section>
+
+      {/* Audience-fit — answers "is this relevant for me?" per journey-driven layout */}
+      <Section>
+        <SectionHead
+          n="03"
+          eyebrow="Phù hợp với"
+          title="Giải pháp theo giai đoạn cuộc sống"
+          lead="Mỗi sản phẩm phù hợp với một nhóm nhu cầu khác nhau — chọn theo hoàn cảnh của bạn."
+        />
+        <div className="mt-6 grid gap-5 md:grid-cols-3">
+          {AUDIENCE_FIT.map(({ icon: Icon, title, body, cta }) => (
+            <div
+              key={title}
+              className="flex flex-col rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-(--shadow-card-hover)"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy">
+                <Icon className="h-5 w-5" />
+              </span>
+              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight">{title}</h3>
+              <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-ink-soft">{body}</p>
+              <Link
+                to={cta.to}
+                className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-navy hover:underline"
+              >
+                {cta.label} <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 3-step process — answers "what happens next?" per journey-driven layout */}
+      <Section tone="soft">
+        <SectionHead
+          n="04"
+          eyebrow="Bắt đầu trong 3 bước"
+          title="Từ đăng ký đến sử dụng chưa đầy 10 phút"
+        />
+        <ol className="mt-6 grid gap-5 md:grid-cols-3">
+          {[
+            {n: "01", title: "Đăng ký online", body: "Điền thông tin trên Digital Plus hoặc website Vietbank — không cần đến quầy."},
+            {n: "02", title: "eKYC bằng CCCD", body: "Chụp CCCD gắn chip và xác thực khuôn mặt. Hệ thống tự động đối chiếu."},
+            {n: "03", title: "Mở sản phẩm", body: "Chọn sản phẩm đầu tiên (tài khoản, tiết kiệm, thẻ) và kích hoạt ngay trên app."},
+          ].map((s) => (
+            <li key={s.n} className="rounded-xl border border-line bg-surface p-6">
+              <span className="text-[13px] font-semibold tnum text-amber">{s.n}</span>
+              <h3 className="mt-2 font-display text-lg font-semibold tracking-tight">{s.title}</h3>
+              <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{s.body}</p>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       <CTABand

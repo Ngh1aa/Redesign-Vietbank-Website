@@ -230,7 +230,7 @@ export default function Home() {
             {NEEDS[segment].map((n, i) => (
               <article
                 key={n.title}
-                className="group flex flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-[var(--shadow-card-hover)]"
+                className="group flex flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-(--shadow-card-hover)"
               >
                 <div>
                   <div className="flex items-center gap-2">

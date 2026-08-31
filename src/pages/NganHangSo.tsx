@@ -1,4 +1,4 @@
-import { Smartphone, Building2, BellRing, QrCode, Send, PiggyBank, Lock, LineChart } from "lucide-react"
+import { Smartphone, Building2, BellRing, QrCode, Send, PiggyBank, Lock, LineChart, Check, Minus } from "lucide-react"
 import { Link } from "react-router"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
 import { Section, SectionHead, CTABand } from "../lib/sections"
@@ -15,6 +15,22 @@ const BIZ_FEATURES = [
   { icon: LineChart, title: "Báo cáo dòng tiền", body: "Theo dõi số dư, dòng tiền vào ra và trạng thái giao dịch theo thời gian thực." },
   { icon: Building2, title: "Phê duyệt đa cấp", body: "Phân quyền theo vai trò và luồng phê duyệt nhiều cấp linh hoạt." },
   { icon: Lock, title: "An toàn doanh nghiệp", body: "Kiểm soát thiết bị, hạn mức và nhật ký hoạt động theo người dùng." },
+]
+
+/* Feature parity matrix — answers "which one fits?" with scannable Yes/No */
+const PARITY: { feature: string; plus: boolean | string; biz: boolean | string }[] = [
+  { feature: "Nền tảng", plus: "iOS · Android", biz: "Web · iOS · Android" },
+  { feature: "Chuyển tiền trong hệ thống", plus: true, biz: true },
+  { feature: "Chuyển tiền liên ngân hàng 24/7", plus: true, biz: true },
+  { feature: "Thanh toán QR / VietQR", plus: true, biz: true },
+  { feature: "Tiết kiệm trực tuyến", plus: true, biz: false },
+  { feature: "Mở & quản lý thẻ", plus: true, biz: false },
+  { feature: "Chi lương hàng loạt", plus: false, biz: true },
+  { feature: "Thu hộ / chi hộ", plus: false, biz: true },
+  { feature: "Phê duyệt đa cấp", plus: false, biz: true },
+  { feature: "Phân quyền theo vai trò", plus: false, biz: true },
+  { feature: "Báo cáo dòng tiền real-time", plus: false, biz: true },
+  { feature: "Bảo mật sinh trắc học + OTP", plus: true, biz: true },
 ]
 
 export default function NganHangSo() {
@@ -78,10 +94,64 @@ export default function NganHangSo() {
         </div>
       </Section>
 
-      {/* Migration notice */}
+      {/* Feature parity matrix — answers "what's the same, what's different?" */}
       <Section tone="soft">
         <SectionHead
           n="01"
+          eyebrow="So sánh tính năng"
+          title="Cái nào phù hợp — bảng đối chiếu nhanh"
+          lead="Một số tính năng chỉ có ở một nền tảng. Xem nhanh để chọn đúng."
+        />
+        <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-line bg-navy-050 text-[12.5px] uppercase tracking-wide text-ink-soft">
+                <th className="px-5 py-3.5 font-semibold">Tính năng</th>
+                <th className="px-5 py-3.5 text-center font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Smartphone className="h-3.5 w-3.5 text-navy" /> Digital Plus
+                  </span>
+                </th>
+                <th className="px-5 py-3.5 text-center font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Building2 className="h-3.5 w-3.5 text-navy" /> DigiBiz
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[14.5px]">
+              {PARITY.map((row) => (
+                <tr key={row.feature} className="border-b border-line last:border-0">
+                  <td className="px-5 py-3.5">{row.feature}</td>
+                  <td className="px-5 py-3.5 text-center">
+                    {typeof row.plus === "string" ? (
+                      <span className="text-ink-soft">{row.plus}</span>
+                    ) : row.plus ? (
+                      <Check className="mx-auto h-5 w-5 text-navy" aria-label="Có" />
+                    ) : (
+                      <Minus className="mx-auto h-5 w-5 text-line" aria-label="Không" />
+                    )}
+                  </td>
+                  <td className="px-5 py-3.5 text-center">
+                    {typeof row.biz === "string" ? (
+                      <span className="text-ink-soft">{row.biz}</span>
+                    ) : row.biz ? (
+                      <Check className="mx-auto h-5 w-5 text-navy" aria-label="Có" />
+                    ) : (
+                      <Minus className="mx-auto h-5 w-5 text-line" aria-label="Không" />
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      {/* Migration notice */}
+      <Section>
+        <SectionHead
+          n="02"
           eyebrow="Chuyển đổi ứng dụng"
           title="Đang dùng ứng dụng cũ? Đây là điều cần biết"
           lead="Vietbank đã hợp nhất về hai nền tảng số chính thức. Vui lòng chuyển sang đúng ứng dụng cho nhu cầu của bạn."

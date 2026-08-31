@@ -1,4 +1,4 @@
-import { ArrowUpRight, Target, HeartHandshake, ShieldCheck } from "lucide-react"
+import { ArrowUpRight, Target, HeartHandshake, ShieldCheck, Building2 } from "lucide-react"
 import { Link } from "react-router"
 import { PageHeader } from "../lib/ui"
 import { Section, SectionHead, CTABand, Stat, InlineLink } from "../lib/sections"
@@ -8,6 +8,20 @@ const ABOUT_NEWS = [
   { tag: "Sự kiện", date: "26/04/2026", title: "Đại hội đồng cổ đông thường niên 2026 — Nghị quyết đã được công bố", to: "/nha-dau-tu" },
   { tag: "Cộng đồng", date: "15/04/2026", title: "Vietbank đồng hành chương trình tài chính cho sinh viên khởi nghiệp", to: "/nha-dau-tu" },
   { tag: "Sản phẩm", date: "20/03/2026", title: "Ra mắt gói tài khoản số dành cho doanh nghiệp mới thành lập", to: "/doanh-nghiep" },
+]
+
+/* Network & coverage — answers "how big is the bank?" per corporate-website "scale" guidance */
+const NETWORK = [
+  { value: "63", label: "Chi nhánh & phòng giao dịch trên toàn quốc" },
+  { value: "150+", label: "ATM và điểm CDM tự phục vụ" },
+  { value: "48", label: "Tỉnh thành có mạng lưới Vietbank" },
+]
+
+/* Leadership & governance — placeholder, illustrative */
+const LEADERSHIP = [
+  { name: "Chủ tịch HĐQT", role: "Hội đồng quản trị", initials: "CT" },
+  { name: "Tổng Giám đốc", role: "Ban điều hành", initials: "TG" },
+  { name: "Phó Tổng Giám đốc phụ trách Khối Ngân hàng số", role: "Ban điều hành", initials: "PT" },
 ]
 
 export default function VeVietbank() {
@@ -65,7 +79,7 @@ export default function VeVietbank() {
         </div>
       </Section>
 
-      {/* Snapshot */}
+      {/* Snapshot — quick identity answers */}
       <Section>
         <SectionHead n="03" eyebrow="Vietbank hôm nay" title="Một vài con số" />
         <div className="mt-6 grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -76,10 +90,60 @@ export default function VeVietbank() {
         <p className="mt-3 text-[12.5px] text-ink-soft">Số liệu trình bày mang tính minh hoạ cho mục đích thiết kế.</p>
       </Section>
 
+      {/* Network & coverage — answers "how big is the bank?" per corporate-website "scale" */}
+      <Section tone="soft">
+        <div className="flex items-end justify-between gap-3">
+          <SectionHead
+            n="04"
+            eyebrow="Mạng lưới & Quy mô"
+            title="Hiện diện trên 48 tỉnh thành"
+          />
+          <span className="hidden rounded border border-line bg-surface px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink-soft sm:inline-block">
+            STATIC · Minh hoạ
+          </span>
+        </div>
+        <div className="mt-6 grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {NETWORK.map((n) => (
+            <div key={n.label} className="flex items-center gap-4 px-6 py-6">
+              <Building2 className="h-8 w-8 shrink-0 text-navy" />
+              <div>
+                <div className="font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold tracking-tight text-navy tnum">
+                  {n.value}
+                </div>
+                <div className="mt-1 text-[13.5px] leading-snug text-ink-soft">{n.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Leadership — placeholder per corporate-website "leadership" guidance */}
+      <Section>
+        <SectionHead
+          n="05"
+          eyebrow="Ban lãnh đạo"
+          title="Đội ngũ dẫn dắt Vietbank"
+          lead="Thông tin chi tiết về Hội đồng quản trị và Ban điều hành được công bố trong mục Quan hệ nhà đầu tư."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {LEADERSHIP.map((p) => (
+            <div key={p.role} className="flex items-center gap-4 rounded-xl border border-line bg-surface p-5">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-navy-050 font-display text-[15px] font-semibold text-navy">
+                {p.initials}
+              </span>
+              <div>
+                <div className="text-[15px] font-semibold">{p.name}</div>
+                <div className="mt-0.5 text-[13px] text-ink-soft">{p.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       {/* News — distinct from Home, focused on company events */}
       <Section tone="soft">
         <div className="flex items-center justify-between gap-3">
-          <SectionHead n="04" eyebrow="Tin tức & Thông báo" title="Cập nhật từ Vietbank" />
+          <SectionHead n="06" eyebrow="Tin tức & Thông báo" title="Cập nhật từ Vietbank" />
           <span className="rounded border border-line bg-surface px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">
             Nội dung minh hoạ
           </span>

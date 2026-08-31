@@ -30,6 +30,17 @@ const CARDS = [
   },
 ]
 
+/* Comparison table — answers "which card is right for me?" with scannable side-by-side */
+const COMPARE_ROWS: { feature: string; cashback: string; travel: string; classic: string }[] = [
+  { feature: "Ưu đãi chính", cashback: "Hoàn tiền tới 8%", travel: "Tích dặm mọi chi tiêu", classic: "Hoàn tiền cơ bản" },
+  { feature: "Phòng chờ sân bay", cashback: "—", travel: "Có", classic: "—" },
+  { feature: "Bảo hiểm du lịch", cashback: "—", travel: "Có", classic: "—" },
+  { feature: "Phí thường niên", cashback: "Miễn phí năm đầu", travel: "Theo hạng thẻ", classic: "Thấp" },
+  { feature: "Điều kiện thu nhập", cashback: "Trung bình", travel: "Trung bình – Khá", classic: "Đơn giản" },
+  { feature: "Trả góp 0%", cashback: "Tại đối tác", travel: "Tại đối tác", classic: "—" },
+  { feature: "Quản lý trên app", cashback: "Có", travel: "Có", classic: "Có" },
+]
+
 export default function The() {
   return (
     <>
@@ -87,8 +98,55 @@ export default function The() {
         <p className="mt-4 text-[12.5px] text-ink-soft">Tên thẻ và ưu đãi là nội dung minh hoạ cho mục đích thiết kế.</p>
       </Section>
 
+      {/* Detailed comparison — answers "what's the difference between these?" */}
       <Section tone="soft">
-        <SectionHead n="02" eyebrow="Quyền lợi chung" title="An tâm với mọi thẻ Vietbank" />
+        <SectionHead
+          n="02"
+          eyebrow="Bảng so sánh"
+          title="Đối chiếu chi tiết"
+          lead="So sánh từng tiêu chí — đặc biệt phí, ưu đãi và điều kiện để bạn chọn đúng thẻ."
+        />
+        <div className="mt-6 overflow-x-auto rounded-xl border border-line bg-surface">
+          <table className="w-full min-w-160 text-left">
+            <thead>
+              <tr className="border-b border-line bg-navy-050 text-[12.5px] uppercase tracking-wide text-ink-soft">
+                <th className="px-5 py-3.5 font-semibold">Tiêu chí</th>
+                <th className="px-5 py-3.5 font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Gift className="h-3.5 w-3.5 text-navy" /> Cashback
+                  </span>
+                </th>
+                <th className="px-5 py-3.5 font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Plane className="h-3.5 w-3.5 text-navy" /> Travel
+                  </span>
+                </th>
+                <th className="px-5 py-3.5 font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CreditCard className="h-3.5 w-3.5 text-navy" /> Classic
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[14.5px]">
+              {COMPARE_ROWS.map((row, i) => (
+                <tr
+                  key={row.feature}
+                  className={`border-b border-line last:border-0 ${i % 2 === 1 ? "bg-soft/40" : ""}`}
+                >
+                  <td className="px-5 py-3.5 font-medium text-ink">{row.feature}</td>
+                  <td className="px-5 py-3.5 text-ink-soft">{row.cashback}</td>
+                  <td className="px-5 py-3.5 font-semibold text-navy">{row.travel}</td>
+                  <td className="px-5 py-3.5 text-ink-soft">{row.classic}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead n="03" eyebrow="Quyền lợi chung" title="An tâm với mọi thẻ Vietbank" />
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           {[
             { icon: ShieldCheck, title: "Bảo mật chủ động", body: "Khoá/mở thẻ tức thì và cảnh báo mọi giao dịch trên Digital Plus." },
