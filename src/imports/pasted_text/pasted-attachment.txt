@@ -1,0 +1,664 @@
+Những lỗi phải sửa trước — P0/P1
+Mức	Vấn đề	Nhận xét
+P0	Hotline sai	Screenshot dùng 1900 1234, trong khi Vietbank hiện công bố hotline duy nhất là 1800 1122. Đây là lỗi cực nghiêm trọng với website ngân hàng.
+P0	Đăng nhập web cho Digital Plus	Vietbank thông báo Internet Banking cá nhân dừng từ 18/05/2026 và chuyển giao dịch sang Digital Plus. CTA này đang dẫn user tới một hành vi không còn đúng với current product reality.
+P0 nếu production	Nội dung “tin mới”, tỷ giá/lãi suất/demo chưa xác thực	Tỷ giá đã ghi STATIC · Số liệu mẫu minh họa, điểm này tốt. Nhưng toàn bộ content giống current data phải hoặc lấy API/source thật, hoặc tiếp tục label rõ demo.
+P1	Hero quá “editorial poster”	H1 khổng lồ + serif + ảnh lifestyle khiến cảm giác gần magazine/luxury editorial hơn ngân hàng bán lẻ.
+P1	CTA chính nằm dưới fold	Ở viewport đầu tiên, user đọc hero nhưng chưa thấy được CTA chính. H1 chiếm quá nhiều chiều cao.
+P1	Brand signature chưa phải Vietbank	Che logo đi, phần lớn màn hình có thể là bất kỳ ngân hàng xanh nào. Xanh có, nhưng đỏ–vàng–hình học Vietbank chưa trở thành system.
+P1	CTA color semantics lộn xộn	Hero CTA chính là đỏ, còn phần còn lại CTA chính lại xanh. Không rõ blue = primary hay red = primary.
+P1	Header quá nặng	Header main rất cao; menu bị xuống 2 dòng dù màn hình 1800px. Sticky header sẽ ăn diện tích nội dung đáng kể.
+P1	Lặp card quá nhiều	Need discovery → 2x2 card; Digital → 2 card; Security → 4 card; Footer utilities → 3 card. Đã bắt đầu đúng anti-pattern skill cảnh báo.
+1. Lỗi nặng nhất không phải UI: Hotline 1900 1234
+
+Trong ảnh bạn đang có:
+
+Hotline 1900 1234
+
+và footer cũng:
+
+Chăm sóc khách hàng 24/7 — 1900 1234
+
+Trong khi trang Liên hệ Vietbank hiện ghi 1800 1122; thông báo Voice Brandname tháng 1/2026 còn nhấn mạnh khách hàng chỉ liên hệ Vietbank qua một hotline duy nhất 1800 1122 để chống giả mạo.
+
+Với ngân hàng đây không phải typo P2.
+
+Đây là P0 blocker.
+
+Sai hotline trên banking website có thể biến một redesign đẹp thành một website không đáng tin.
+
+2. Đăng nhập web ở Digital Plus phải bỏ
+
+Section này hiện:
+
+Vietbank Digital Plus
+[Tải Digital Plus] [Đăng nhập web]
+
+Nhưng portal Internet Banking cá nhân hiện thông báo:
+
+từ 18/05/2026 Vietbank dừng cung cấp Internet Banking dành cho khách hàng cá nhân, và yêu cầu dùng Digital Plus.
+
+Do đó:
+
+Digital Plus
+[Tải ứng dụng]
+[Tìm hiểu Digital Plus]
+
+hoặc:
+
+[Mở/Tải Digital Plus]
+[Hướng dẫn sử dụng]
+
+Không đưa Đăng nhập web nếu không có một REAL current web service được Vietbank xác nhận.
+
+Đây chính là rule của V5:
+
+rendered state ≠ verified system behavior.
+
+3. Hero đẹp nhưng đang “over-designed”
+
+Mình đánh giá đây là nơi dễ khiến team thích ngay, nhưng cũng là nơi mình sẽ sửa mạnh nhất.
+
+Hiện tại có quá nhiều layer:
+announcement badge;
+H1 cực lớn;
+một đoạn lead;
+switch Cá nhân / Doanh nghiệp;
+CTA đỏ;
+CTA secondary;
+ảnh lớn;
+Digital Plus floating panel.
+
+Nó giống landing page campaign hơn homepage của một banking ecosystem.
+
+Skill visual direction yêu cầu hierarchy rõ và visual grammar có lý do, không phải vì editorial layout nhìn đẹp.
+
+H1 hiện tại
+
+Ngân hàng đồng hành cùng mọi quyết định tài chính của bạn.
+
+Copy ổn.
+
+Nhưng size hiện quá lớn. Trên màn hình 1800×864 nó xuống khoảng 4 dòng và gần như chiếm toàn bộ fold.
+
+Kết quả:
+
+Brand promise
+████████████████
+
+Brand promise
+████████████████
+
+Description
+
+--- hết viewport ---
+
+CTA
+
+Đối với homepage bank, mình muốn:
+
+Brand promise
+Description
+Primary CTA + Secondary CTA
+
+cùng xuất hiện trong viewport đầu.
+
+Sửa
+
+H1 desktop nên khoảng:
+
+48–56px
+line-height 1.08–1.12
+max-width 650–720px
+
+Không cần 70–80px.
+
+4. Serif đang dùng hơi quá tay
+
+Đây là điểm mình sẽ nói rất thẳng:
+
+Bạn đã sửa vấn đề “website không có style” bằng cách đẩy nó sang một style editorial banking hơi quá mức.
+
+Serif hiện xuất hiện ở:
+
+H1;
+“Bạn muốn làm gì hôm nay?”;
+need discovery;
+Tỷ giá & Lãi suất;
+Digital Plus/DigiBiz;
+Security heading.
+
+Do đó serif không còn là signature nữa mà trở thành default heading font.
+
+Cảm giác nó tạo ra:
+
+editorial
+fashion/luxury
+annual report
+boutique financial brand
+
+nhiều hơn:
+
+accessible retail bank
+efficient digital banking
+Vietnamese mass-market financial service
+Hai hướng hợp lý
+
+Hướng mình ưu tiên:
+
+Be Vietnam Pro
+→ Display
+→ H1
+→ H2
+→ H3
+→ Body/UI/Data
+
+Một family, scale rất chắc.
+
+Hoặc nếu muốn giữ serif:
+
+Serif:
+Hero / major brand storytelling ONLY
+
+Be Vietnam Pro:
+Product
+Navigation
+Utility
+Data
+Forms
+Cards
+FAQ
+Security
+Investor
+
+Không cho serif xuất hiện ở mọi H2.
+
+5. Ảnh hero chưa đủ Vietbank
+
+Ảnh cô gái dùng điện thoại không có lỗi kỹ thuật, nhưng xét brand:
+
+không thấy Vietbank;
+không thấy sản phẩm;
+không thấy tài chính;
+background kiểu quán/café;
+người xem không biết đây là Digital Plus hay một campaign lifestyle.
+
+Điều này làm H1 + image giống quảng cáo generic.
+
+Mình sẽ ưu tiên:
+
+real Vietbank customer
++
+Digital Plus context
+
+hoặc:
+
+authentic Vietnamese financial moment
+
+Ví dụ:
+
+người trẻ mở tài khoản;
+gia đình hoạch định tài chính;
+chủ SME;
+người dùng Digital Plus;
+real branch/customer imagery.
+
+Brand distinctiveness skill nhấn mạnh image crop, lighting, subject, graphic device đều phải là repeatable brand cue, không chỉ ảnh đẹp.
+
+6. Header đang quá cao và menu xuống dòng rất xấu
+
+Trên màn hình rất rộng mà:
+
+Cá
+nhân
+
+Doanh
+nghiệp
+
+Ngân hàng
+số
+
+Về
+Vietbank
+
+Nhà đầu
+tư
+
+là dấu hiệu layout chưa được tối ưu.
+
+Nav bank cần scan tức thì.
+
+Nên là:
+
+Cá nhân
+Doanh nghiệp
+Ngân hàng số
+Thẻ
+Hỗ trợ
+Về Vietbank
+Nhà đầu tư
+
+một dòng.
+
+Top utility bar hiện ổn về chức năng.
+
+Nhưng main header nên giảm khoảng 15–25% chiều cao.
+
+Search cũng không cần một box lớn ngang weight với login.
+
+Login nên xem lại architecture
+
+Hiện:
+
+[Search] [Đăng nhập] [Digital Plus]
+
+Tốt hơn có thể là:
+
+Search
+Đăng nhập ▾
+[Digital Plus]
+
+Dropdown:
+
+Cá nhân
+Doanh nghiệp / DigiBiz
+
+Nếu hệ thống thật hỗ trợ tương ứng.
+
+7. Section “Bạn muốn làm gì hôm nay?” là một trong những phần tốt nhất
+
+Phần này mình giữ.
+
+Mở tài khoản
+Gửi tiết kiệm
+Mở thẻ
+Vay vốn
+Chuyển tiền
+Digital Plus
+
+Đây là user-intent architecture tốt hơn kiểu:
+
+Sản phẩm
+Dịch vụ
+Giải pháp
+
+Nó phù hợp với triết lý audience/top-task của bộ skill.
+
+Nhưng presentation hiện giống một 6-column feature strip khá generic.
+
+Có thể tăng chất Vietbank bằng:
+
+bỏ background icon badge nhạt nếu không cần;
+dùng divider mạnh hơn;
+hover dùng yellow/red micro-accent;
+icon family riêng;
+reduce border/card feeling.
+8. “Không cần biết thuật ngữ ngân hàng…” — copy rất tốt, layout chưa tương xứng
+
+Đây có lẽ là heading tốt nhất homepage:
+
+Không cần biết thuật ngữ ngân hàng — hãy bắt đầu từ điều bạn cần.
+
+Nó thể hiện rõ user-centered banking.
+
+Giữ copy này.
+
+Nhưng bên dưới lại thành:
+
+2 × 2
+large rounded cards
+
+Lại quay về card catalogue.
+
+Các card quá to, quá nhiều whitespace và không đưa user tới quyết định nhanh.
+
+Ví dụ:
+
+Tôi muốn mở tài khoản
+
+Tài khoản thanh toán miễn phí duy trì,
+số đẹp theo yêu cầu...
+
+Tốt hơn nên cho thêm decision cue:
+
+Tôi muốn mở tài khoản
+
+✓ Mở online
+✓ Miễn phí duy trì
+✓ Kết nối Digital Plus
+
+Phù hợp nếu:
+Bạn cần tài khoản dùng hàng ngày.
+
+[Tìm tài khoản phù hợp]
+
+Hoặc làm dạng editorial rows, không phải card.
+
+9. Section Tỷ giá & Lãi suất là section tốt nhất về visual
+
+Đây là section mình chấm cao nhất.
+
+Điểm tốt:
+
+break màu rất mạnh;
+rõ banking;
+information-dense;
+data structure tốt;
+tab rõ;
+số aligned;
+có timestamp;
+ghi rõ STATIC / dữ liệu mẫu.
+
+Việc ghi:
+
+STATIC · Số liệu mẫu minh họa
+
+thực ra là đúng tinh thần V5 hơn phần lớn prototype AI khác.
+
+Nhưng có 3 lỗi craft
+
+Yellow ở cả cột Bán quá nổi.
+
+Nó làm user hiểu:
+
+yellow = special / warning / best value
+
+thay vì chỉ là brand accent.
+
+Nên để số chính:
+
+white
+
+và yellow dùng cho:
+
+selected rate
+change
+highlight
+important info
+
+Mono type hơi “terminal”.
+
+Số mono có lợi cho alignment, nhưng hiện vibe hơi developer/dashboard.
+
+Có thể dùng:
+
+Be Vietnam Pro
+font-variant-numeric: tabular-nums
+
+thay vì monospace quá rõ.
+
+Blue block chiếm toàn diện mạnh, nhưng đây là một trường hợp mình thấy hợp lý.
+
+10. Digital Plus / DigiBiz: concept đúng nhưng có copy và reality issue
+
+Phân biệt:
+
+CÁ NHÂN → Digital Plus
+DOANH NGHIỆP → DigiBiz
+
+là rất đúng.
+
+Current Vietbank vẫn có trang Digital Banking hiển thị tên Vietbank Digital cũ trong khi app đó đã dừng từ 03/06/2026. Redesign mới đang giải quyết đúng một pain point thật.
+
+Nhưng heading:
+
+Một ứng dụng phù hợp cho bạn — không phải đoán.
+
+phía dưới lại có hai ứng dụng.
+
+Copy tự mâu thuẫn.
+
+Đổi thành:
+
+Đúng ngân hàng số cho đúng nhu cầu.
+
+hoặc:
+
+Cá nhân hay doanh nghiệp — luôn có một trải nghiệm số phù hợp.
+
+Và bỏ Đăng nhập web như đã nói ở P0.
+
+11. Section “Niềm tin & An toàn” hiện chưa đủ trust
+
+Đây là nơi mình thấy concept tốt nhưng evidence yếu.
+
+Hiện bên phải:
+
+Xác thực nhiều lớp
+Cảnh báo giao dịch
+Kênh liên hệ xác thực
+Mạng lưới toàn quốc
+
+Đây là claim cards.
+
+Chưa phải trust evidence.
+
+Skill trust-credibility-and-transparency yêu cầu major claims phải có evidence, identity/contact rõ và stale/unknown content không được trình bày như current fact.
+
+Mình sẽ thay phần này bằng thứ đáng tin hơn:
+
+Trung tâm an toàn & chống lừa đảo
+→ Hướng dẫn xác minh cuộc gọi/tin nhắn
+
+Hotline chính thức
+→ 1800 1122
+
+Kênh chính thức
+→ website / app / Zalo / email
+
+Bảo vệ dữ liệu cá nhân
+→ chính sách hiện hành
+
+Tuân thủ
+→ AML / FATCA / ...
+
+Vietbank thực tế đã triển khai Voice Brandname và công bố hotline duy nhất 1800 1122 nhằm giúp khách hàng chống giả mạo. Đây mới là trust proof mạnh.
+
+12. Mạng lưới toàn quốc là generic claim
+
+Card này:
+
+Mạng lưới toàn quốc
+Chi nhánh, phòng giao dịch và ATM phủ khắp cả nước.
+
+không cung cấp evidence.
+
+Và website Vietbank hiện còn có conflict về số điểm giao dịch: About đang nói 127.
+
+Vì vậy tốt hơn:
+
+ATM & Điểm giao dịch
+Tìm điểm Vietbank gần bạn
+
+[Mở bản đồ]
+
+Không cần claim “phủ khắp”.
+
+13. News + FAQ: layout ổn nhưng data integrity phải kiểm lại
+
+Hai cột này functional và dễ scan.
+
+Nhưng mình search các headline trong prototype thì không thấy toàn bộ các bài current-looking đó tương ứng rõ trên nguồn official; riêng headline giả mạo tin nhắn gần với một bài Vietbank thật từ năm 2021, không phải 15/08/2026 như prototype đang hiển thị.
+
+Nếu đây là visual prototype:
+
+okay
+
+nhưng phải label:
+
+DEMO CONTENT
+
+Nếu chuẩn bị production:
+
+P0 CONTENT INTEGRITY
+
+Không được dùng ngày 2026 để làm content trông mới.
+
+14. Yellow pill đang bị lạm dụng
+
+Yellow hiện dùng cho:
+
+section number;
+category tags;
+bullets;
+rate sell column;
+VBB badge;
+icon accent;
+news labels.
+
+Nó bắt đầu mất meaning.
+
+Bạn đã có brand 3 màu nhưng brand color ≠ dùng ở mọi chỗ.
+
+Nên semantic hóa:
+
+BLUE
+trust / action / selected / link
+
+RED
+critical / promotional emphasis
+
+YELLOW
+attention / highlight / brand signature
+
+NEUTRAL
+taxonomy / category / metadata
+
+Ví dụ news category KHUYẾN MÃI, LÃI SUẤT, THÔNG BÁO không nhất thiết tất cả vàng.
+
+15. Section numbering 02 / 03 / 04 / 05 / 06 / 07 không phải signature đủ mạnh
+
+Nó nhìn đẹp.
+
+Nhưng đây là motif rất phổ biến của:
+
+agency;
+portfolio;
+architecture;
+editorial site.
+
+Nó không nói:
+
+Vietbank.
+
+Brand distinctiveness skill cảnh báo việc dựa logo + primary color hoặc decorative motif không có nguồn brand.
+
+Có thể thay bằng một cue lấy từ logo:
+
+small yellow hexagonal notch
+blue/red edge
+6-sided indicator
+VB geometry
+
+Rất nhẹ.
+
+Không biến mọi thứ thành hexagon card.
+
+16. Card repetition đã bắt đầu biến thành “AI template”
+
+Bạn hiện có ít nhất:
+
+Quick action → segmented cells
+Needs → 4 cards
+Digital → 2 cards
+Trust → 4 cards
+Footer utility → 3 cards
+FAQ → accordion card
+
+Đây chính là anti-generic UI check của ui-craft-and-visual-qa: “mọi section đều card bo tròn”, “section heading + cards lặp liên tục”.
+
+Không cần bỏ card hết.
+
+Nhưng nên giữ card cho:
+
+comparable product/option
+
+và dùng:
+
+editorial row
+data strip
+full-bleed section
+link list
+split image/text
+table
+timeline
+navigation rail
+
+cho các phần khác.
+
+17. Footer khá tốt
+
+Footer là phần mình sẽ giữ khoảng 80–85%.
+
+Tốt ở:
+
+màu navy sâu;
+dễ đọc;
+clear sitemap;
+VBB/HOSE presence;
+chia Personal / Business / Vietbank;
+hotline nổi bật.
+
+Nhưng hotline hiện sai → phải sửa ngay.
+
+Ba utility card phía trên footer lại là một lần lặp card nữa.
+
+Có thể chuyển thành một utility band:
+
+ATM & Chi nhánh  |  Công cụ tính toán  |  Biểu phí & Biểu mẫu
+
+có divider, không cần 3 box lớn.
+
+Chấm từng phần
+Hạng mục	Điểm
+Content strategy	8.5/10
+User-intent architecture	8.5/10
+Digital Plus / DigiBiz logic	8/10
+Information hierarchy	7/10
+Visual craft	7.5/10
+Typography	6.5/10
+Vietbank brand distinctiveness	6/10
+Design-system consistency	7/10
+Banking trust architecture	5.5/10
+Content/system reality	4/10 vì hotline + web login + demo/current-data issues
+Overall production readiness	~6.5/10
+Những thứ không nên phá
+
+Mình không muốn critique này làm agent redesign lại tất cả. Theo skill audit, phải có preserve list.
+
+Giữ:
+
+cấu trúc Cá nhân / Doanh nghiệp;
+“Bạn muốn làm gì hôm nay?”;
+“Không cần biết thuật ngữ ngân hàng…”;
+separation Digital Plus / DigiBiz;
+Tỷ giá & Lãi suất dạng data section;
+News + FAQ split;
+navy footer;
+top utility concept;
+generous whitespace;
+tổng thể không glassmorphism/gradient/bento quá đà.
+
+Sửa mạnh:
+
+factual truth;
+header;
+hero height;
+serif scope;
+CTA color semantics;
+card repetition;
+brand signatures;
+trust evidence;
+imagery;
+system typography.
+Kết luận ngắn nhất
+
+Bản hiện tại đã thoát khỏi website ngân hàng cũ, nhưng đang đứng ở giữa:
+
+“premium editorial concept”
+
+và
+
+“production banking experience”.
+
+Muốn lên 9/10, đừng thêm effect nữa. Việc cần làm là bớt: bớt hero scale, bớt serif, bớt card, bớt yellow decoration, bớt generic claim; rồi tăng truth, banking utility, Vietbank-specific identity và consistency.

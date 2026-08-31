@@ -1,0 +1,10 @@
+{
+  "description": "Offers a redesigned, user-friendly interface for Vietbank's website enhancing navigation and accessibility for banking customers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

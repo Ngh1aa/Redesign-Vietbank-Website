@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* One family across the entire site — Be Vietnam Pro */
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+
+  /* Vietbank brand palette — extracted from logo */
+  --color-navy: #0a53a3;         /* PRIMARY BLUE — CTA, links, active nav, icons */
+  --color-navy-700: #003493;     /* DEEP BLUE — footer, dark sections, hover */
+  --color-navy-500: #2a6fc4;
+  --color-navy-050: #eef4fb;     /* light blue surface (~5% blue) */
+
+  --color-red: #d31e25;          /* controlled accent — notice, alert, emphasis */
+  --color-red-700: #b3181e;
+  --color-yellow: #fec414;       /* highlight, badge, geometric accent */
+  --color-yellow-600: #faac0c;
+
+  --color-ink: #111827;          /* text strong */
+  --color-ink-soft: #667085;     /* text muted */
+  --color-paper: #ffffff;        /* page ground — white dominant */
+  --color-soft: #f6f9fc;         /* soft banking surface (Type B) */
+  --color-surface: #ffffff;      /* elevated surface */
+  --color-line: #e4eaf0;         /* border */
+
+  /* readable gold for small accent text on light */
+  --color-amber: #8a6a08;
+  --color-amber-soft: #fff4d1;
+
+  --radius: 0.5rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* Offset anchor jumps so the sticky header never covers a section start */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+/* Visible, consistent keyboard focus across every interactive element */
+:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+/* Tabular numeric alignment for financial data */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Hide scrollbar until scrolling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: var(--color-line) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.reveal {
+  animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
