@@ -1,6 +1,7 @@
 import { Link } from "react-router"
-import { ArrowRight, ChevronRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react"
 import { SectionLabel, BTN, BTN_SIZE } from "./ui"
+import { EXTERNAL_LINK_PROPS } from "./official"
 
 /* Consistent section shell — one container width, one padding rhythm, three surfaces. */
 export function Section({
@@ -87,6 +88,45 @@ export function FeatureRow({
   )
 }
 
+export type ActionTarget = {
+  label: string
+  to?: string
+  href?: string
+}
+
+/**
+ * One audited action renderer for both in-site navigation and real Vietbank
+ * handoffs. External actions always open in a new tab and show the external
+ * arrow so users know they are leaving the concept site.
+ */
+export function ActionLink({
+  action,
+  variant = "primary",
+  size = "lg",
+  className = "",
+}: {
+  action: ActionTarget
+  variant?: keyof typeof BTN
+  size?: keyof typeof BTN_SIZE
+  className?: string
+}) {
+  const classes = `${BTN[variant]} ${BTN_SIZE[size]} ${className}`
+
+  if (action.href) {
+    return (
+      <a href={action.href} {...EXTERNAL_LINK_PROPS} className={classes}>
+        {action.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      </a>
+    )
+  }
+
+  return (
+    <Link to={action.to || "/"} className={classes}>
+      {action.label} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+    </Link>
+  )
+}
+
 /* Conversion band — strong deep-blue Type C. Use at most once per page. */
 export function CTABand({
   title,
@@ -96,8 +136,8 @@ export function CTABand({
 }: {
   title: string
   body: string
-  primary: { label: string; to: string }
-  secondary?: { label: string; to: string }
+  primary: ActionTarget
+  secondary?: ActionTarget
 }) {
   return (
     <section className="border-b border-line bg-navy-700 text-white">
@@ -107,14 +147,8 @@ export function CTABand({
           <p className="mt-3 text-[15.5px] leading-relaxed text-white/75">{body}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link to={primary.to} className={`${BTN.onDark} ${BTN_SIZE.lg}`}>
-            {primary.label} <ArrowRight className="h-4 w-4" />
-          </Link>
-          {secondary && (
-            <Link to={secondary.to} className={`${BTN.onDarkGhost} ${BTN_SIZE.lg}`}>
-              {secondary.label}
-            </Link>
-          )}
+          <ActionLink action={primary} variant="onDark" />
+          {secondary && <ActionLink action={secondary} variant="onDarkGhost" />}
         </div>
       </div>
     </section>
