@@ -37,14 +37,20 @@ export const OFFICIAL = {
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/thong-bao-chuyen-doi-sang-vietbank-digital-plus-tu-01062026-32489",
   digitalPlusLaunch:
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/chinh-thuc-ra-mat-ung-dung-vietbank-digital-plus-32452",
+  digitalPlusExperience:
+    "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/vietbank-nang-tam-trai-nghiem-nguoi-dung-voi-nen-tang-ngan-hang-so-vietbank-digital-plus-32466",
   digitalPlusIOS: "https://apps.apple.com/us/app/vietbank-digital-plus/id6746633957",
   digitalPlusAndroid: "https://play.google.com/store/apps/details?hl=vi&id=com.vn.vietbankomni",
   digiBiz: "https://digibiz.vietbank.com.vn/",
   digiBizInfo: "https://www.vietbank.com.vn/doanh-nghiep/san-pham/ngan-hang-so-vietbank-digibiz",
+  digiBizLaunch:
+    "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/vietbank-chinh-thuc-ra-mat-nen-tang-so-danh-cho-doanh-nghiep",
   digitalBankingLegacyGateway: "https://online.vietbank.com.vn/",
   about: "https://www.vietbank.com.vn/ve-VietBank",
   visionValues:
     "https://www.vietbank.com.vn/ve-vietbank/gioi-thieu/tam-nhin-su-menh-gia-tri-cot-loi",
+  development:
+    "https://www.vietbank.com.vn/ve-vietbank/gioi-thieu/qua-trinh-phat-trien",
   news: "https://www.vietbank.com.vn/ve-vietbank/tin-tuc",
   branchLamDongStory:
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/vietbank-khai-truong-chi-nhanh-dau-tien-tai-lam-dong-mo-rong-mang-luoi-len-130-diem-giao-dich",
@@ -59,18 +65,21 @@ export const OFFICIAL = {
 
 /*
  * First-party public Vietbank media only. These are STATIC verified assets,
- * not generated imagery and not a product/content API. For card discovery we
- * intentionally use card-only packshots from Vietbank product pages and avoid
- * lifestyle/model compositions even when they are hosted on Vietbank's CDN.
- * Text and actions must remain usable if an image is unavailable. Production
- * handoff should replace hotlinks with Vietbank-supplied licensed media managed
- * by the real CMS/CDN.
+ * not generated imagery and not a product/content API. Lifestyle/model imagery
+ * is rejected even when first-party unless it is clearly documentary coverage
+ * of a real Vietbank place/event/team. Text and actions must remain usable if an
+ * image is unavailable. Production handoff should replace hotlinks with
+ * Vietbank-supplied licensed media managed by the real CMS/CDN.
  */
 export const OFFICIAL_MEDIA = {
   logo: "https://www.vietbank.com.vn/img/logo.png",
   digitalPlusLaunch: "https://static.vietbank.com.vn/web/2024-CBTT/mobile_banking_2025-_800_x_600.png",
+  digitalPlusEvent: "https://static.vietbank.com.vn/web/Vietbank-Digital-/kh-ca-nhan/2026/Vietbank-digital-plus/_O0A0132_web_ava.png",
+  digiBizLaunch: "https://static.vietbank.com.vn/web/2024-CBTT/Ban_sao_cua_KELVINDOTEAM_094337.jpg",
   branchLamDongFacility: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_4.jpg",
   branchLamDongTeam: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_5.jpg",
+  agm2026Scene: "https://static.vietbank.com.vn/web/Vietbank-Digital-/team_com/VBportal/2026/daihoidongcodong/INSIDE_1.png",
+  agm2026Overview: "https://static.vietbank.com.vn/web/Vietbank-Digital-/team_com/VBportal/2026/daihoidongcodong/INSIDE_5.png",
   cardMyStyle: "https://static.vietbank.com.vn/web/CardWebsite/product/my%20style/my-style.png",
   cardHappy:
     "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20HAPPY/Master-Card-Credit-Happy-%28Standard%29-1.png",
