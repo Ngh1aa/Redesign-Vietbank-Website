@@ -82,7 +82,6 @@
     --font-mono: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
     --color-white: #fff;
     --spacing: .25rem;
-    --container-xs: 20rem;
     --container-sm: 24rem;
     --container-md: 28rem;
     --container-xl: 36rem;
@@ -1411,10 +1410,6 @@
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
 
-  .text-\[9px\] {
-    font-size: 9px;
-  }
-
   .text-\[10\.5px\] {
     font-size: 10.5px;
   }
@@ -1469,10 +1464,6 @@
 
   .text-\[18px\] {
     font-size: 18px;
-  }
-
-  .text-\[20px\] {
-    font-size: 20px;
   }
 
   .text-\[clamp\(1\.6rem\,2\.6vw\,2\.2rem\)\] {
