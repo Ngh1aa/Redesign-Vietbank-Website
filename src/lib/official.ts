@@ -35,6 +35,8 @@ export const OFFICIAL = {
   digitalPlus: "https://vbdigitalplus.vietbank.com.vn/",
   digitalPlusMigration:
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/thong-bao-chuyen-doi-sang-vietbank-digital-plus-tu-01062026-32489",
+  digitalPlusLaunch:
+    "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/chinh-thuc-ra-mat-ung-dung-vietbank-digital-plus-32452",
   digitalPlusIOS: "https://apps.apple.com/us/app/vietbank-digital-plus/id6746633957",
   digitalPlusAndroid: "https://play.google.com/store/apps/details?hl=vi&id=com.vn.vietbankomni",
   digiBiz: "https://digibiz.vietbank.com.vn/",
@@ -44,6 +46,8 @@ export const OFFICIAL = {
   visionValues:
     "https://www.vietbank.com.vn/ve-vietbank/gioi-thieu/tam-nhin-su-menh-gia-tri-cot-loi",
   news: "https://www.vietbank.com.vn/ve-vietbank/tin-tuc",
+  branchLamDongStory:
+    "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/vietbank-khai-truong-chi-nhanh-dau-tien-tai-lam-dong-mo-rong-mang-luoi-len-130-diem-giao-dich",
   investor: "https://www.vietbank.com.vn/nha-dau-tu",
   hoseListing:
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/co-phieu-vietbank-chinh-thuc-niem-yet-tren-hose",
@@ -54,13 +58,16 @@ export const OFFICIAL = {
 } as const
 
 /*
- * First-party public product media. These are STATIC verified assets, not a
- * product API. Text and actions must remain usable if an image is unavailable.
- * Production brand lock should replace remote media with Vietbank-supplied,
- * licensed assets managed by the real CMS/CDN contract.
+ * First-party public Vietbank media only. These are STATIC verified assets,
+ * not generated imagery and not a product/content API. Text and actions must
+ * remain usable if an image is unavailable. Production handoff should replace
+ * hotlinks with Vietbank-supplied licensed media managed by the real CMS/CDN.
  */
 export const OFFICIAL_MEDIA = {
   logo: "https://www.vietbank.com.vn/img/logo.png",
+  digitalPlusLaunch: "https://static.vietbank.com.vn/web/2024-CBTT/mobile_banking_2025-_800_x_600.png",
+  branchLamDongFacility: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_4.jpg",
+  branchLamDongTeam: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_5.jpg",
   cardMyStyle: "https://static.vietbank.com.vn/web/CardWebsite/product/my%20style/my-style2.png",
   cardHappy:
     "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20HAPPY/Master-Card-Credit-Happy-%28Standard%29-3.jpg",
