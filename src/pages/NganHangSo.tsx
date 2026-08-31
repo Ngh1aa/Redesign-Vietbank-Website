@@ -48,7 +48,7 @@ const BIZ_FEATURES = [
   {
     icon: Building2,
     title: "Nền tảng hợp kênh",
-    body: "DigiBiz được Vietbank giới thiệu theo mô hình omni-channel, kết nối các kênh vận hành số.",
+    body: "DigiBiz được Vietbank giới thiệu là nền tảng hợp kênh, kết nối các kênh vận hành số.",
   },
   {
     icon: CalendarClock,
@@ -103,7 +103,7 @@ export default function NganHangSo() {
               ))}
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
-              <ActionLink action={{ label: "Trang Digital Plus", href: OFFICIAL.digitalPlus }} variant="onDark" size="sm" />
+              <ActionLink action={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }} variant="onDark" size="sm" />
               <ActionLink action={{ label: "App Store", href: OFFICIAL.digitalPlusIOS }} variant="onDarkGhost" size="sm" />
               <ActionLink action={{ label: "Google Play", href: OFFICIAL.digitalPlusAndroid }} variant="onDarkGhost" size="sm" />
             </div>
@@ -146,19 +146,20 @@ export default function NganHangSo() {
           n="01"
           eyebrow="Chọn nền tảng"
           title="So sánh theo công việc cần hoàn thành"
-          lead="Không dùng một nút “Đăng nhập” chung cho mọi người. Chọn theo đối tượng và quy trình vận hành để tránh vào nhầm kênh."
+          lead="Digital Plus và DigiBiz phục vụ hai nhóm khách hàng khác nhau. So sánh dưới đây để chọn đúng kênh trước khi tiếp tục."
         />
         <div className="mt-6 overflow-x-auto rounded-xl border border-line bg-surface">
           <table className="w-full min-w-[720px] text-left">
+            <caption className="sr-only">So sánh Vietbank Digital Plus và Vietbank DigiBiz theo đối tượng sử dụng, điểm truy cập và nhóm tính năng.</caption>
             <thead>
               <tr className="border-b border-line bg-navy-050 text-[12.5px] uppercase tracking-wide text-ink-soft">
-                <th className="px-5 py-3.5 font-semibold">Tiêu chí</th>
-                <th className="px-5 py-3.5 font-semibold">
+                <th scope="col" className="px-5 py-3.5 font-semibold">Tiêu chí</th>
+                <th scope="col" className="px-5 py-3.5 font-semibold">
                   <span className="inline-flex items-center gap-1.5">
                     <Smartphone className="h-3.5 w-3.5 text-navy" /> Digital Plus
                   </span>
                 </th>
-                <th className="px-5 py-3.5 font-semibold">
+                <th scope="col" className="px-5 py-3.5 font-semibold">
                   <span className="inline-flex items-center gap-1.5">
                     <Building2 className="h-3.5 w-3.5 text-navy" /> DigiBiz
                   </span>
@@ -168,7 +169,7 @@ export default function NganHangSo() {
             <tbody className="text-[14.5px]">
               {PLATFORM_GUIDE.map((row) => (
                 <tr key={row.feature} className="border-b border-line last:border-0">
-                  <td className="px-5 py-3.5 font-medium text-ink">{row.feature}</td>
+                  <th scope="row" className="px-5 py-3.5 font-medium text-ink">{row.feature}</th>
                   <td className="px-5 py-3.5 text-ink-soft">{row.plus}</td>
                   <td className="px-5 py-3.5 text-ink-soft">{row.biz}</td>
                 </tr>
@@ -178,7 +179,7 @@ export default function NganHangSo() {
         </div>
         <p className="mt-3 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft">
           <Check className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
-          Nội dung tính năng ở trang này được rút từ các trang/Thông báo Vietbank công khai; điều kiện dịch vụ thực tế vẫn theo Vietbank tại thời điểm sử dụng.
+          Nội dung tính năng được đối chiếu với các nguồn Vietbank công khai; điều kiện dịch vụ thực tế vẫn theo Vietbank tại thời điểm sử dụng.
         </p>
       </Section>
 

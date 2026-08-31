@@ -22,7 +22,7 @@ export const NAV_LINKS: NavItem[] = [
     to: "/ca-nhan",
     caret: true,
     children: [
-      { label: "Tài khoản thanh toán", to: "/ca-nhan#accounts", hint: "Mở online với eKYC" },
+      { label: "Tài khoản thanh toán", to: "/ca-nhan#accounts", hint: "Mở trực tuyến với eKYC" },
       { label: "Tiết kiệm", to: "/ca-nhan#savings", hint: "Xem kỳ hạn & cách bắt đầu" },
       { label: "Thẻ", to: "/the#cards", hint: "Danh mục thẻ Vietbank" },
       { label: "Vay vốn", to: "/ca-nhan#loans", hint: "Mua nhà · ô tô · tiêu dùng" },
@@ -71,8 +71,8 @@ export const BTN = {
     "inline-flex items-center justify-center gap-2 rounded-md font-semibold text-navy transition-colors hover:bg-navy-050 active:bg-navy-050/70",
 }
 export const BTN_SIZE = {
-  lg: "px-5 py-3 text-[15px]",
-  sm: "px-4 py-2.5 text-[14px]",
+  lg: "min-h-12 px-5 py-3 text-[15px]",
+  sm: "min-h-11 px-4 py-2.5 text-[14px]",
 }
 
 /**
@@ -100,12 +100,12 @@ export function Logo({ light = false }: { light?: boolean }) {
 export function SectionLabel({ n, children }: { n: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 text-ink-soft">
-      <span className="text-xs tnum text-amber">{n}</span>
+      <span className="text-[12.5px] tnum text-amber">{n}</span>
       <span className="flex h-0.5 w-8 overflow-hidden" aria-hidden="true">
         <span className="w-1/2 bg-red" />
         <span className="w-1/2 bg-yellow" />
       </span>
-      <span className="text-xs font-semibold uppercase tracking-[0.16em]">{children}</span>
+      <span className="text-[12.5px] font-semibold uppercase tracking-[0.1em]">{children}</span>
     </div>
   )
 }
@@ -123,7 +123,7 @@ export function PageHeader({
 }) {
   return (
     <section className="border-b border-line bg-surface">
-      <div className="mx-auto max-w-[1240px] px-6 py-12 lg:py-16">
+      <div className="mx-auto max-w-[1240px] px-6 py-10 lg:py-14">
         <nav className="mb-6 flex items-center gap-1.5 text-[13px] text-ink-soft" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-navy">Trang chủ</Link>
           <ChevronRight className="h-3.5 w-3.5" />
@@ -222,16 +222,8 @@ export function FormField({
 
 export function LocaleSwitcher({ className = "" }: { className?: string }) {
   return (
-    <div className={`inline-flex items-center gap-1 text-[13px] ${className}`} role="group" aria-label="Chọn ngôn ngữ">
-      <button aria-pressed="true" aria-label="Tiếng Việt" className="rounded px-1.5 py-0.5 font-semibold text-white">VI</button>
-      <span aria-hidden="true" className="text-white/50">/</span>
-      <button
-        aria-pressed="false"
-        aria-label="English"
-        className="rounded px-1.5 py-0.5 text-white/70 transition-colors hover:text-white"
-        disabled
-        title="Phiên bản tiếng Anh sắp ra mắt"
-      >EN</button>
-    </div>
+    <span className={`inline-flex min-h-8 items-center rounded px-2 text-[13px] font-semibold text-white ${className}`} aria-label="Ngôn ngữ hiện tại: Tiếng Việt">
+      VI
+    </span>
   )
 }

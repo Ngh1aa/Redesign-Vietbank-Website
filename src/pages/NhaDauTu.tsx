@@ -25,7 +25,7 @@ export default function NhaDauTu() {
         eyebrow="Quan hệ nhà đầu tư"
         crumb="Nhà đầu tư"
         title="VBB trên HOSE — thông tin có mốc thời gian rõ ràng"
-        lead="V6 bỏ giá cổ phiếu và chỉ số minh hoạ. Trang này tóm tắt các mốc Vietbank đã công bố và dẫn tới thư viện IR chính thức."
+        lead="Trang này tóm tắt các mốc Vietbank đã công bố và dẫn tới thư viện nhà đầu tư chính thức. Giá cổ phiếu theo phiên không được hiển thị khi không có nguồn dữ liệu trực tiếp."
       />
 
       <Section>
@@ -33,7 +33,7 @@ export default function NhaDauTu() {
           n="01"
           eyebrow="Niêm yết"
           title="Cổ phiếu VBB chính thức giao dịch trên HOSE từ 14/07/2026"
-          lead="Vietbank công bố gần 1,08 tỷ cổ phiếu VBB niêm yết trên Sở Giao dịch Chứng khoán TP.HCM. Concept site không hiển thị giá theo phiên vì không có nguồn dữ liệu thị trường trực tiếp."
+          lead="Vietbank công bố gần 1,08 tỷ cổ phiếu VBB niêm yết trên Sở Giao dịch Chứng khoán TP.HCM. Giá theo phiên không được hiển thị vì trang này không có nguồn dữ liệu thị trường theo thời gian thực."
         />
         <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
           {[["VBB", "Mã chứng khoán"], ["HOSE", "Sàn niêm yết"], ["14/07/2026", "Ngày giao dịch chính thức"]].map(([value, label]) => (
@@ -50,7 +50,7 @@ export default function NhaDauTu() {
         <SectionHead
           n="02"
           eyebrow="Kết quả 6 tháng 2026"
-          title="Snapshot từ công bố Vietbank"
+          title="Kết quả nổi bật từ công bố Vietbank"
           lead="Số liệu dưới đây là các con số Vietbank nêu trong thông tin kết quả nửa đầu năm và có ghi rõ mốc thời gian."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -88,11 +88,11 @@ export default function NhaDauTu() {
         <div className="flex flex-wrap items-end justify-between gap-5">
           <SectionHead
             n="04"
-            eyebrow="Thư viện IR"
+            eyebrow="Thư viện nhà đầu tư"
             title="Một điểm vào cho tài liệu nhà đầu tư"
-            lead="Thay cho các hàng “Tải PDF” không có file thật, V6 đưa người dùng vào đúng thư viện Vietbank và giải thích các nhóm tài liệu có thể tìm thấy."
+            lead="Các nhóm dưới đây giúp bạn biết mình có thể tìm loại tài liệu nào trước khi mở thư viện Vietbank chính thức."
           />
-          <ActionLink action={{ label: "Mở Quan hệ nhà đầu tư Vietbank", href: OFFICIAL.investor }} variant="secondary" size="sm" />
+          <ActionLink action={{ label: "Mở thư viện nhà đầu tư Vietbank", href: OFFICIAL.investor }} variant="secondary" size="sm" />
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {IR_SECTIONS.map(({ icon: Icon, title, body }) => (
@@ -110,26 +110,26 @@ export default function NhaDauTu() {
           <article className="rounded-xl border border-line bg-surface p-7">
             <Calendar className="h-6 w-6 text-navy" />
             <h2 className="mt-4 font-display text-xl font-semibold">Sự kiện cổ đông</h2>
-            <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">Không dựng lịch dự kiến khi chưa có công bố. Theo dõi mục Đại hội đồng cổ đông và công bố thông tin trên IR Vietbank.</p>
-            <div className="mt-5"><ActionLink action={{ label: "Theo dõi trên IR", href: OFFICIAL.investor }} variant="ghost" size="sm" /></div>
+            <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">Không dựng lịch dự kiến khi chưa có công bố. Theo dõi mục Đại hội đồng cổ đông và công bố thông tin trên khu vực Nhà đầu tư Vietbank.</p>
+            <div className="mt-5"><ActionLink action={{ label: "Xem thông tin cổ đông", href: OFFICIAL.investor }} variant="ghost" size="sm" /></div>
           </article>
           <article className="rounded-xl border border-line bg-surface p-7">
             <Users className="h-6 w-6 text-navy" />
             <h2 className="mt-4 font-display text-xl font-semibold">Quản trị công ty</h2>
-            <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">Điều lệ, quy chế và các tài liệu quản trị được tách thành nhóm riêng trong thư viện Nhà đầu tư.</p>
+            <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">Điều lệ, quy chế và các tài liệu quản trị được tập trung thành nhóm riêng trong thư viện Nhà đầu tư.</p>
             <div className="mt-5"><ActionLink action={{ label: "Mở tài liệu quản trị", href: OFFICIAL.investor }} variant="ghost" size="sm" /></div>
           </article>
           <article className="rounded-xl border border-line bg-navy p-7 text-white">
             <TrendingUp className="h-6 w-6 text-yellow" />
-            <h2 className="mt-4 font-display text-xl font-semibold">Nguyên tắc dữ liệu V6</h2>
-            <p className="mt-2 text-[14.5px] leading-relaxed text-white/75">Không hiển thị giá VBB, biến động phiên, CAR/NPL hay lịch dự kiến nếu concept không có feed/công bố xác minh được.</p>
+            <h2 className="mt-4 font-display text-xl font-semibold">Nguyên tắc dữ liệu</h2>
+            <p className="mt-2 text-[14.5px] leading-relaxed text-white/75">Không hiển thị giá VBB, biến động phiên, CAR/NPL hay lịch dự kiến khi chưa có nguồn dữ liệu hoặc công bố có thể xác minh.</p>
           </article>
         </div>
       </Section>
 
       <CTABand
         title="Mở nguồn công bố Vietbank"
-        body="Các số liệu tóm tắt giúp định hướng nội dung. Báo cáo tài chính, nghị quyết và công bố chính thức được quản lý tại thư viện IR Vietbank."
+        body="Các số liệu tóm tắt giúp định hướng nội dung. Báo cáo tài chính, nghị quyết và công bố chính thức được quản lý tại thư viện Nhà đầu tư Vietbank."
         primary={{ label: "Quan hệ nhà đầu tư Vietbank", href: OFFICIAL.investor }}
         secondary={{ label: "Công bố niêm yết VBB", href: OFFICIAL.hoseListing }}
       />
