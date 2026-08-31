@@ -15,7 +15,7 @@ export function Section({
   const bg = tone === "soft" ? "bg-soft" : tone === "brand" ? "bg-navy-700 text-white" : "bg-paper"
   return (
     <section id={id} className={`border-b border-line ${bg}`}>
-      <div className="mx-auto max-w-[1240px] px-6 py-16">{children}</div>
+      <div className="mx-auto max-w-[1240px] px-6 py-12 lg:py-16">{children}</div>
     </section>
   )
 }
@@ -128,7 +128,7 @@ export function CTABand({
       <div className="mx-auto flex max-w-[1240px] flex-col items-start justify-between gap-6 px-6 py-14 lg:flex-row lg:items-center">
         <div className="max-w-2xl">
           <h2 className="font-display text-[clamp(1.6rem,2.6vw,2.2rem)] font-semibold leading-tight">{title}</h2>
-          <p className="mt-3 text-[15.5px] leading-relaxed text-white/75">{body}</p>
+          <p className="mt-3 text-[15.5px] leading-relaxed text-white/80">{body}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <ActionLink action={primary} variant="onDark" />
@@ -150,7 +150,7 @@ export function Stat({ value, label }: { value: string; label: string }) {
 
 export function InlineLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
-    <Link to={to} className="inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
+    <Link to={to} className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
       {children} <ChevronRight className="h-4 w-4" />
     </Link>
   )

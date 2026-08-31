@@ -69,7 +69,7 @@ const NEEDS: Record<Segment, Need[]> = {
     { tag: "Vận hành", title: "Doanh nghiệp cần tài khoản thanh toán", body: "Đi tới tài khoản, biểu mẫu tổ chức và các bước tiếp theo phù hợp với vận hành doanh nghiệp.", to: "/doanh-nghiep#accounts" },
     { tag: "Nguồn vốn", title: "Doanh nghiệp cần vốn", body: "Khám phá tín dụng và tài trợ vốn theo nhu cầu thay vì đọc một danh sách sản phẩm dài.", to: "/doanh-nghiep#credit" },
     { tag: "Dòng tiền", title: "Tôi cần kiểm soát giao dịch và phê duyệt", body: "Tìm hiểu DigiBiz và vai trò của nền tảng trong quản trị giao dịch doanh nghiệp.", to: "/doanh-nghiep#cash-management" },
-    { tag: "Quốc tế", title: "Doanh nghiệp có giao dịch XNK", body: "Đi tới tài trợ thương mại, chuyển tiền quốc tế và tỷ giá theo đúng context nghiệp vụ.", to: "/doanh-nghiep#trade" },
+    { tag: "Quốc tế", title: "Doanh nghiệp có giao dịch XNK", body: "Đi tới tài trợ thương mại, chuyển tiền quốc tế và tỷ giá theo đúng nhu cầu nghiệp vụ.", to: "/doanh-nghiep#trade" },
   ],
 }
 
@@ -104,16 +104,16 @@ export default function Home() {
       <section className="border-b border-line bg-paper">
         <div className="mx-auto grid max-w-[1240px] lg:grid-cols-[1.1fr_0.9fr]">
           <div className="reveal flex flex-col justify-center px-6 py-14 lg:py-20 lg:pr-14">
-            <SectionLabel n="01">Vietbank service entry</SectionLabel>
+            <SectionLabel n="01">Bắt đầu theo nhu cầu</SectionLabel>
             <h1 className="mt-4 max-w-[720px] font-display text-[clamp(2.2rem,4.2vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.03em]">
               Bắt đầu từ <span className="text-navy">việc bạn cần làm</span>.
             </h1>
             <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-soft">
-              V7 tổ chức website như một chỉ mục dịch vụ rõ ràng: xác định nhu cầu, xem bằng chứng/điều kiện cần thiết, rồi chuyển sang đúng kênh Vietbank chính thức.
+              Chọn nhu cầu cá nhân hoặc doanh nghiệp, xem thông tin cần thiết và tiếp tục trên đúng kênh Vietbank chính thức.
             </p>
 
             <div className="mt-7">
-              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Ngữ cảnh của bạn</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Bạn cần giải pháp cho</span>
               <div className="mt-2 inline-flex border border-line bg-surface p-1" role="group" aria-label="Chọn nhóm khách hàng">
                 {([ ["ca-nhan", "Cá nhân"], ["doanh-nghiep", "Doanh nghiệp"] ] as [Segment, string][]).map(([value, label]) => (
                   <button
@@ -131,7 +131,7 @@ export default function Home() {
 
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to={isPersonal ? "/ca-nhan" : "/doanh-nghiep"} className={`${BTN.primary} ${BTN_SIZE.lg}`}>
-                Khám phá {isPersonal ? "cá nhân" : "doanh nghiệp"} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                Xem dịch vụ {isPersonal ? "cá nhân" : "doanh nghiệp"} <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>Trung tâm hỗ trợ</Link>
             </div>
@@ -140,7 +140,7 @@ export default function Home() {
           <div className="border-t border-line bg-soft px-6 py-10 lg:border-l lg:border-t-0 lg:px-8 lg:py-14">
             <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Service ledger</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Điểm truy cập nhanh</div>
                 <h2 className="mt-1 font-display text-xl font-semibold">Kênh quan trọng</h2>
               </div>
               <span className="flex h-1 w-12 overflow-hidden" aria-hidden="true"><span className="w-1/2 bg-red" /><span className="w-1/2 bg-yellow" /></span>
@@ -177,10 +177,10 @@ export default function Home() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <SectionLabel n="02">Tác vụ nhanh — {isPersonal ? "Cá nhân" : "Doanh nghiệp"}</SectionLabel>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.5rem)] font-semibold tracking-tight">Một chỉ mục dịch vụ, không phải một dãy promo card.</h2>
+              <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.5rem)] font-semibold tracking-tight">Chọn đúng dịch vụ theo nhu cầu của bạn</h2>
             </div>
             <Link to={isPersonal ? "/ca-nhan" : "/doanh-nghiep"} className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
-              Xem trang tổng quan <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              Xem tất cả dịch vụ <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
@@ -227,7 +227,7 @@ export default function Home() {
             <div>
               <SectionLabel n="04">Công cụ ngân hàng</SectionLabel>
               <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-semibold leading-tight">Dữ liệu thay đổi theo thời điểm phải mở từ nguồn thật.</h2>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-ink-soft">V7 không tạo bảng tỷ giá/lãi suất giả để làm giao diện có vẻ “sống”. Mỗi công cụ bên cạnh đưa bạn tới điểm Vietbank đang vận hành.</p>
+              <p className="mt-4 text-[14.5px] leading-relaxed text-ink-soft">Tỷ giá và lãi suất thay đổi theo thời điểm. Các liên kết bên cạnh mở trực tiếp nguồn Vietbank đang công bố.</p>
             </div>
 
             <div className="border-y border-line bg-surface">
@@ -249,12 +249,12 @@ export default function Home() {
           <div>
             <div className="flex items-center gap-3 text-white/60"><span className="text-xs tnum text-yellow">05</span><span className="flex h-0.5 w-8 overflow-hidden" aria-hidden="true"><span className="w-1/2 bg-red" /><span className="w-1/2 bg-yellow" /></span><span className="text-xs font-semibold uppercase tracking-[0.16em]">An toàn trước hành động</span></div>
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.5rem)] font-semibold leading-tight">Biết mình sắp chuyển tới đâu trước khi giao dịch.</h2>
-            <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-white/70">Website concept này không nhận mật khẩu, OTP hay dữ liệu giao dịch. Tác vụ ngân hàng số và thông tin biến động được chuyển sang domain/kênh Vietbank chính thức.</p>
+            <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-white/70">Trang này không nhận mật khẩu, OTP hay dữ liệu giao dịch. Khi cần thực hiện giao dịch hoặc xem dữ liệu biến động, bạn sẽ được chuyển tới kênh Vietbank chính thức.</p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <a href={HOTLINE_TEL} className="flex min-h-[70px] items-center gap-3 border border-white/15 bg-white/5 px-4 py-3 hover:bg-white/10"><Phone className="h-5 w-5 text-yellow" aria-hidden="true" /><span><span className="block text-xs text-white/55">Hotline Vietbank</span><strong className="mt-1 block tnum">{HOTLINE}</strong></span></a>
-            <Link to="/ho-tro#security" className="flex min-h-[70px] items-center gap-3 border border-white/15 bg-white/5 px-4 py-3 hover:bg-white/10"><ShieldCheck className="h-5 w-5 text-yellow" aria-hidden="true" /><span><span className="block text-xs text-white/55">Hướng dẫn</span><strong className="mt-1 block">An toàn & chống giả mạo</strong></span></Link>
+            <a href={HOTLINE_TEL} className="flex min-h-[70px] items-center gap-3 border border-white/15 bg-white/5 px-4 py-3 hover:bg-white/10"><Phone className="h-5 w-5 text-yellow" aria-hidden="true" /><span><span className="block text-xs text-white/65">Hotline Vietbank</span><strong className="mt-1 block tnum">{HOTLINE}</strong></span></a>
+            <Link to="/ho-tro#security" className="flex min-h-[70px] items-center gap-3 border border-white/15 bg-white/5 px-4 py-3 hover:bg-white/10"><ShieldCheck className="h-5 w-5 text-yellow" aria-hidden="true" /><span><span className="block text-xs text-white/65">Hướng dẫn</span><strong className="mt-1 block">An toàn & chống giả mạo</strong></span></Link>
           </div>
         </div>
       </section>
@@ -263,8 +263,8 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1240px] flex-col items-start justify-between gap-6 px-6 py-14 lg:flex-row lg:items-center">
           <div className="max-w-2xl">
             <SectionLabel n="06">Bước tiếp theo</SectionLabel>
-            <h2 className="mt-3 font-display text-[clamp(1.7rem,2.8vw,2.3rem)] font-semibold">Chọn đúng context trước, rồi mới mở kênh thực hiện.</h2>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-ink-soft">Cá nhân có thể tiếp tục với Digital Plus; doanh nghiệp có DigiBiz. Nếu chưa chắc, quay về trang giải pháp hoặc Trung tâm hỗ trợ.</p>
+            <h2 className="mt-3 font-display text-[clamp(1.7rem,2.8vw,2.3rem)] font-semibold">Chọn đúng kênh trước khi tiếp tục</h2>
+            <p className="mt-3 text-[14.5px] leading-relaxed text-ink-soft">Cá nhân có thể tiếp tục với Digital Plus; doanh nghiệp sử dụng DigiBiz. Nếu chưa chắc kênh nào phù hợp, xem trang dịch vụ hoặc Trung tâm hỗ trợ.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             {isPersonal ? (

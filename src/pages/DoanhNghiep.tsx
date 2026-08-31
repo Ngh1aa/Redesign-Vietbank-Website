@@ -23,6 +23,7 @@ const SOLUTIONS = [
     body: "Tài khoản thanh toán và các dịch vụ tài khoản phục vụ thu, chi và vận hành giao dịch của doanh nghiệp.",
     cues: ["Tài khoản thanh toán", "Dịch vụ tài khoản", "Đối chiếu biểu phí"],
     to: "/ho-tro#docs",
+    cta: "Xem biểu mẫu doanh nghiệp",
   },
   {
     id: "credit",
@@ -31,6 +32,7 @@ const SOLUTIONS = [
     body: "Nhóm giải pháp tín dụng cho nhu cầu vốn lưu động, đầu tư và hoạt động sản xuất kinh doanh theo hồ sơ thực tế.",
     cues: ["Vốn kinh doanh", "Điều kiện theo hồ sơ", "Trao đổi chuyên viên"],
     to: "/ho-tro#contact",
+    cta: "Trao đổi nhu cầu vốn",
   },
   {
     id: "cash-management",
@@ -39,6 +41,7 @@ const SOLUTIONS = [
     body: "Theo dõi tài khoản và giao dịch, lập lịch thanh toán, duyệt đa cấp và phân quyền theo cấu trúc doanh nghiệp.",
     cues: ["Quản lý tài khoản", "Lập lịch thanh toán", "Phê duyệt & phân quyền"],
     to: "/ngan-hang-so#digibiz",
+    cta: "Xem DigiBiz",
   },
   {
     id: "trade",
@@ -47,6 +50,7 @@ const SOLUTIONS = [
     body: "Vietbank công khai các nhóm dịch vụ tài trợ thương mại và chuyển tiền quốc tế cho khách hàng doanh nghiệp.",
     cues: ["Tài trợ thương mại", "Chuyển tiền quốc tế", "Thông tin tỷ giá"],
     to: "/ho-tro#rates",
+    cta: "Xem tỷ giá & hỗ trợ quốc tế",
   },
   {
     id: "guarantee",
@@ -55,6 +59,7 @@ const SOLUTIONS = [
     body: "Nhóm sản phẩm bảo lãnh phục vụ nghĩa vụ và giao dịch doanh nghiệp; điều kiện được xác định theo từng nhu cầu/hồ sơ.",
     cues: ["Nhu cầu bảo lãnh", "Hồ sơ doanh nghiệp", "Tư vấn theo trường hợp"],
     to: "/ho-tro#contact",
+    cta: "Trao đổi nhu cầu bảo lãnh",
   },
   {
     id: "payments",
@@ -63,6 +68,7 @@ const SOLUTIONS = [
     body: "Các dịch vụ doanh nghiệp bao gồm thu ngân sách nhà nước và nhóm tiện ích thanh toán theo danh mục Vietbank công bố.",
     cues: ["Thu ngân sách", "Dịch vụ thanh toán", "Quy định & biểu mẫu"],
     to: "/ho-tro#docs",
+    cta: "Xem tài liệu thanh toán",
   },
 ]
 
@@ -102,12 +108,12 @@ export default function DoanhNghiep() {
           n="01"
           eyebrow="Năng lực số đã công bố"
           title="DigiBiz tập trung vào vận hành tài chính doanh nghiệp"
-          lead="Thay cho số liệu minh hoạ, V6 dùng ba đặc tính Vietbank đã công bố cho DigiBiz."
+          lead="Ba đặc tính dưới đây được Vietbank công bố cho DigiBiz và giúp doanh nghiệp hiểu nhanh cách nền tảng hỗ trợ vận hành."
         />
         <div className="mt-6 grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <Stat value="Omni-channel" label="Vietbank giới thiệu DigiBiz là nền tảng hợp kênh cho hoạt động tài chính doanh nghiệp." />
+          <Stat value="Hợp kênh" label="Vietbank giới thiệu DigiBiz là nền tảng hợp kênh cho hoạt động tài chính doanh nghiệp." />
           <Stat value="Đa cấp" label="Hỗ trợ duyệt giao dịch nhiều cấp và tùy chỉnh phân quyền theo cấu trúc doanh nghiệp." />
-          <Stat value="Real-time" label="Định hướng theo dõi và quản lý thông tin tài khoản/giao dịch theo thời gian thực." />
+          <Stat value="Thời gian thực" label="Định hướng theo dõi và quản lý thông tin tài khoản/giao dịch theo thời gian thực." />
         </div>
         <p className="mt-3 text-[12.5px] leading-relaxed text-ink-soft">
           Nguồn: thông tin ra mắt Vietbank DigiBiz ngày 03/07/2025. Điều kiện sử dụng thực tế theo Vietbank tại thời điểm đăng ký.
@@ -119,12 +125,12 @@ export default function DoanhNghiep() {
           n="02"
           eyebrow="Giải pháp theo nhu cầu"
           title="Doanh nghiệp đang cần giải quyết điều gì?"
-          lead="Mỗi nhóm có anchor riêng để menu/campaign có thể đưa người dùng tới đúng nhu cầu thay vì đầu trang chung."
+          lead="Mỗi nhóm dẫn thẳng tới nhu cầu tương ứng để doanh nghiệp không phải dò lại từ đầu trang."
         />
         <div className="mt-6 divide-y divide-line border-y border-line">
           {SOLUTIONS.map((s) => (
             <div key={s.id} id={s.id} className="scroll-mt-28">
-              <FeatureRow icon={s.icon} title={s.title} body={s.body} cues={s.cues} to={s.to} cta="Tiếp tục" />
+              <FeatureRow icon={s.icon} title={s.title} body={s.body} cues={s.cues} to={s.to} cta={s.cta} />
             </div>
           ))}
         </div>
@@ -162,24 +168,33 @@ export default function DoanhNghiep() {
 
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative order-2 overflow-hidden rounded-xl border border-line bg-navy-050 lg:order-1">
-            <img
-              src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=900&h=650&fit=crop&auto=format"
-              alt="Minh hoạ đội ngũ doanh nghiệp trao đổi về quản lý tài chính"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <aside className="order-2 border-y border-line bg-soft px-6 py-7 lg:order-1 lg:border lg:px-8" aria-label="Các năng lực nổi bật của DigiBiz">
+            <Building2 className="h-6 w-6 text-navy" aria-hidden="true" />
+            <h3 className="mt-4 font-display text-xl font-semibold">DigiBiz hỗ trợ vận hành gì?</h3>
+            <div className="mt-4 divide-y divide-line border-y border-line">
+              {[
+                ["01", "Theo dõi tài khoản", "Tập trung thông tin tài khoản, dòng tiền và trạng thái giao dịch."],
+                ["02", "Lập lịch thanh toán", "Quản lý người thụ hưởng và các lịch thanh toán theo nhu cầu doanh nghiệp."],
+                ["03", "Phê duyệt đa cấp", "Phân quyền và duyệt giao dịch theo vai trò trong tổ chức."],
+              ].map(([n, title, body]) => (
+                <div key={n} className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                  <span className="text-[12.5px] font-semibold text-amber tnum">{n}</span>
+                  <span><strong className="block text-[14.5px]">{title}</strong><span className="mt-1 block text-[13.5px] leading-relaxed text-ink-soft">{body}</span></span>
+                </div>
+              ))}
+            </div>
+          </aside>
           <div className="order-1 lg:order-2">
             <SectionHead
               n="04"
               eyebrow="Ngân hàng số doanh nghiệp"
               title="Vietbank DigiBiz — từ tìm hiểu sang kênh vận hành chính thức"
-              lead="DigiBiz được Vietbank định vị như trợ lý tài chính số cho quản trị, giao dịch và kết nối hệ sinh thái kinh doanh. Trang redesign chỉ giải thích và handoff, không giả lập nghiệp vụ giao dịch."
+              lead="DigiBiz được Vietbank định vị như trợ lý tài chính số cho quản trị, giao dịch và kết nối hệ sinh thái kinh doanh. Trang này giúp bạn hiểu nền tảng trước khi mở kênh Vietbank chính thức."
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} />
               <Link to="/ngan-hang-so#digibiz" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Xem trước tính năng <ArrowRight className="h-4 w-4" />
+                Xem tính năng DigiBiz <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>

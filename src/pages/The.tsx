@@ -61,7 +61,7 @@ export default function The() {
         eyebrow="Thẻ Vietbank"
         crumb="Thẻ"
         title="Nhìn đúng sản phẩm trước khi so sánh điều kiện"
-        lead="V7 dùng hình ảnh sản phẩm thật đang được Vietbank công bố, sau đó mới đặt các thuộc tính cần so sánh bên cạnh. Không tạo thẻ giả, số thẻ giả hay mô phỏng giao dịch."
+        lead="Hình ảnh và tên sản phẩm được đối chiếu với nguồn Vietbank công khai. So sánh nhanh các thuộc tính chính trước khi xem điều kiện, biểu phí và ưu đãi hiện hành."
       />
 
       <Section id="cards">
@@ -91,17 +91,17 @@ export default function The() {
                   decoding="async"
                   className="max-h-[175px] w-full max-w-[250px] object-contain"
                 />
-                <span className="absolute left-3 top-3 text-[11px] font-semibold tracking-[0.12em] text-ink-soft tnum" aria-hidden="true">
+                <span className="absolute left-3 top-3 text-[12px] font-semibold tracking-[0.1em] text-ink-soft tnum" aria-hidden="true">
                   {index}
                 </span>
               </div>
 
               <div className="px-1 pb-1 md:pr-2">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="border-l-2 border-navy pl-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
+                  <span className="border-l-2 border-navy pl-3 text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
                     {tag}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-ink-soft">
+                  <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-ink-soft">
                     <span className="flex h-0.5 w-6 overflow-hidden" aria-hidden="true">
                       <span className="w-1/2 bg-red" />
                       <span className="w-1/2 bg-yellow" />
@@ -146,7 +146,7 @@ export default function The() {
           <table className="w-full min-w-[920px] text-left">
             <caption className="sr-only">So sánh định hướng bốn dòng thẻ tín dụng Vietbank theo nhu cầu, thời gian miễn lãi, hạn mức và điểm khác biệt.</caption>
             <thead>
-              <tr className="border-b border-line bg-navy-050 text-[12px] uppercase tracking-wide text-ink-soft">
+              <tr className="border-b border-line bg-navy-050 text-[12.5px] uppercase tracking-wide text-ink-soft">
                 <th scope="col" className="px-5 py-3.5 font-semibold">Tiêu chí</th>
                 <th scope="col" className="px-5 py-3.5 font-semibold">Visa My Style</th>
                 <th scope="col" className="px-5 py-3.5 font-semibold">Visa Luxury</th>
@@ -174,7 +174,7 @@ export default function The() {
           n="03"
           eyebrow="Trước khi đăng ký"
           title="Kiểm tra ba nguồn trước khi đưa ra quyết định"
-          lead="Sản phẩm tài chính có điều kiện thay đổi theo thời điểm. V7 đưa phần xác minh vào ngay journey thay vì để người dùng tự tìm fine print sau CTA."
+          lead="Sản phẩm tài chính có điều kiện thay đổi theo thời điểm. Hãy kiểm tra danh mục sản phẩm, biểu phí và ưu đãi hiện hành trước khi đăng ký."
         />
 
         <div className="mt-7 divide-y divide-line border-y border-line">
@@ -217,7 +217,7 @@ export default function The() {
 
         <div className="mt-5 flex items-start gap-3 border-l-2 border-navy bg-navy-050 px-4 py-3 text-[13px] leading-relaxed text-ink-soft">
           <FileText className="mt-0.5 h-4 w-4 shrink-0 text-navy" aria-hidden="true" />
-          <p>V7 không hiển thị số thẻ, hạn mức được “duyệt”, trạng thái hồ sơ hay thông báo mở thẻ thành công vì repository này không kết nối hệ thống phát hành thẻ.</p>
+          <p>Trang này không hiển thị số thẻ, hạn mức được duyệt hoặc trạng thái hồ sơ. Các kết quả này chỉ có trên hệ thống Vietbank sau khi khách hàng thực hiện quy trình chính thức.</p>
         </div>
       </Section>
 
