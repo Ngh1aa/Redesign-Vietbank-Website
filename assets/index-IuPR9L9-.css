@@ -78,6 +78,7 @@
     --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
+    --container-3xl: 48rem;
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
     --text-lg: 1.125rem;
@@ -532,6 +533,10 @@
     margin-top: calc(var(--spacing) * 3);
   }
 
+  .mt-3\.5 {
+    margin-top: calc(var(--spacing) * 3.5);
+  }
+
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
@@ -558,6 +563,10 @@
 
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
+  }
+
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
   }
 
   .mb-6 {
@@ -804,6 +813,10 @@
     max-width: var(--container-2xl);
   }
 
+  .max-w-3xl {
+    max-width: var(--container-3xl);
+  }
+
   .max-w-\[250px\] {
     max-width: 250px;
   }
@@ -814,6 +827,10 @@
 
   .max-w-\[720px\] {
     max-width: 720px;
+  }
+
+  .max-w-\[800px\] {
+    max-width: 800px;
   }
 
   .max-w-\[820px\] {
@@ -1354,6 +1371,10 @@
     padding-block: calc(var(--spacing) * 7);
   }
 
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
+  }
+
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
@@ -1523,6 +1544,10 @@
     font-size: clamp(1.8rem, 3vw, 2.6rem);
   }
 
+  .text-\[clamp\(1\.9rem\,3\.2vw\,2\.7rem\)\] {
+    font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  }
+
   .text-\[clamp\(1\.35rem\,2\.5vw\,1\.8rem\)\] {
     font-size: clamp(1.35rem, 2.5vw, 1.8rem);
   }
@@ -1547,6 +1572,16 @@
   .leading-\[1\.06\] {
     --tw-leading: 1.06;
     line-height: 1.06;
+  }
+
+  .leading-\[1\.7\] {
+    --tw-leading: 1.7;
+    line-height: 1.7;
+  }
+
+  .leading-\[1\.12\] {
+    --tw-leading: 1.12;
+    line-height: 1.12;
   }
 
   .leading-none {
@@ -1592,6 +1627,11 @@
   .tracking-\[-0\.03em\] {
     --tw-tracking: -.03em;
     letter-spacing: -.03em;
+  }
+
+  .tracking-\[-0\.025em\] {
+    --tw-tracking: -.025em;
+    letter-spacing: -.025em;
   }
 
   .tracking-\[0\.1em\] {
@@ -2231,6 +2271,10 @@
 
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
+    }
+
+    .lg\:py-11 {
+      padding-block: calc(var(--spacing) * 11);
     }
 
     .lg\:py-14 {
