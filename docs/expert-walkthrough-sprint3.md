@@ -31,7 +31,7 @@ Rates, branch finder, document centre, transaction trace and official calculator
 ### P1 hypothesis — multi-filter semantics may be interpreted as AND
 Current Card Finder returns a card when it matches **at least one** selected need. A participant selecting two needs may assume the result must satisfy both. This is a comprehension risk, not an observed user failure yet.
 
-**Mitigation before test:** copy should explicitly say that multiple filters show cards matching at least one selected priority. Do not change the underlying model during the round unless participant evidence justifies it.
+**Observation protocol:** do not teach the OR behavior during the task. Record the participant's expectation and whether the current labels/result count make the behavior understandable. Only change the filter model or explanatory copy after observed evidence is synthesized.
 
 ### P1 hypothesis — external handoff can break journey confidence
 Many high-trust actions open Vietbank's official site in a new tab. This is intentional, but participants may not understand whether they have left the redesign or why. Observe whether source labels and domain cues are enough.
@@ -53,7 +53,7 @@ Support has strong routing, but there is no real site-search index. Users with a
 1. Add first-party Vietbank Digital Plus launch artwork to the digital-banking page so the product is recognizable from a real official asset rather than generic iconography.
 2. Keep all existing card imagery first-party Vietbank.
 3. Document a no-AI/no-stock media rule for future changes.
-4. Clarify Card Finder multiple-filter semantics before moderated sessions.
+4. Keep the Card Finder semantics unchanged during the baseline round so participant expectation can be observed rather than pre-solved.
 
 ## What should not be changed before sessions
 
@@ -62,6 +62,7 @@ Support has strong routing, but there is no real site-search index. Users with a
 - Do not integrate or fabricate live rates.
 - Do not add eligibility/approval scoring.
 - Do not hide official external handoffs merely to keep users on the concept site.
+- Do not explain the Card Finder matching logic to participants before observing their expectation.
 
 ## Baseline severity summary
 
