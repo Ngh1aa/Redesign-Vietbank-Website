@@ -11,7 +11,9 @@ export const HOTLINE_TEL = "tel:18001122"
 
 /**
  * Top-level navigation. Mega-menu `children` are rendered as dropdown
- * panels on desktop, inline lists on mobile.
+ * panels on desktop, inline lists on mobile. Deep links intentionally land
+ * on need-based anchors so users arriving from navigation do not need to
+ * re-scan the whole category page.
  */
 export type NavItem = {
   label: string
@@ -26,11 +28,11 @@ export const NAV_LINKS: NavItem[] = [
     to: "/ca-nhan",
     caret: true,
     children: [
-      { label: "Tài khoản thanh toán", to: "/ca-nhan", hint: "Mở online eKYC" },
-      { label: "Tiết kiệm", to: "/ca-nhan", hint: "Lãi suất tới 6.3%/năm" },
-      { label: "Thẻ", to: "/the", hint: "Hoàn tiền · Tích dặm" },
-      { label: "Vay vốn", to: "/ca-nhan", hint: "Mua nhà · ô tô · tiêu dùng" },
-      { label: "Ngân hàng số", to: "/ngan-hang-so", hint: "Digital Plus" },
+      { label: "Tài khoản thanh toán", to: "/ca-nhan#accounts", hint: "Mở online với eKYC" },
+      { label: "Tiết kiệm", to: "/ca-nhan#savings", hint: "Xem kỳ hạn & cách bắt đầu" },
+      { label: "Thẻ", to: "/the#cards", hint: "Danh mục thẻ Vietbank" },
+      { label: "Vay vốn", to: "/ca-nhan#loans", hint: "Mua nhà · ô tô · tiêu dùng" },
+      { label: "Ngân hàng số", to: "/ngan-hang-so#digital-plus", hint: "Vietbank Digital Plus" },
     ],
   },
   {
@@ -38,11 +40,11 @@ export const NAV_LINKS: NavItem[] = [
     to: "/doanh-nghiep",
     caret: true,
     children: [
-      { label: "Tài khoản doanh nghiệp", to: "/doanh-nghiep", hint: "Thu chi hộ, nhiều tài khoản phụ" },
-      { label: "Vay & tài trợ vốn", to: "/doanh-nghiep", hint: "Vốn lưu động · thấu chi" },
-      { label: "Quản lý dòng tiền", to: "/doanh-nghiep", hint: "Chi lương · đối soát tập trung" },
-      { label: "Tài trợ thương mại", to: "/doanh-nghiep", hint: "L/C · nhờ thu · XNK" },
-      { label: "DigiBiz", to: "/ngan-hang-so", hint: "Ngân hàng số doanh nghiệp" },
+      { label: "Tài khoản doanh nghiệp", to: "/doanh-nghiep#accounts", hint: "Thanh toán & vận hành dòng tiền" },
+      { label: "Vay & tài trợ vốn", to: "/doanh-nghiep#credit", hint: "Vốn lưu động · tín dụng" },
+      { label: "Quản lý dòng tiền", to: "/doanh-nghiep#cash-management", hint: "DigiBiz · quản trị & phê duyệt" },
+      { label: "Tài trợ thương mại", to: "/doanh-nghiep#trade", hint: "L/C · XNK · chuyển tiền quốc tế" },
+      { label: "DigiBiz", to: "/ngan-hang-so#digibiz", hint: "Ngân hàng số doanh nghiệp" },
     ],
   },
   {
@@ -50,10 +52,10 @@ export const NAV_LINKS: NavItem[] = [
     to: "/ngan-hang-so",
     caret: true,
     children: [
-      { label: "Vietbank Digital Plus", to: "/ngan-hang-so", hint: "Cá nhân · 24/7" },
-      { label: "Vietbank DigiBiz", to: "/ngan-hang-so", hint: "Doanh nghiệp · web + mobile" },
-      { label: "Hướng dẫn chuyển đổi", to: "/ho-tro", hint: "Từ Internet Banking / Vietbank Digital" },
-      { label: "An toàn ngân hàng số", to: "/ho-tro#security", hint: "Phòng chống lừa đảo" },
+      { label: "Vietbank Digital Plus", to: "/ngan-hang-so#digital-plus", hint: "Cá nhân · iOS / Android" },
+      { label: "Vietbank DigiBiz", to: "/ngan-hang-so#digibiz", hint: "Doanh nghiệp · nền tảng số" },
+      { label: "Hướng dẫn chuyển đổi", to: "/ngan-hang-so#migration", hint: "Từ Vietbank Digital cũ" },
+      { label: "An toàn ngân hàng số", to: "/ho-tro#security", hint: "Kênh chính thức · chống lừa đảo" },
     ],
   },
   { label: "Thẻ", to: "/the" },
@@ -80,6 +82,11 @@ export const BTN_SIZE = {
   sm: "px-4 py-2.5 text-[14px]",
 }
 
+/**
+ * Logo lockup for this concept build.
+ * The exact digital logo asset must be replaced by the official vector package
+ * before production brand lock; palette/geometry remain logo-derived here.
+ */
 export function Logo({ light = false }: { light?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
