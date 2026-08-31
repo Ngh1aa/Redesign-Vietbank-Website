@@ -18,3 +18,8 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+# Upstream skills_UIUX clone — external dependency, not vendored source.
+# The installed subset lives in `.claude/skills/`. Re-clone with:
+#   git clone https://github.com/Ngh1aa/skills_UIUX
+/skills_UIUX/

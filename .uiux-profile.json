@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "profile": "uiux-corporate",
+  "packs": [
+    "research-validation",
+    "experience-strategy",
+    "inclusive-trust",
+    "measurement-reliability",
+    "production-delivery"
+  ],
+  "additional_skills": ["website-audit-and-redesign"],
+  "exclude_skills": [],
+  "project": {
+    "name": "Redesign Vietbank Website",
+    "mode": "production-candidate",
+    "domain": "corporate"
+  },
+  "source_of_truth": ["docs/brand.md", "docs/sitemap.md"],
+  "constraints": ["Reuse existing tokens and components"]
+}
