@@ -2,7 +2,6 @@ import { Link } from "react-router"
 import {
   ArrowUpRight,
   Calculator,
-  ChevronDown,
   FileText,
   Landmark,
   Mail,
@@ -12,70 +11,23 @@ import {
   SearchCheck,
   ShieldCheck,
   TrendingUp,
-  WalletCards,
 } from "lucide-react"
-import { PageHeader, HOTLINE, HOTLINE_TEL, BTN, BTN_SIZE } from "../lib/ui"
+import { PageHeader, HOTLINE, HOTLINE_TEL } from "../lib/ui"
 import { ActionLink, Section, SectionHead, CTABand } from "../lib/sections"
-import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
+import { EXTERNAL_LINK_PROPS, OFFICIAL, OFFICIAL_MEDIA } from "../lib/official"
 import SupportCalculators from "../components/SupportCalculators"
 
-const UTILITY_ACTIONS = [
-  {
-    icon: TrendingUp,
-    title: "Tỷ giá ngoại tệ",
-    body: "Xem bảng tỷ giá, biểu đồ và công cụ chuyển đổi trên website Vietbank. Tỷ giá được Vietbank ghi rõ là tham khảo.",
-    href: OFFICIAL.personalFx,
-    external: true,
-    label: "Tra cứu tỷ giá",
-  },
-  {
-    icon: Landmark,
-    title: "Lãi suất",
-    body: "Mở biểu lãi suất huy động khách hàng cá nhân đang được Vietbank công bố tại thời điểm tra cứu.",
-    href: OFFICIAL.personalRates,
-    external: true,
-    label: "Xem lãi suất",
-  },
-  {
-    icon: Calculator,
-    title: "Ước tính khoản vay / tiết kiệm",
-    body: "Dùng bảng tính cục bộ để lập kế hoạch sơ bộ, sau đó đối chiếu với công cụ tính toán Vietbank.",
-    href: "/ho-tro#calculators",
-    external: false,
-    label: "Mở bảng tính",
-  },
-  {
-    icon: MapPin,
-    title: "Chi nhánh / PGD",
-    body: "Tìm điểm giao dịch theo tỉnh/thành và phường/xã trên công cụ mạng lưới chính thức.",
-    href: OFFICIAL.branches,
-    external: true,
-    label: "Tìm điểm giao dịch",
-  },
-  {
-    icon: ReceiptText,
-    title: "Tra cứu hóa đơn",
-    body: "Tra cứu hóa đơn khách hàng cá nhân trên hệ thống Vietbank; khách hàng doanh nghiệp có kênh riêng bên dưới.",
-    href: OFFICIAL.invoiceLookupPersonal,
-    external: true,
-    label: "Tra cứu hóa đơn",
-  },
-  {
-    icon: SearchCheck,
-    title: "Tra soát giao dịch",
-    body: "Tạo hoặc tra cứu yêu cầu tra soát trên hệ thống Vietbank. Luồng chính thức có bước xác minh danh tính và OTP.",
-    href: OFFICIAL.transactionTrace,
-    external: true,
-    label: "Mở tra soát",
-  },
-  {
-    icon: FileText,
-    title: "Quy định & biểu mẫu",
-    body: "Đi tới trung tâm quy định, điều khoản và biểu mẫu do Vietbank quản lý.",
-    href: OFFICIAL.documents,
-    external: true,
-    label: "Mở trung tâm tài liệu",
-  },
+const PRIMARY_UTILITIES = [
+  { icon: TrendingUp, title: "Tỷ giá", note: "Bảng, biểu đồ & quy đổi", href: OFFICIAL.personalFx },
+  { icon: Landmark, title: "Lãi suất", note: "Mức Vietbank đang công bố", href: OFFICIAL.personalRates },
+  { icon: MapPin, title: "Chi nhánh / PGD", note: "Tra cứu mạng lưới thật", href: OFFICIAL.branches },
+  { icon: FileText, title: "Biểu phí & biểu mẫu", note: "Tài liệu theo nhóm khách hàng", href: OFFICIAL.documents },
+]
+
+const SERVICE_UTILITIES = [
+  { icon: Calculator, title: "Tính khoản vay / tiết kiệm", note: "Ước tính trước khi đối chiếu Vietbank", to: "/ho-tro#calculators" },
+  { icon: ReceiptText, title: "Tra cứu hóa đơn", note: "Cổng hóa đơn khách hàng cá nhân", href: OFFICIAL.invoiceLookupPersonal },
+  { icon: SearchCheck, title: "Tra soát giao dịch", note: "Mở luồng xác minh Vietbank", href: OFFICIAL.transactionTrace },
 ]
 
 export default function HoTro() {
@@ -84,200 +36,128 @@ export default function HoTro() {
       <PageHeader
         eyebrow="Hỗ trợ & công cụ"
         crumb="Hỗ trợ"
-        title="Bắt đầu từ tác vụ bạn cần hoàn thành"
-        lead="Tra cứu thông tin, ước tính khoản vay hoặc tiết kiệm, tìm điểm giao dịch, hóa đơn và tra soát — mọi tác vụ nhạy cảm đều được chuyển tới hệ thống Vietbank chính thức."
+        title="Tìm đúng công cụ, không cần dò nhiều trang"
+        lead="Tỷ giá, lãi suất, calculator, chi nhánh, biểu mẫu và tra soát được gom theo tác vụ; phần cần dữ liệu hiện hành hoặc xác minh danh tính luôn mở Vietbank chính thức."
       />
 
-      <Section id="utility-center">
-        <div className="flex flex-wrap items-end justify-between gap-5">
+      <Section id="rates">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <SectionHead
             n="01"
-            eyebrow="Tác vụ thường dùng"
-            title="Một điểm vào cho các công cụ hỗ trợ chính"
-            lead="Ưu tiên tác vụ trước tên phòng ban. Những nơi cần dữ liệu hiện hành hoặc xác minh danh tính sẽ mở trực tiếp kênh Vietbank."
+            eyebrow="Tra cứu nhanh"
+            title="Những việc người dùng thường cần trước tiên"
+            lead="Đưa utility lên trước marketing giúp người dùng hoàn thành việc cần làm nhanh hơn, đặc biệt với dữ liệu tài chính thay đổi theo thời điểm."
           />
-          <a href={OFFICIAL.personalCalculator} {...EXTERNAL_LINK_PROPS} className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-navy hover:underline">
-            Công cụ Vietbank <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="grid border-y border-line bg-surface sm:grid-cols-2">
+            {PRIMARY_UTILITIES.map(({ icon: Icon, title, note, href }, index) => (
+              <a
+                key={title}
+                href={href}
+                {...EXTERNAL_LINK_PROPS}
+                className={`group grid min-h-[92px] grid-cols-[34px_1fr_auto] items-center gap-3 px-4 py-4 transition-colors hover:bg-navy-050 sm:px-5 ${index % 2 ? "sm:border-l sm:border-line" : ""} ${index > 1 ? "border-t border-line" : index === 1 ? "border-t border-line sm:border-t-0" : ""}`}
+              >
+                <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
+                <span><strong className="block text-[15px] group-hover:text-navy">{title}</strong><span className="mt-1 block text-[12.5px] text-ink-soft">{note}</span></span>
+                <ArrowUpRight className="h-4 w-4 text-navy" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-7 grid border-y border-line bg-surface lg:grid-cols-2 lg:divide-x lg:divide-line">
-          {[UTILITY_ACTIONS.slice(0, 4), UTILITY_ACTIONS.slice(4)].map((column, columnIndex) => (
-            <div key={columnIndex} className="divide-y divide-line">
-              {column.map(({ icon: Icon, title, body, href, external, label }) => {
-                const content = (
-                  <>
-                    <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
-                    <span>
-                      <strong className="block text-[15px] group-hover:text-navy">{title}</strong>
-                      <span className="mt-1 block text-[13.5px] leading-relaxed text-ink-soft">{body}</span>
-                      <span className="mt-2 block text-[12.5px] font-semibold text-navy">{label}</span>
-                    </span>
-                    <ArrowUpRight className="h-4 w-4 text-navy" aria-hidden="true" />
-                  </>
-                )
-
-                const className = "group grid min-h-[108px] grid-cols-[42px_1fr_auto] items-center gap-4 px-5 py-4 transition-colors hover:bg-navy-050"
-                return external ? (
-                  <a key={title} href={href} {...EXTERNAL_LINK_PROPS} className={className}>{content}</a>
-                ) : (
-                  <Link key={title} to={href} className={className}>{content}</Link>
-                )
-              })}
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-l-2 border-yellow bg-amber-soft/60 px-4 py-3 text-[13px] leading-relaxed text-ink-soft">
-          <p>Khách hàng doanh nghiệp cần tra cứu hóa đơn có thể dùng cổng riêng của Vietbank.</p>
-          <a href={OFFICIAL.invoiceLookupBusiness} {...EXTERNAL_LINK_PROPS} className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-navy hover:underline">
-            Hóa đơn doanh nghiệp <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+        <div className="mt-5 grid border-y border-line bg-soft md:grid-cols-3 md:divide-x md:divide-line">
+          {SERVICE_UTILITIES.map(({ icon: Icon, title, note, href, to }, index) => {
+            const content = <><Icon className="h-5 w-5 text-navy" aria-hidden="true" /><span><strong className="block text-[14.5px]">{title}</strong><span className="mt-1 block text-[12.5px] leading-relaxed text-ink-soft">{note}</span></span></>
+            const className = `grid min-h-[92px] grid-cols-[34px_1fr] items-center gap-3 px-5 py-4 transition-colors hover:bg-navy-050 ${index ? "border-t border-line md:border-t-0" : ""}`
+            return href ? <a key={title} href={href} {...EXTERNAL_LINK_PROPS} className={className}>{content}</a> : <Link key={title} to={to || "/ho-tro"} className={className}>{content}</Link>
+          })}
         </div>
       </Section>
 
       <SupportCalculators />
 
-      <Section>
-        <SectionHead n="03" eyebrow="Liên hệ trực tiếp" title="Kênh hỗ trợ được Vietbank công bố" />
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          <a href={HOTLINE_TEL} className="group rounded-xl border border-line bg-surface p-6 transition-colors hover:border-navy hover:bg-navy-050">
-            <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy text-white"><Phone className="h-5 w-5" aria-hidden="true" /></span>
-            <h2 className="mt-4 text-[16px] font-semibold">Hotline {HOTLINE}</h2>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">Tổng đài chăm sóc khách hàng được Vietbank công bố trên website chính thức.</p>
-            <span className="mt-3 inline-block text-[14px] font-semibold text-navy group-hover:underline">Gọi ngay</span>
+      <Section id="contact">
+        <SectionHead n="03" eyebrow="Cần người hỗ trợ" title="Ba kênh liên hệ rõ ràng" lead="Không dựng chatbot hay ticket giả. Khi cần tư vấn hoặc phản hồi, tiếp tục qua kênh Vietbank đang công bố." />
+        <div className="mt-6 grid border-y border-line bg-surface md:grid-cols-3 md:divide-x md:divide-line">
+          <a href={HOTLINE_TEL} className="group px-5 py-5 transition-colors hover:bg-navy-050">
+            <Phone className="h-5 w-5 text-navy" aria-hidden="true" />
+            <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Hotline</p>
+            <h3 className="mt-1 text-[17px] font-semibold tnum">{HOTLINE}</h3>
+            <span className="mt-2 block text-[13px] font-semibold text-navy group-hover:underline">Gọi Vietbank</span>
           </a>
-          <a href="mailto:cskh@vietbank.com.vn" className="group rounded-xl border border-line bg-surface p-6 transition-colors hover:border-navy hover:bg-navy-050">
-            <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy text-white"><Mail className="h-5 w-5" aria-hidden="true" /></span>
-            <h2 className="mt-4 text-[16px] font-semibold">cskh@vietbank.com.vn</h2>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">Email chăm sóc khách hàng được Vietbank công bố ở các trang hỗ trợ.</p>
-            <span className="mt-3 inline-block text-[14px] font-semibold text-navy group-hover:underline">Gửi email</span>
+          <a href="mailto:cskh@vietbank.com.vn" className="group border-t border-line px-5 py-5 transition-colors hover:bg-navy-050 md:border-t-0">
+            <Mail className="h-5 w-5 text-navy" aria-hidden="true" />
+            <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Email CSKH</p>
+            <h3 className="mt-1 text-[16px] font-semibold">cskh@vietbank.com.vn</h3>
+            <span className="mt-2 block text-[13px] font-semibold text-navy group-hover:underline">Gửi email</span>
           </a>
-          <a href={OFFICIAL.contact} {...EXTERNAL_LINK_PROPS} className="group rounded-xl border border-line bg-surface p-6 transition-colors hover:border-navy hover:bg-navy-050">
-            <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy text-white"><WalletCards className="h-5 w-5" aria-hidden="true" /></span>
-            <h2 className="mt-4 text-[16px] font-semibold">Biểu mẫu liên hệ Vietbank</h2>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">Điền thông tin trực tiếp trên biểu mẫu do Vietbank vận hành.</p>
-            <span className="mt-3 inline-block text-[14px] font-semibold text-navy group-hover:underline">Mở biểu mẫu chính thức</span>
+          <a href={OFFICIAL.contact} {...EXTERNAL_LINK_PROPS} className="group border-t border-line px-5 py-5 transition-colors hover:bg-navy-050 md:border-t-0">
+            <ShieldCheck className="h-5 w-5 text-navy" aria-hidden="true" />
+            <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Biểu mẫu chính thức</p>
+            <h3 className="mt-1 text-[16px] font-semibold">Gửi yêu cầu tới Vietbank</h3>
+            <span className="mt-2 block text-[13px] font-semibold text-navy group-hover:underline">Mở biểu mẫu <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" /></span>
           </a>
         </div>
       </Section>
 
       <Section tone="soft" id="network">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div>
+        <div className="grid overflow-hidden border-y border-line bg-surface lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="flex flex-col justify-center px-6 py-8 lg:px-8 lg:py-10">
             <SectionHead
               n="04"
               eyebrow="Mạng lưới"
-              title="Tìm chi nhánh / phòng giao dịch trên hệ thống thật"
-              lead="Vietbank cung cấp công cụ lọc theo tỉnh/thành và phường/xã để tra cứu mạng lưới đang hoạt động."
+              title="Tìm điểm giao dịch thật của Vietbank"
+              lead="Công cụ mạng lưới Vietbank hỗ trợ tra cứu chi nhánh/PGD; thông tin địa chỉ được quản lý trên website chính thức."
             />
-            <div className="mt-6"><ActionLink action={{ label: "Mở công cụ chi nhánh Vietbank", href: OFFICIAL.branches }} /></div>
-          </div>
-          <div className="rounded-xl border border-line bg-navy-050 p-6">
-            <MapPin className="h-6 w-6 text-navy" aria-hidden="true" />
-            <h3 className="mt-4 text-[16px] font-semibold">Thông tin trụ sở đang công bố</h3>
-            <div className="mt-3 space-y-3 text-[14px] leading-relaxed text-ink-soft">
-              <p><span className="font-semibold text-ink">Trụ sở:</span> 47 Trần Hưng Đạo, Phường Phú Lợi, Thành phố Cần Thơ.</p>
-              <p><span className="font-semibold text-ink">Trụ sở TP.HCM:</span> 62A Cách Mạng Tháng 8, Phường Xuân Hòa, TP.HCM.</p>
-              <p><span className="font-semibold text-ink">SWIFT:</span> <span className="tnum">VNTTVNVX</span></p>
+            <div className="mt-5"><ActionLink action={{ label: "Tìm chi nhánh / PGD", href: OFFICIAL.branches }} /></div>
+            <div className="mt-6 border-t border-line pt-5 text-[13.5px] leading-relaxed text-ink-soft">
+              <p><strong className="text-ink">Trụ sở:</strong> 47 Trần Hưng Đạo, Phường Phú Lợi, TP. Cần Thơ.</p>
+              <p className="mt-1"><strong className="text-ink">TP.HCM:</strong> 62A Cách Mạng Tháng 8, Phường Xuân Hòa, TP.HCM.</p>
+              <p className="mt-1"><strong className="text-ink">SWIFT:</strong> <span className="tnum">VNTTVNVX</span></p>
             </div>
           </div>
+          <a href={OFFICIAL.branchLamDongStory} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[300px] overflow-hidden bg-soft lg:min-h-[390px]">
+            <img src={OFFICIAL_MEDIA.branchLamDongFacility} alt="Không gian Vietbank Chi nhánh Lâm Đồng do Vietbank công bố" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" decoding="async" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/90 via-[#032f67]/35 to-transparent px-6 pb-5 pt-20 text-white"><span className="text-[12px] font-semibold">Ảnh chi nhánh thật · Nguồn Vietbank</span></div>
+          </a>
         </div>
       </Section>
 
       <Section id="docs">
-        <SectionHead
-          n="05"
-          eyebrow="Tài liệu"
-          title="Biểu mẫu & biểu phí theo đúng nhóm khách hàng"
-          lead="Chọn đúng nhóm tài liệu để mở thư viện Vietbank đang quản lý."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <SectionHead n="05" eyebrow="Tài liệu" title="Chọn đúng thư viện trước khi tải" lead="Biểu phí và biểu mẫu được tách theo khách hàng cá nhân, doanh nghiệp và thẻ để giảm nhầm lẫn." />
+        <div className="mt-6 border-y border-line bg-surface">
           {[
-            { title: "Biểu mẫu cá nhân", body: "Tài khoản thanh toán, tiết kiệm, tiền gửi có kỳ hạn và biểu mẫu khác.", href: OFFICIAL.personalForms, label: "Xem biểu mẫu cá nhân" },
-            { title: "Biểu mẫu tổ chức", body: "Tài khoản thanh toán, tiền gửi có kỳ hạn và biểu mẫu cho khách hàng tổ chức.", href: OFFICIAL.businessForms, label: "Xem biểu mẫu tổ chức" },
-            { title: "Biểu phí doanh nghiệp", body: "Dịch vụ tài khoản, ngân quỹ, ngân hàng điện tử và thanh toán quốc tế.", href: OFFICIAL.businessFees, label: "Xem biểu phí doanh nghiệp" },
-            { title: "Biểu phí thẻ", body: "Biểu phí dành cho các sản phẩm thẻ Vietbank.", href: OFFICIAL.cardFees, label: "Xem biểu phí thẻ" },
-          ].map((item) => (
-            <article key={item.title} className="flex flex-col rounded-xl border border-line bg-surface p-6">
-              <FileText className="h-5 w-5 text-navy" aria-hidden="true" />
-              <h3 className="mt-4 text-[16px] font-semibold">{item.title}</h3>
-              <p className="mt-1.5 flex-1 text-[14px] leading-relaxed text-ink-soft">{item.body}</p>
-              <div className="mt-4"><ActionLink action={{ label: item.label, href: item.href }} variant="ghost" size="sm" /></div>
-            </article>
+            ['Cá nhân','Tài khoản, tiền gửi và biểu mẫu khách hàng cá nhân',OFFICIAL.personalForms],
+            ['Doanh nghiệp','Biểu mẫu khách hàng tổ chức và tài khoản doanh nghiệp',OFFICIAL.businessForms],
+            ['Biểu phí doanh nghiệp','Dịch vụ tài khoản, ngân quỹ và thanh toán quốc tế',OFFICIAL.businessFees],
+            ['Thẻ','Biểu phí và tài liệu liên quan sản phẩm thẻ',OFFICIAL.cardFees],
+          ].map(([title, body, href], index) => (
+            <a key={title} href={href} {...EXTERNAL_LINK_PROPS} className={`group grid gap-3 px-5 py-4 transition-colors hover:bg-navy-050 sm:grid-cols-[180px_1fr_auto] sm:items-center ${index ? "border-t border-line" : ""}`}>
+              <strong className="text-[14.5px] group-hover:text-navy">{title}</strong><span className="text-[13.5px] text-ink-soft">{body}</span><ArrowUpRight className="h-4 w-4 text-navy" />
+            </a>
           ))}
         </div>
       </Section>
 
-      <Section tone="soft">
-        <SectionHead n="06" eyebrow="Câu hỏi thường gặp" title="Giải đáp theo hướng an toàn" />
-        <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface">
-          {[
-            {
-              q: "Tôi cần tỷ giá hoặc lãi suất mới nhất ở đâu?",
-              a: "Hãy mở trực tiếp trang Tỷ giá hoặc Lãi suất của Vietbank ở phần Tác vụ thường dùng. Các giá trị tài chính thay đổi theo thời điểm.",
-            },
-            {
-              q: "Bảng tính trên trang này có phải kết quả Vietbank duyệt không?",
-              a: "Không. Bảng tính chỉ chạy cục bộ trong trình duyệt để ước tính sơ bộ. Hãy đối chiếu với công cụ Vietbank và liên hệ ngân hàng để biết điều kiện áp dụng thực tế.",
-            },
-            {
-              q: "Ứng dụng Vietbank Digital cũ còn hoạt động không?",
-              a: "Theo thông báo Vietbank, ứng dụng Vietbank Digital cũ ngừng hoạt động từ 03/06/2026. Khách hàng cá nhân tiếp tục trên Digital Plus.",
-            },
-            {
-              q: "Tôi nên làm gì khi nghi ngờ cuộc gọi hoặc đường link giả mạo?",
-              a: `Không cung cấp mật khẩu hoặc OTP. Tự mở vietbank.com.vn hoặc gọi ${HOTLINE} để xác minh thay vì tiếp tục qua đường link được gửi đến.`,
-            },
-          ].map((item) => (
-            <details key={item.q} className="group border-b border-line last:border-0">
-              <summary className="flex cursor-pointer items-center justify-between gap-4 bg-surface px-5 py-4 text-[15px] font-semibold transition-colors hover:bg-navy-050 [&::-webkit-details-marker]:hidden">
-                {item.q}
-                <ChevronDown className="h-4 w-4 shrink-0 text-navy transition-transform group-open:rotate-180" aria-hidden="true" />
-              </summary>
-              <p className="bg-surface px-5 pb-5 text-[14.5px] leading-relaxed text-ink-soft">{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="security">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <SectionHead
-              n="07"
-              eyebrow="An toàn & chống giả mạo"
-              title="Xác minh trước khi giao dịch"
-              lead="Với tác vụ ngân hàng, hãy ưu tiên đường dẫn Vietbank công khai, hotline và việc tự nhập địa chỉ website thay vì tin vào liên kết được chuyển tiếp."
-            />
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={HOTLINE_TEL} className={`${BTN.primary} ${BTN_SIZE.lg}`}><Phone className="h-4 w-4" aria-hidden="true" /> Gọi {HOTLINE}</a>
-              <ActionLink action={{ label: "Xem thông báo Voice Brandname", href: OFFICIAL.voiceBrandname }} variant="secondary" />
-            </div>
-          </div>
-          <div className="flex flex-col divide-y divide-line rounded-xl border border-line bg-surface">
-            {[
-              { title: "Tự mở website chính thức", body: "Ưu tiên tự nhập vietbank.com.vn và điều hướng từ đó tới dịch vụ cần dùng." },
-              { title: "Không chia sẻ OTP / mật khẩu", body: "Không cung cấp thông tin xác thực cho người gọi, tin nhắn hoặc email tự xưng hỗ trợ ngân hàng." },
-              { title: "Tra soát chỉ trên hệ thống Vietbank", body: `Luồng tra soát chính thức có bước xác minh. Khi nghi ngờ, dừng lại và gọi ${HOTLINE}.` },
-            ].map(({ title, body }) => (
-              <div key={title} className="flex items-start gap-4 p-5">
-                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-navy" aria-hidden="true" />
-                <div>
-                  <h3 className="text-[15.5px] font-semibold">{title}</h3>
-                  <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">{body}</p>
-                </div>
-              </div>
-            ))}
+      <Section tone="soft" id="security">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+          <SectionHead n="06" eyebrow="An toàn" title="Khi nghi ngờ, dừng thao tác và xác minh" lead="Không cung cấp OTP, mật khẩu hay thông tin đăng nhập cho bất kỳ trang/link đáng ngờ nào." />
+          <div className="border-l-2 border-red bg-surface px-6 py-5">
+            <ShieldCheck className="h-6 w-6 text-red" aria-hidden="true" />
+            <h3 className="mt-3 text-[16px] font-semibold">Ba bước an toàn</h3>
+            <ol className="mt-3 grid gap-3 text-[13.5px] leading-relaxed text-ink-soft sm:grid-cols-3">
+              <li><strong className="block text-ink">01 · Dừng</strong>Không tiếp tục trên link hoặc form đáng ngờ.</li>
+              <li><strong className="block text-ink">02 · Kiểm tra</strong>Xác nhận tên miền và kênh Vietbank chính thức.</li>
+              <li><strong className="block text-ink">03 · Gọi</strong>Liên hệ {HOTLINE} khi cần xác minh ngay.</li>
+            </ol>
           </div>
         </div>
       </Section>
 
       <CTABand
-        title="Cần gửi yêu cầu cho Vietbank?"
-        body="Trang này không thu thập thông tin cá nhân. Hãy dùng biểu mẫu do Vietbank vận hành hoặc gọi hotline chính thức."
-        primary={{ label: "Mở biểu mẫu Vietbank", href: OFFICIAL.contact }}
-        secondary={{ label: "Tìm điểm giao dịch", href: OFFICIAL.branches }}
+        title="Không tìm thấy điều bạn cần?"
+        body="Dùng hotline hoặc biểu mẫu Vietbank chính thức để được hỗ trợ tiếp; trang này không nhận dữ liệu giao dịch hay OTP."
+        primary={{ label: `Gọi ${HOTLINE}`, href: HOTLINE_TEL }}
+        secondary={{ label: "Liên hệ Vietbank", href: OFFICIAL.contact }}
       />
     </>
   )
