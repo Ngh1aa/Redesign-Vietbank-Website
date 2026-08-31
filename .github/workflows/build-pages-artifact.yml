@@ -1,0 +1,70 @@
+name: Build Pages Artifact
+
+on:
+  push:
+    branches:
+      - main
+      - upgrade/v6-research-led
+    paths:
+      - "src/**"
+      - "app/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "vite.pages.config.ts"
+      - ".github/workflows/build-pages-artifact.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-pages:
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript check
+        run: pnpm exec tsc --noEmit
+
+      - name: Build GitHub Pages bundle
+        env:
+          PAGES_BASE: /Redesign-Vietbank-Website/
+        run: pnpm exec vite build --config vite.pages.config.ts
+
+      - name: Sync generated root artifact
+        run: |
+          test -f dist-pages/app/index.html
+          rm -rf assets
+          cp -R dist-pages/assets ./assets
+          cp dist-pages/app/index.html ./index.html
+          rm -f main.js styles.css
+          git add -A index.html assets main.js styles.css
+
+      - name: Commit generated artifact
+        run: |
+          if git diff --cached --quiet; then
+            echo "Pages artifact is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: sync V6 Pages artifact [skip ci]"
+          git push
