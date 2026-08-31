@@ -1,4 +1,4 @@
-import { ChevronDown, FileText, Landmark, Mail, MapPin, Phone, ShieldCheck, TrendingUp, WalletCards } from "lucide-react"
+import { ArrowUpRight, ChevronDown, FileText, Landmark, Mail, MapPin, Phone, ShieldCheck, TrendingUp, WalletCards } from "lucide-react"
 import { PageHeader, HOTLINE, HOTLINE_TEL, BTN, BTN_SIZE } from "../lib/ui"
 import { ActionLink, Section, SectionHead, CTABand } from "../lib/sections"
 import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
@@ -37,7 +37,7 @@ export default function HoTro() {
         eyebrow="Hỗ trợ khách hàng"
         crumb="Hỗ trợ"
         title="Đi thẳng tới công cụ Vietbank bạn cần"
-        lead="Tra cứu tỷ giá, tìm điểm giao dịch hoặc gửi yêu cầu trực tiếp trên đúng kênh Vietbank chính thức."
+        lead="Tỷ giá, lãi suất, mạng lưới, biểu mẫu và liên hệ đều dẫn tới nguồn Vietbank chính thức để bạn tiếp tục an toàn."
       />
 
       <Section>
@@ -74,7 +74,7 @@ export default function HoTro() {
               <WalletCards className="h-5 w-5" />
             </span>
             <h2 className="mt-4 text-[16px] font-semibold">Biểu mẫu liên hệ Vietbank</h2>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">Điền thông tin trực tiếp trên hệ thống Vietbank để bảo vệ dữ liệu cá nhân.</p>
+            <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">Điền thông tin trực tiếp trên biểu mẫu do Vietbank vận hành.</p>
             <span className="mt-3 inline-block text-[14px] font-semibold text-navy group-hover:underline">Mở biểu mẫu chính thức</span>
           </a>
         </div>
@@ -85,18 +85,19 @@ export default function HoTro() {
           n="02"
           eyebrow="Công cụ ngân hàng"
           title="Dùng dữ liệu Vietbank đang công bố"
-          lead="Các giá trị tài chính thay đổi theo thời điểm. Luôn kiểm tra dữ liệu đang được Vietbank công bố trước khi quyết định."
+          lead="Các giá trị tài chính thay đổi theo thời điểm. Hãy mở nguồn Vietbank đang công bố để xem thông tin hiện hành."
         />
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {SUPPORT_TOOLS.map(({ icon: Icon, title, body, action }) => (
-            <article key={title} className="flex flex-col rounded-xl border border-line bg-surface p-6">
-              <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-4 text-[16px] font-semibold">{title}</h3>
-              <p className="mt-1.5 flex-1 text-[14px] leading-relaxed text-ink-soft">{body}</p>
-              <div className="mt-4"><ActionLink action={action} variant="ghost" size="sm" /></div>
-            </article>
+        <div className="mt-6 grid border-y border-line bg-surface lg:grid-cols-2 lg:divide-x lg:divide-line">
+          {[SUPPORT_TOOLS.slice(0, 2), SUPPORT_TOOLS.slice(2)].map((column, columnIndex) => (
+            <div key={columnIndex} className="divide-y divide-line">
+              {column.map(({ icon: Icon, title, body, action }) => (
+                <a key={title} href={action.href} {...EXTERNAL_LINK_PROPS} className="group grid min-h-[96px] grid-cols-[42px_1fr_auto] items-center gap-4 px-5 py-4 transition-colors hover:bg-navy-050">
+                  <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
+                  <span><strong className="block text-[15px] group-hover:text-navy">{title}</strong><span className="mt-1 block text-[13.5px] leading-relaxed text-ink-soft">{body}</span></span>
+                  <ArrowUpRight className="h-4 w-4 text-navy" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </Section>
@@ -108,7 +109,7 @@ export default function HoTro() {
               n="03"
               eyebrow="Mạng lưới"
               title="Tìm chi nhánh / phòng giao dịch trên hệ thống thật"
-              lead="Lọc theo tỉnh/thành và phường/xã trên công cụ mạng lưới Vietbank để tìm địa điểm đang hoạt động."
+              lead="Vietbank cung cấp công cụ lọc theo tỉnh/thành và phường/xã để tra cứu mạng lưới đang hoạt động."
             />
             <div className="mt-6"><ActionLink action={{ label: "Mở công cụ chi nhánh Vietbank", href: OFFICIAL.branches }} /></div>
           </div>
@@ -129,20 +130,20 @@ export default function HoTro() {
           n="04"
           eyebrow="Tài liệu"
           title="Biểu mẫu & biểu phí theo đúng nhóm khách hàng"
-          lead="Không dùng nút tải xuống giả. Mỗi lựa chọn mở đúng thư viện Vietbank đang quản lý."
+          lead="Chọn đúng nhóm tài liệu để mở thư viện Vietbank đang quản lý."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {[
-            { title: "Biểu mẫu cá nhân", body: "Tài khoản thanh toán, tiết kiệm, tiền gửi có kỳ hạn và biểu mẫu khác.", href: OFFICIAL.personalForms, cta: "Xem biểu mẫu cá nhân" },
-            { title: "Biểu mẫu tổ chức", body: "Tài khoản thanh toán, tiền gửi có kỳ hạn và biểu mẫu cho khách hàng tổ chức.", href: OFFICIAL.businessForms, cta: "Xem biểu mẫu tổ chức" },
-            { title: "Biểu phí doanh nghiệp", body: "Dịch vụ tài khoản, ngân quỹ, ngân hàng điện tử và thanh toán quốc tế.", href: OFFICIAL.businessFees, cta: "Xem biểu phí doanh nghiệp" },
-            { title: "Biểu phí thẻ", body: "Biểu phí dành cho các sản phẩm thẻ Vietbank.", href: OFFICIAL.cardFees, cta: "Xem biểu phí thẻ" },
+            { title: "Biểu mẫu cá nhân", body: "Tài khoản thanh toán, tiết kiệm, tiền gửi có kỳ hạn và biểu mẫu khác.", href: OFFICIAL.personalForms, label: "Xem biểu mẫu cá nhân" },
+            { title: "Biểu mẫu tổ chức", body: "Tài khoản thanh toán, tiền gửi có kỳ hạn và biểu mẫu cho khách hàng tổ chức.", href: OFFICIAL.businessForms, label: "Xem biểu mẫu tổ chức" },
+            { title: "Biểu phí doanh nghiệp", body: "Dịch vụ tài khoản, ngân quỹ, ngân hàng điện tử và thanh toán quốc tế.", href: OFFICIAL.businessFees, label: "Xem biểu phí doanh nghiệp" },
+            { title: "Biểu phí thẻ", body: "Biểu phí dành cho các sản phẩm thẻ Vietbank.", href: OFFICIAL.cardFees, label: "Xem biểu phí thẻ" },
           ].map((item) => (
             <article key={item.title} className="flex flex-col rounded-xl border border-line bg-surface p-6">
               <FileText className="h-5 w-5 text-navy" />
               <h3 className="mt-4 text-[16px] font-semibold">{item.title}</h3>
               <p className="mt-1.5 flex-1 text-[14px] leading-relaxed text-ink-soft">{item.body}</p>
-              <div className="mt-4"><ActionLink action={{ label: item.cta, href: item.href }} variant="ghost" size="sm" /></div>
+              <div className="mt-4"><ActionLink action={{ label: item.label, href: item.href }} variant="ghost" size="sm" /></div>
             </article>
           ))}
         </div>
@@ -187,13 +188,13 @@ export default function HoTro() {
               n="06"
               eyebrow="An toàn & chống giả mạo"
               title="Xác minh trước khi giao dịch"
-              lead="Ưu tiên đường dẫn Vietbank công khai, hotline và việc tự nhập địa chỉ website thay vì tin vào link được chuyển tiếp."
+              lead="Với tác vụ ngân hàng, hãy ưu tiên đường dẫn Vietbank công khai, hotline và việc tự nhập địa chỉ website thay vì tin vào liên kết được chuyển tiếp."
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <a href={HOTLINE_TEL} className={`${BTN.primary} ${BTN_SIZE.lg}`}>
                 <Phone className="h-4 w-4" /> Gọi {HOTLINE}
               </a>
-              <ActionLink action={{ label: "Thông báo Voice Brandname", href: OFFICIAL.voiceBrandname }} variant="secondary" />
+              <ActionLink action={{ label: "Xem thông báo Voice Brandname", href: OFFICIAL.voiceBrandname }} variant="secondary" />
             </div>
           </div>
           <div className="flex flex-col divide-y divide-line rounded-xl border border-line bg-surface">

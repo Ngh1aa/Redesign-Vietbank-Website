@@ -22,17 +22,19 @@ const PRODUCTS = [
     id: "accounts",
     icon: Wallet,
     title: "Tài khoản thanh toán",
-    body: "Tài khoản cho nhu cầu giao dịch hằng ngày; Vietbank hiện truyền thông luồng mở tài khoản online bằng eKYC trên Digital Plus.",
-    cues: ["Mở online với eKYC", "Kết nối Digital Plus", "Tài khoản cho giao dịch hằng ngày"],
+    body: "Tài khoản cho nhu cầu giao dịch hằng ngày; Vietbank hiện truyền thông luồng mở tài khoản trực tuyến bằng eKYC trên Digital Plus.",
+    cues: ["Mở trực tuyến với eKYC", "Kết nối Digital Plus", "Tài khoản cho giao dịch hằng ngày"],
     to: "/ngan-hang-so#digital-plus",
+    cta: "Xem Digital Plus",
   },
   {
     id: "savings",
     icon: PiggyBank,
     title: "Tiền gửi tiết kiệm",
     body: "Khám phá các hình thức tiết kiệm và kiểm tra lãi suất/điều kiện đang áp dụng trước khi quyết định gửi tiền.",
-    cues: ["Nhiều kỳ hạn", "Có kênh online", "Kiểm tra lãi suất hiện hành"],
+    cues: ["Nhiều kỳ hạn", "Có kênh trực tuyến", "Kiểm tra lãi suất hiện hành"],
     to: "/ho-tro#rates",
+    cta: "Xem lãi suất",
   },
   {
     id: "cards",
@@ -41,6 +43,7 @@ const PRODUCTS = [
     body: "Thẻ tín dụng, thanh toán và trả trước; chọn theo mục đích sử dụng rồi đối chiếu biểu phí và ưu đãi đang hiệu lực.",
     cues: ["Tín dụng", "Thanh toán", "Biểu phí & ưu đãi"],
     to: "/the",
+    cta: "So sánh thẻ",
   },
   {
     id: "loans",
@@ -49,6 +52,7 @@ const PRODUCTS = [
     body: "Tìm hiểu giải pháp vay cho nhu cầu mua, xây hoặc sửa nhà và chuẩn bị thông tin trước khi trao đổi với chuyên viên.",
     cues: ["Mục đích vay rõ ràng", "Điều kiện & hồ sơ", "Trao đổi chuyên viên"],
     to: "/ho-tro#contact",
+    cta: "Trao đổi nhu cầu vay nhà",
   },
   {
     id: "auto-loan",
@@ -57,6 +61,7 @@ const PRODUCTS = [
     body: "Tìm hiểu lựa chọn tài trợ mua xe và các điều kiện áp dụng theo hồ sơ thực tế của khách hàng.",
     cues: ["Xe phục vụ nhu cầu cá nhân", "Điều kiện theo hồ sơ", "Tư vấn trước đăng ký"],
     to: "/ho-tro#contact",
+    cta: "Trao đổi nhu cầu vay ô tô",
   },
   {
     id: "consumer-loan",
@@ -65,6 +70,7 @@ const PRODUCTS = [
     body: "Giải pháp tín dụng cho nhu cầu chi tiêu cá nhân; lãi suất, phí và điều kiện cần được kiểm tra theo chương trình đang áp dụng.",
     cues: ["Nhu cầu tiêu dùng", "Thông tin chi phí", "Điều kiện theo từng sản phẩm"],
     to: "/ho-tro#contact",
+    cta: "Trao đổi nhu cầu vay tiêu dùng",
   },
 ]
 
@@ -104,28 +110,37 @@ export default function CaNhan() {
           <div>
             <SectionHead
               n="01"
-              eyebrow="Bắt đầu online"
-              title="Mở tài khoản với eKYC trên Digital Plus"
-              lead="Vietbank đang truyền thông khả năng mở tài khoản online khoảng 5 phút với eKYC trong các chiến dịch 2026. Digital Plus là nền tảng số chính thức hiện nay cho khách hàng cá nhân."
+              eyebrow="Bắt đầu trực tuyến"
+              title="Mở tài khoản trên Digital Plus với eKYC"
+              lead="Vietbank giới thiệu eKYC trong luồng mở tài khoản trên Digital Plus. Đây là nền tảng số hiện hành dành cho khách hàng cá nhân."
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <ActionLink action={{ label: "Mở Digital Plus chính thức", href: OFFICIAL.digitalPlus }} />
               <Link to="/ngan-hang-so#digital-plus" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Xem trước tính năng
+                Xem tính năng Digital Plus
               </Link>
             </div>
             <p className="mt-4 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
-              Điều kiện mở tài khoản phụ thuộc quy định Vietbank tại thời điểm đăng ký. Trang này không mô phỏng kết quả phê duyệt.
+              Điều kiện mở tài khoản thực tế phụ thuộc quy định Vietbank tại thời điểm đăng ký; kết quả phê duyệt chỉ được xác nhận trên hệ thống Vietbank.
             </p>
           </div>
-          <div className="relative overflow-hidden rounded-xl border border-line bg-navy-050">
-            <img
-              src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=900&h=650&fit=crop&auto=format"
-              alt="Minh hoạ khách hàng sử dụng ngân hàng số trên điện thoại"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <aside className="border-y border-line bg-soft px-6 py-7 lg:border lg:px-8" aria-label="Trước khi mở tài khoản trên Digital Plus">
+            <Smartphone className="h-6 w-6 text-navy" aria-hidden="true" />
+            <h3 className="mt-4 font-display text-xl font-semibold">Trước khi bắt đầu</h3>
+            <ol className="mt-4 divide-y divide-line border-y border-line">
+              {[
+                ["01", "Mở đúng kênh", "Sử dụng Digital Plus từ liên kết Vietbank chính thức hoặc kho ứng dụng."],
+                ["02", "Thực hiện eKYC", "Làm theo hướng dẫn định danh và xác thực hiển thị trong ứng dụng."],
+                ["03", "Kiểm tra kết quả", "Chỉ coi tài khoản hoàn tất khi hệ thống Vietbank xác nhận trong luồng thực tế."],
+              ].map(([n, title, body]) => (
+                <li key={n} className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                  <span className="text-[12.5px] font-semibold text-amber tnum">{n}</span>
+                  <span><strong className="block text-[14.5px]">{title}</strong><span className="mt-1 block text-[13.5px] leading-relaxed text-ink-soft">{body}</span></span>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </div>
       </Section>
 
@@ -139,7 +154,7 @@ export default function CaNhan() {
         <div className="mt-6 divide-y divide-line border-y border-line">
           {PRODUCTS.map((p) => (
             <div key={p.id} id={p.id} className="scroll-mt-28">
-              <FeatureRow icon={p.icon} title={p.title} body={p.body} cues={p.cues} to={p.to} cta="Xem sản phẩm" />
+              <FeatureRow icon={p.icon} title={p.title} body={p.body} cues={p.cues} to={p.to} cta={p.cta} />
             </div>
           ))}
         </div>
@@ -210,7 +225,7 @@ export default function CaNhan() {
 
       <CTABand
         title="Muốn tự bắt đầu hay cần người hỗ trợ?"
-        body="Digital Plus phù hợp cho hành trình cá nhân online; nếu nhu cầu liên quan vay, điều kiện hoặc hồ sơ cụ thể, hãy dùng kênh hỗ trợ Vietbank."
+        body="Digital Plus phù hợp cho hành trình cá nhân trực tuyến; nếu nhu cầu liên quan vay, điều kiện hoặc hồ sơ cụ thể, hãy dùng kênh hỗ trợ Vietbank."
         primary={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }}
         secondary={{ label: "Liên hệ Vietbank", href: OFFICIAL.contact }}
       />
@@ -224,7 +239,7 @@ export default function CaNhan() {
               Internet Banking cá nhân dừng cung cấp từ 18/05/2026 và ứng dụng Vietbank Digital cũ dừng từ 03/06/2026.
             </p>
             <Link to="/ngan-hang-so#migration" className="mt-2 inline-flex text-[13.5px] font-semibold text-navy hover:underline">
-              Xem luồng chuyển đổi
+              Xem hướng dẫn chuyển đổi
             </Link>
           </div>
         </div>
