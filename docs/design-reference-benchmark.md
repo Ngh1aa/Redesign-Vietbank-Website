@@ -1,4 +1,4 @@
-# Design Reference Benchmark — Vietbank V7
+# Design Reference Benchmark — Vietbank
 
 > Checked: 2026-08-31. References are used to extract principles, not to claim their UX/conversion is superior or to copy visual identity.
 
@@ -13,102 +13,121 @@
 Query families:
 1. Vietnam banking personal/business product discovery.
 2. Banking utility/support findability.
-3. Credit-card comparison and eligibility disclosure.
-4. Mobile-first non-authenticated banking entry points.
+3. Credit-card filter/compare patterns.
+4. Public banking homepage task orientation.
+5. Digital banking storytelling without impersonating an authenticated dashboard.
 
-Source mix prioritizes real production bank websites. Industry benchmark reports are background only, not visual references.
+Source mix prioritizes real production bank websites. Award/gallery sites are not used as UX evidence.
 
 ## Candidate shortlist
 
-| Reference | Type | Role | Fit score /100 | Decision | Rationale |
+| Reference | Type | Role | Fit /100 | Decision | Rationale |
 |---|---|---|---:|---|---|
-| Techcombank | PRODUCTION | utility board + product/digital journey | 86 | KEEP | Strong task shortcuts and clear separation between products, digital banking and support utilities. |
-| HSBC Vietnam | PRODUCTION | card discovery/comparison | 91 | KEEP | Card choice is structured around user fit, comparable benefits, fees, eligibility and important information before application. |
-| MB Bank | PRODUCTION | product-category orientation + service support | 78 | KEEP | Useful category framing and service-centre pattern; less relevant for Vietbank brand expression. |
-| Vietbank current site | PRODUCTION / BASELINE | verified taxonomy/content/assets | n/a | KEEP AS TRUTH | Source for product names, official actions, documents and real card assets; not treated as the desired visual system. |
+| Techcombank | PRODUCTION | product discovery + compare | 91 | KEEP | Need-first credit-card discovery and comparison are strong references for product decision support. |
+| ACB | PRODUCTION | filter/compare + practical taxonomy | 90 | KEEP | Product categories, filter and compare are close to Vietbank's market reality. |
+| HSBC Vietnam | PRODUCTION | trust + utilities + card evaluation | 92 | KEEP | Rates/fees/forms/support/security stay globally findable and product comparison keeps conditions visible. |
+| DBS Singapore | PRODUCTION | homepage task/search orientation | 87 | KEEP | “Find what you need”, popular searches and quick tools demonstrate a task-first public banking entry. |
+| TPBank | PRODUCTION | digital banking storytelling | 78 | KEEP SELECTIVELY | Useful for app/service storytelling but more campaign/lifestyle-led than Vietbank should be. |
+| MB Bank | PRODUCTION | top-task simplicity | 80 | KEEP SELECTIVELY | Clear service entry and support framing; less relevant for visual craft. |
+| Vietbank current site | PRODUCTION / BASELINE | verified taxonomy/content/assets | n/a | KEEP AS TRUTH | Source for product names, official actions, documents and first-party assets; not the desired visual system. |
 
-## Final references
+## Final reference roles
 
-### A. Techcombank — utility/service orientation
-**What works**
-- Public-site navigation gives quick access to exchange rates, service fees/forms and digital banking.
-- Product discovery and digital channels coexist without making the marketing site impersonate authenticated banking.
-
-**Transferable principles**
-- Keep high-frequency utilities globally reachable.
-- Use a task/service board rather than forcing every utility into a product-card grid.
-- Make digital channel handoff a first-class destination.
-
-**Do not copy**
-- Techcombank visual identity, red palette, typography, campaign art direction or exact navigation composition.
-
-**Vietbank adaptation**
-- Convert the utility pattern into a Vietbank blue “service ledger/board”, with red/yellow only as controlled signature accents.
-
-### B. HSBC Vietnam — card evaluation
-**What works**
-- Credit-card comparison exposes benefits, fees, eligibility, interest-related information and important documents around the decision.
-- Users can compare products as actual financial products rather than as generic lifestyle tiles.
-
-**Transferable principles**
-- Show real card object/imagery where the card itself is the choice object.
-- Put comparable attributes and conditions close to the product decision.
-- Separate “fit/orientation” from full legal/product truth and link to the latter.
+### A. Techcombank — product discovery
+**Transferable**
+- Start card discovery from user need, not network/product taxonomy alone.
+- Keep comparison close to the shortlist decision.
+- Show a small number of comparable attributes before deep detail.
 
 **Do not copy**
-- HSBC card portfolio, red brand language, component styling, copy or application flow.
+- Red identity, exact card layouts, typography, campaign art direction or navigation composition.
 
-**Vietbank adaptation**
-- Use only current Vietbank card names/assets and centralize first-party destinations.
-- Keep V7 comparison as orientation; official Vietbank pages remain the final source for current fees/conditions.
-
-### C. MB Bank — category + support framing
-**What works**
-- Product families are visible and support/service entry points are not buried as purely corporate content.
-
-**Transferable principles**
-- Maintain clear customer-context segmentation.
-- Give support/recovery routes equal IA dignity to acquisition routes.
+### B. ACB — practical filter/compare
+**Transferable**
+- Make filter state, result count and comparison action obvious.
+- Keep “detail” and “compare” as different tasks.
+- Use compact product rows/cards that can be scanned quickly.
 
 **Do not copy**
-- Purple visual language, campaign modules, exact card grids or app-led branding.
+- Exact component styling, category taxonomy or promotional presentation.
 
-## Extracted Design DNA
+### C. HSBC Vietnam — trust + utility discipline
+**Transferable**
+- Rates, fees, forms, contact, branch finder and security deserve first-class navigation positions.
+- Financial-product pages should put fees/conditions/important information near the decision.
+- Support/recovery routes should not be buried under corporate content.
+
+**Do not copy**
+- HSBC red language, global typography or exact mega-menu structure.
+
+### D. DBS Singapore — task-first homepage
+**Transferable**
+- Public banking entry should help people “find what they need” before marketing depth.
+- Popular tasks and quick tools can sit above editorial/promotional content.
+- Search-like information scent is useful only when backed by real search; otherwise use explicit task shortcuts.
+
+**Do not copy**
+- DBS search implementation, ecosystem breadth or promotional feed.
+
+### E. TPBank — digital product storytelling
+**Transferable**
+- Digital banking can use verified app visuals, short onboarding steps and benefit grouping.
+- Personal and business digital channels need distinct storytelling.
+
+**Do not copy**
+- Youth/lifestyle campaign language or visual density where it conflicts with Vietbank trust goals.
+
+## Extracted design DNA
 
 ### Layout grammar
 - Public banking pages begin with orientation, not a fake dashboard.
-- High-frequency tasks read as a service index/ledger; deeper product decisions can use richer product objects.
+- High-frequency utilities live in a slim global utility layer.
+- Primary navigation focuses on customer/product journeys; corporate links move to secondary navigation/footer.
+- Product evaluation uses compact rows: real product object → proposition → 2–3 key facts → detail/compare actions.
 - Comparison uses aligned attributes and explicit condition caveats.
 
 ### Hierarchy
-`context → top task → product/utility evidence → condition/source → next action`
+`context → task → product/utility evidence → condition/source → next action`
 
 ### Typography
-- Institutional, compact and scan-friendly.
-- Numbers/conditions receive strong alignment and tabular treatment where helpful.
+- Be Vietnam Pro remains the proposed digital typeface.
+- Homepage H1 may reach ~48–56px on large screens.
+- Inner-page H1 stays around ~30–43px responsive rather than campaign scale.
+- Section H2 stays around ~26–34px.
+- Product-list title stays around ~21–25px.
+- Body stays ~14.5–16px with generous Vietnamese line-height.
 
 ### Color/surface
-- Mostly white/light surfaces for legibility and trust.
-- One primary institutional color controls navigation/actions.
-- Accent colors are sparse and meaningfully tied to brand.
+- White / near-white remains dominant.
+- Vietbank blue owns primary navigation/actions.
+- Red + yellow remain sparse brand signature accents rather than large surfaces.
+- Semantic status colors are not replaced by brand accents.
+
+### Imagery
+- First-party Vietbank packshots, real app UI and documentary/event photography only when verified.
+- No AI-generated or generic stock-like banking photography.
 
 ### Interaction
 - Conventional links/buttons remain conventional.
 - External/official-channel transitions are clearly signaled.
-- Mobile reorganizes, not simply shrinks desktop grids/tables.
+- Mobile reorganizes; it does not simply shrink desktop grids/tables.
 
-## Handoff rules for Vietbank
+## Implementation handoff
 
-1. Home top tasks → statement/service-ledger structure, not six floating rounded cards.
-2. Card page → actual current Vietbank card imagery + structured attributes.
-3. Support → utility board with official-source labels; no invented live financial values.
-4. About/IR → annual-report/editorial rhythm, never fake market or financial-document UI.
-5. No reference contributes more than principles; final visual identity must remain Vietbank-specific.
+1. Header: move Về Vietbank / Nhà đầu tư to secondary utility navigation on desktop; keep primary journey navigation compact.
+2. Shared typography: reduce inner-page H1 and section-title scale; keep Home display size as the intentional exception.
+3. Card Finder: reduce packshot footprint and product-title scale; expose 3 scan-friendly facts; group detail + compare actions together.
+4. Support: preserve utility-first architecture already implemented.
+5. Digital banking: preserve verified Digital Plus / DigiBiz media and official handoff.
+6. Do not add fake site search until a real search index/data source exists.
 
 ## Sources checked
-- https://techcombank.com/khach-hang-ca-nhan
-- https://techcombank.com/ngan-hang-so
-- https://www.hsbc.com.vn/credit-cards/products/
-- https://www.hsbc.com.vn/credit-cards/compare/
+- https://techcombank.com/en/personal/spend/cards/credit-card
+- https://acb.com.vn/the
+- https://www.hsbc.com.vn/
+- https://www.hsbc.com.vn/help/rates-and-fees/
+- https://www.hsbc.com.vn/credit-cards/
+- https://www.dbs.com.sg/personal/default.page
+- https://tpb.vn/
 - https://www.mbbank.com.vn/
 - https://www.vietbank.com.vn/
