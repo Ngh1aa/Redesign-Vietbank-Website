@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-      - upgrade/v6-research-led
+      - "upgrade/**"
+      - "fix/**"
     paths:
       - "src/**"
       - "app/**"
@@ -83,5 +84,5 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "build: sync V6 Pages artifact [skip ci]"
+          git commit -m "build: sync Pages artifact [skip ci]"
           git push origin "HEAD:${GITHUB_REF_NAME}"

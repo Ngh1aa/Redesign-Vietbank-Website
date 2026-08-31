@@ -8,13 +8,26 @@
     "measurement-reliability",
     "production-delivery"
   ],
-  "additional_skills": ["website-audit-and-redesign"],
+  "additional_skills": [
+    "website-audit-and-redesign",
+    "real-world-artifact-and-domain-metaphor-design"
+  ],
   "exclude_skills": [],
   "project": {
     "name": "Redesign Vietbank Website",
     "mode": "production-candidate",
-    "domain": "corporate"
+    "domain": "corporate-banking"
   },
-  "source_of_truth": ["docs/brand.md", "docs/sitemap.md"],
-  "constraints": ["Reuse existing tokens and components"]
+  "source_of_truth": [
+    "docs/brand.md",
+    "docs/sitemap.md",
+    "docs/product-brief.md",
+    "docs/audience-intent.md",
+    "docs/system-reality.md"
+  ],
+  "constraints": [
+    "Reuse existing tokens and components",
+    "Do not simulate banking authentication or transactions",
+    "Use verified first-party Vietbank assets for real branded products"
+  ]
 }
