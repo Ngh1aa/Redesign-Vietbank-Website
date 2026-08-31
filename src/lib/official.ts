@@ -59,21 +59,24 @@ export const OFFICIAL = {
 
 /*
  * First-party public Vietbank media only. These are STATIC verified assets,
- * not generated imagery and not a product/content API. Text and actions must
- * remain usable if an image is unavailable. Production handoff should replace
- * hotlinks with Vietbank-supplied licensed media managed by the real CMS/CDN.
+ * not generated imagery and not a product/content API. For card discovery we
+ * intentionally use card-only packshots from Vietbank product pages and avoid
+ * lifestyle/model compositions even when they are hosted on Vietbank's CDN.
+ * Text and actions must remain usable if an image is unavailable. Production
+ * handoff should replace hotlinks with Vietbank-supplied licensed media managed
+ * by the real CMS/CDN.
  */
 export const OFFICIAL_MEDIA = {
   logo: "https://www.vietbank.com.vn/img/logo.png",
   digitalPlusLaunch: "https://static.vietbank.com.vn/web/2024-CBTT/mobile_banking_2025-_800_x_600.png",
   branchLamDongFacility: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_4.jpg",
   branchLamDongTeam: "https://static.vietbank.com.vn/web/2024-CBTT/Hinh_5.jpg",
-  cardMyStyle: "https://static.vietbank.com.vn/web/CardWebsite/product/my%20style/my-style2.png",
+  cardMyStyle: "https://static.vietbank.com.vn/web/CardWebsite/product/my%20style/my-style.png",
   cardHappy:
-    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20HAPPY/Master-Card-Credit-Happy-%28Standard%29-3.jpg",
+    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20HAPPY/Master-Card-Credit-Happy-%28Standard%29-1.png",
   cardLifecare:
-    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20LIFECARE/Mastercard-Lifecare-Credit-3.jpg",
-  cardVisaLuxury: "https://static.vietbank.com.vn/web/CardWebsite/product/Luxury/Platinum-Luxury2.png",
+    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20LIFECARE/Mastercard-Lifecare-Credit-1.png",
+  cardVisaLuxury: "https://static.vietbank.com.vn/web/CardWebsite/product/Luxury/Platinum-Luxury.png",
 } as const
 
 export const EXTERNAL_LINK_PROPS = {

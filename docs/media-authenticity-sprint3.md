@@ -6,16 +6,18 @@ For this project, do **not** use AI-generated banking photography, synthetic ban
 
 Every image must have a clear job and a traceable source. Prefer Vietbank first-party assets from `vietbank.com.vn` or `static.vietbank.com.vn`. If a future asset comes from another publisher found via the keyword `Vietbank`, record publisher, original page, date/context and usage rights before use.
 
+**Important:** first-party hosting alone is not enough. If a Vietbank CDN asset is a lifestyle/model composition that looks synthetic, stock-like or cannot be confidently treated as documentary/product evidence, do not use it in the redesign. For card discovery, use card-only packshots from Vietbank product pages.
+
 ## Current approved asset inventory
 
 | Asset | Purpose | Source | Reality | Delivery | Alt/caption rule |
 |---|---|---|---|---|---|
 | Vietbank logo | brand identity | `https://www.vietbank.com.vn/img/logo.png` | first-party public asset | remote hotlink in concept | alt `Vietbank` |
 | Digital Plus launch artwork | product recognition / authenticity | Vietbank launch article dated 20/03/2026; `https://static.vietbank.com.vn/web/2024-CBTT/mobile_banking_2025-_800_x_600.png` | first-party public media | remote hotlink, 4:3 reserved ratio | describe as official Vietbank Digital Plus launch image |
-| Visa My Style | product recognition | Vietbank card CDN | first-party public product media | remote hotlink | product name |
-| Visa Luxury Platinum | product recognition | Vietbank card CDN | first-party public product media | remote hotlink | product name |
-| Mastercard Happy | product recognition | Vietbank card CDN | first-party public product media | remote hotlink | product name |
-| Mastercard Lifecare | product recognition | Vietbank card CDN | first-party public product media | remote hotlink | product name |
+| Visa My Style packshot | product recognition | `.../my style/my-style.png` on Vietbank card CDN | first-party card-only product media | remote hotlink | product name |
+| Visa Luxury Platinum packshot | product recognition | `.../Luxury/Platinum-Luxury.png` on Vietbank card CDN | first-party card-only product media | remote hotlink | product name |
+| Mastercard Happy packshot | product recognition | `.../Master-Card-Credit-Happy-(Standard)-1.png` on Vietbank card CDN | first-party card-only product media | remote hotlink | product name |
+| Mastercard Lifecare packshot | product recognition | `.../Mastercard-Lifecare-Credit-1.png` on Vietbank card CDN | first-party card-only product media | remote hotlink | product name |
 | Lâm Đồng branch/facility image | optional network/corporate evidence | Vietbank Lâm Đồng branch-opening story, 16/12/2024; `https://static.vietbank.com.vn/web/2024-CBTT/Hinh_4.jpg` | first-party event/photo asset | registered but not required in every layout | caption context/date if used |
 | Lâm Đồng team image | optional people/network evidence | same Vietbank story; `https://static.vietbank.com.vn/web/2024-CBTT/Hinh_5.jpg` | first-party event/photo asset | registered but not required in every layout | identify context, not individuals unless source does |
 
@@ -24,7 +26,8 @@ Every image must have a clear job and a traceable source. Prefer Vietbank first-
 Use images to prove a real product, real Vietbank environment, real Vietbank people/event or a real service interface. Do not add photography merely to fill whitespace.
 
 Preferred treatment:
-- documentary / first-party campaign or event media;
+- card-only official packshots for card finder/compare;
+- documentary / first-party campaign or event media for people and branch context;
 - true Vietbank branding visible when relevant;
 - neutral crop that preserves the product/person/environment context;
 - no AI retouching that changes people, architecture, cards or official UI;
@@ -33,6 +36,7 @@ Preferred treatment:
 Avoid:
 - anonymous office/startup stock imagery;
 - AI-generated Vietnamese bank employees/branches;
+- lifestyle/model card compositions that look AI-generated or stock-like, even when hosted on Vietbank CDN;
 - synthetic cards with fake numbers/network marks;
 - generic skyscraper/corporate imagery presented as Vietbank;
 - mixing heavily stylized 3D illustrations with documentary banking photography without a clear system rationale.
