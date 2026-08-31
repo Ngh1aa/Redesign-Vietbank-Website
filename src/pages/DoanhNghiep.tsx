@@ -1,36 +1,89 @@
-import { Banknote, TrendingUp, Globe, ShieldCheck, Building2, Receipt, ArrowRight, Store, Factory, Briefcase } from "lucide-react"
+import {
+  Banknote,
+  TrendingUp,
+  Globe,
+  ShieldCheck,
+  Building2,
+  Receipt,
+  ArrowRight,
+  Store,
+  Factory,
+  Briefcase,
+} from "lucide-react"
 import { Link } from "react-router"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
-import { Section, SectionHead, FeatureRow, CTABand, Stat } from "../lib/sections"
+import { ActionLink, Section, SectionHead, FeatureRow, CTABand, Stat } from "../lib/sections"
+import { OFFICIAL } from "../lib/official"
 
 const SOLUTIONS = [
-  { icon: Building2, title: "Tài khoản doanh nghiệp", body: "Tài khoản thanh toán, thu chi hộ và quản lý số dư tập trung cho doanh nghiệp mọi quy mô.", cues: ["Thu / chi hộ", "Nhiều tài khoản phụ", "Sao kê linh hoạt"], to: "/doanh-nghiep" },
-  { icon: Banknote, title: "Vay & tài trợ vốn", body: "Vốn lưu động, hạn mức thấu chi và tài trợ theo chuỗi cung ứng cho SME.", cues: ["Vốn lưu động", "Thấu chi", "Tài trợ chuỗi"], to: "/doanh-nghiep" },
-  { icon: TrendingUp, title: "Quản lý dòng tiền", body: "Chi lương, thu hộ, chi hộ và đối soát tự động, kiểm soát trực tuyến trên DigiBiz.", cues: ["Chi lương hàng loạt", "Phê duyệt đa cấp", "Đối soát tập trung"], to: "/ngan-hang-so" },
-  { icon: Globe, title: "Tài trợ thương mại & XNK", body: "L/C, nhờ thu, tài trợ xuất nhập khẩu và chuyển tiền quốc tế với tỷ giá cạnh tranh.", cues: ["L/C & nhờ thu", "Tỷ giá cạnh tranh", "Chuyển tiền quốc tế"], to: "/doanh-nghiep" },
-  { icon: ShieldCheck, title: "Bảo lãnh", body: "Bảo lãnh dự thầu, thực hiện hợp đồng và tạm ứng — phát hành nhanh, theo dõi online.", cues: ["Nhiều loại bảo lãnh", "Phát hành nhanh", "Theo dõi trực tuyến"], to: "/doanh-nghiep" },
-  { icon: Receipt, title: "Thu ngân sách & hoá đơn", body: "Kết nối thu hộ hoá đơn, thuế và các khoản thu định kỳ theo mô hình vận hành của bạn.", cues: ["Thu hộ hoá đơn", "Kết nối ERP", "Báo cáo định kỳ"], to: "/doanh-nghiep" },
+  {
+    id: "accounts",
+    icon: Building2,
+    title: "Tài khoản doanh nghiệp",
+    body: "Tài khoản thanh toán và các dịch vụ tài khoản phục vụ thu, chi và vận hành giao dịch của doanh nghiệp.",
+    cues: ["Tài khoản thanh toán", "Dịch vụ tài khoản", "Đối chiếu biểu phí"],
+    to: "/ho-tro#docs",
+  },
+  {
+    id: "credit",
+    icon: Banknote,
+    title: "Vay & tài trợ vốn",
+    body: "Nhóm giải pháp tín dụng cho nhu cầu vốn lưu động, đầu tư và hoạt động sản xuất kinh doanh theo hồ sơ thực tế.",
+    cues: ["Vốn kinh doanh", "Điều kiện theo hồ sơ", "Trao đổi chuyên viên"],
+    to: "/ho-tro#contact",
+  },
+  {
+    id: "cash-management",
+    icon: TrendingUp,
+    title: "Quản lý dòng tiền với DigiBiz",
+    body: "Theo dõi tài khoản và giao dịch, lập lịch thanh toán, duyệt đa cấp và phân quyền theo cấu trúc doanh nghiệp.",
+    cues: ["Quản lý tài khoản", "Lập lịch thanh toán", "Phê duyệt & phân quyền"],
+    to: "/ngan-hang-so#digibiz",
+  },
+  {
+    id: "trade",
+    icon: Globe,
+    title: "Tài trợ thương mại & chuyển tiền quốc tế",
+    body: "Vietbank công khai các nhóm dịch vụ tài trợ thương mại và chuyển tiền quốc tế cho khách hàng doanh nghiệp.",
+    cues: ["Tài trợ thương mại", "Chuyển tiền quốc tế", "Thông tin tỷ giá"],
+    to: "/ho-tro#rates",
+  },
+  {
+    id: "guarantee",
+    icon: ShieldCheck,
+    title: "Bảo lãnh trong nước",
+    body: "Nhóm sản phẩm bảo lãnh phục vụ nghĩa vụ và giao dịch doanh nghiệp; điều kiện được xác định theo từng nhu cầu/hồ sơ.",
+    cues: ["Nhu cầu bảo lãnh", "Hồ sơ doanh nghiệp", "Tư vấn theo trường hợp"],
+    to: "/ho-tro#contact",
+  },
+  {
+    id: "payments",
+    icon: Receipt,
+    title: "Thu ngân sách & dịch vụ thanh toán",
+    body: "Các dịch vụ doanh nghiệp bao gồm thu ngân sách nhà nước và nhóm tiện ích thanh toán theo danh mục Vietbank công bố.",
+    cues: ["Thu ngân sách", "Dịch vụ thanh toán", "Quy định & biểu mẫu"],
+    to: "/ho-tro#docs",
+  },
 ]
 
-/* Quy mô segmentation — answers "what fits my size?" per audience-intent-and-top-tasks */
 const SEGMENTS = [
   {
     icon: Store,
-    title: "Hộ kinh doanh & SME nhỏ",
-    body: "Tài khoản thanh toán, hoá đơn điện tử, QR thanh toán và vay vốn nhanh theo doanh thu.",
-    cues: ["Mở online 1 ngày", "QR VietQR miễn phí", "Vay theo doanh thu"],
+    title: "Hộ kinh doanh & SME",
+    body: "Ưu tiên khả năng nhận/chuyển tiền, theo dõi dòng tiền và tiếp cận vốn phù hợp với quy mô vận hành.",
+    cues: ["Tài khoản giao dịch", "DigiBiz", "Nhu cầu vốn"],
   },
   {
     icon: Factory,
     title: "Doanh nghiệp sản xuất",
-    body: "Vốn lưu động theo chu kỳ, tài trợ chuỗi cung ứng, L/C nhập khẩu nguyên vật liệu.",
-    cues: ["Tài trợ chuỗi", "L/C nhập khẩu", "Chi lương tập trung"],
+    body: "Thường cần phối hợp vốn lưu động, thanh toán nhà cung cấp và các công cụ tài trợ thương mại theo chu kỳ sản xuất.",
+    cues: ["Vốn lưu động", "Tài trợ thương mại", "Quản trị thanh toán"],
   },
   {
     icon: Briefcase,
     title: "Dịch vụ & thương mại",
-    body: "Quản lý dòng tiền đa chi nhánh, thu hộ chi hộ, đối soát tự động với DigiBiz.",
-    cues: ["Đối soát đa chi nhánh", "Phê duyệt đa cấp", "Báo cáo real-time"],
+    body: "Tập trung vào quản trị nhiều khoản thu/chi, quy trình phê duyệt và khả năng theo dõi tài khoản minh bạch.",
+    cues: ["Quản lý dòng tiền", "Phê duyệt đa cấp", "Theo dõi giao dịch"],
   },
 ]
 
@@ -40,37 +93,49 @@ export default function DoanhNghiep() {
       <PageHeader
         eyebrow="Khách hàng doanh nghiệp"
         crumb="Doanh nghiệp"
-        title="Đồng hành cùng doanh nghiệp trên từng dòng tiền"
-        lead="Từ vốn lưu động, quản lý dòng tiền đến tài trợ thương mại — Vietbank thiết kế giải pháp theo cách doanh nghiệp của bạn vận hành."
+        title="Giải pháp tài chính theo cách doanh nghiệp vận hành"
+        lead="Từ tài khoản, nguồn vốn và dòng tiền đến tài trợ thương mại — chọn theo công việc cần hoàn thành, sau đó tiếp tục sang DigiBiz, tài liệu hoặc chuyên viên Vietbank phù hợp."
       />
 
-      {/* Evidence band — labelled illustrative */}
       <Section tone="soft">
-        <SectionHead n="01" eyebrow="Vì sao chọn Vietbank" title="Giải pháp thực tế cho doanh nghiệp SME" />
+        <SectionHead
+          n="01"
+          eyebrow="Năng lực số đã công bố"
+          title="DigiBiz tập trung vào vận hành tài chính doanh nghiệp"
+          lead="Thay cho số liệu minh hoạ, V6 dùng ba đặc tính Vietbank đã công bố cho DigiBiz."
+        />
         <div className="mt-6 grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <Stat value="1 ngày" label="Mở tài khoản doanh nghiệp trực tuyến, hồ sơ tối giản" />
-          <Stat value="Đa cấp" label="Phê duyệt nhiều cấp và phân quyền theo vai trò trên DigiBiz" />
-          <Stat value="24/7" label="Kiểm soát dòng tiền và giao dịch liền mạch web — mobile" />
+          <Stat value="Omni-channel" label="Vietbank giới thiệu DigiBiz là nền tảng hợp kênh cho hoạt động tài chính doanh nghiệp." />
+          <Stat value="Đa cấp" label="Hỗ trợ duyệt giao dịch nhiều cấp và tùy chỉnh phân quyền theo cấu trúc doanh nghiệp." />
+          <Stat value="Real-time" label="Định hướng theo dõi và quản lý thông tin tài khoản/giao dịch theo thời gian thực." />
         </div>
-        <p className="mt-3 text-[12.5px] text-ink-soft">Thông tin minh hoạ cho mục đích thiết kế.</p>
+        <p className="mt-3 text-[12.5px] leading-relaxed text-ink-soft">
+          Nguồn: thông tin ra mắt Vietbank DigiBiz ngày 03/07/2025. Điều kiện sử dụng thực tế theo Vietbank tại thời điểm đăng ký.
+        </p>
       </Section>
 
       <Section>
-        <SectionHead n="02" eyebrow="Giải pháp theo nhu cầu" title="Bạn đang cần giải quyết điều gì?" />
+        <SectionHead
+          n="02"
+          eyebrow="Giải pháp theo nhu cầu"
+          title="Doanh nghiệp đang cần giải quyết điều gì?"
+          lead="Mỗi nhóm có anchor riêng để menu/campaign có thể đưa người dùng tới đúng nhu cầu thay vì đầu trang chung."
+        />
         <div className="mt-6 divide-y divide-line border-y border-line">
           {SOLUTIONS.map((s) => (
-            <FeatureRow key={s.title} {...s} cta="Xem giải pháp" />
+            <div key={s.id} id={s.id} className="scroll-mt-28">
+              <FeatureRow icon={s.icon} title={s.title} body={s.body} cues={s.cues} to={s.to} cta="Tiếp tục" />
+            </div>
           ))}
         </div>
       </Section>
 
-      {/* Quy mô segmentation — answers "is this for my size?" */}
       <Section tone="soft">
         <SectionHead
           n="03"
-          eyebrow="Theo quy mô"
-          title="Phù hợp với doanh nghiệp của bạn"
-          lead="Giải pháp được điều chỉnh theo ngành và quy mô — chọn nhóm gần với bạn nhất."
+          eyebrow="Theo mô hình vận hành"
+          title="Gợi ý điểm bắt đầu theo bối cảnh"
+          lead="Đây là định hướng khám phá, không phải điều kiện phê duyệt sản phẩm. Doanh nghiệp có thể phối hợp nhiều nhóm giải pháp cùng lúc."
         />
         <div className="mt-6 grid gap-5 md:grid-cols-3">
           {SEGMENTS.map(({ icon: Icon, title, body, cues }) => (
@@ -95,13 +160,12 @@ export default function DoanhNghiep() {
         </div>
       </Section>
 
-      {/* DigiBiz highlight */}
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative order-2 overflow-hidden rounded-xl border border-line bg-navy-050 lg:order-1">
             <img
               src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=900&h=650&fit=crop&auto=format"
-              alt="Chủ doanh nghiệp quản lý dòng tiền trên nền tảng DigiBiz"
+              alt="Minh hoạ đội ngũ doanh nghiệp trao đổi về quản lý tài chính"
               className="h-full w-full object-cover"
             />
           </div>
@@ -109,15 +173,13 @@ export default function DoanhNghiep() {
             <SectionHead
               n="04"
               eyebrow="Ngân hàng số doanh nghiệp"
-              title="Vietbank DigiBiz — điều hành tài chính chủ động"
-              lead="Kiểm soát dòng tiền, thu chi hộ, trả lương và phê duyệt nhiều cấp trên một nền tảng, liền mạch giữa web và mobile."
+              title="Vietbank DigiBiz — từ tìm hiểu sang kênh vận hành chính thức"
+              lead="DigiBiz được Vietbank định vị như trợ lý tài chính số cho quản trị, giao dịch và kết nối hệ sinh thái kinh doanh. Trang redesign chỉ giải thích và handoff, không giả lập nghiệp vụ giao dịch."
             />
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/ngan-hang-so" className={`${BTN.primary} ${BTN_SIZE.lg}`}>
-                Tìm hiểu DigiBiz <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Liên hệ chuyên viên
+              <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} />
+              <Link to="/ngan-hang-so#digibiz" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
+                Xem trước tính năng <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -125,10 +187,10 @@ export default function DoanhNghiep() {
       </Section>
 
       <CTABand
-        title="Trao đổi cùng chuyên viên doanh nghiệp"
-        body="Nhận tư vấn giải pháp phù hợp với ngành và quy mô của bạn, kèm ước tính chi phí minh bạch."
-        primary={{ label: "Đặt lịch tư vấn", to: "/ho-tro" }}
-        secondary={{ label: "Xem biểu phí", to: "/ho-tro#docs" }}
+        title="Cần trao đổi theo ngành và quy mô?"
+        body="Sử dụng kênh liên hệ chính thức của Vietbank cho nhu cầu tín dụng, hồ sơ hoặc giải pháp doanh nghiệp; dùng DigiBiz khi bạn cần vào nền tảng số."
+        primary={{ label: "Liên hệ Vietbank", href: OFFICIAL.contact }}
+        secondary={{ label: "Quy định & biểu mẫu", href: OFFICIAL.documents }}
       />
     </>
   )
