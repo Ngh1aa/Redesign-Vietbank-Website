@@ -13,7 +13,6 @@ import {
   MapPin,
   Phone,
   PiggyBank,
-  Send,
   ShieldCheck,
   Smartphone,
   TrendingUp,
@@ -21,7 +20,7 @@ import {
 } from "lucide-react"
 import { SectionLabel, BTN, BTN_SIZE, HOTLINE, HOTLINE_TEL } from "../lib/ui"
 import { ActionLink } from "../lib/sections"
-import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
+import { EXTERNAL_LINK_PROPS, OFFICIAL, OFFICIAL_MEDIA } from "../lib/official"
 
 type Segment = "ca-nhan" | "doanh-nghiep"
 
@@ -43,8 +42,8 @@ const TOP_TASKS: Record<Segment, Task[]> = {
   "ca-nhan": [
     { icon: Wallet, label: "Tài khoản thanh toán", hint: "Bắt đầu nhu cầu giao dịch hằng ngày", to: "/ca-nhan#accounts" },
     { icon: PiggyBank, label: "Tiết kiệm", hint: "Sản phẩm và đường dẫn lãi suất hiện hành", to: "/ca-nhan#savings" },
-    { icon: CreditCard, label: "Chọn thẻ", hint: "So sánh các dòng thẻ Vietbank đang công bố", to: "/the#cards" },
-    { icon: Landmark, label: "Vay vốn", hint: "Nhà · ô tô · tiêu dùng theo nhu cầu", to: "/ca-nhan#loans" },
+    { icon: CreditCard, label: "Chọn thẻ", hint: "Tìm và so sánh thẻ Vietbank", to: "/the#cards" },
+    { icon: Landmark, label: "Vay vốn", hint: "Ước tính và chuẩn bị theo mục đích vay", to: "/ca-nhan#loans" },
     { icon: Smartphone, label: "Digital Plus", hint: "Kênh số dành cho khách hàng cá nhân", to: "/ngan-hang-so#digital-plus" },
     { icon: MapPin, label: "Chi nhánh / PGD", hint: "Đi tới công cụ mạng lưới Vietbank", to: "/ho-tro#network" },
   ],
@@ -60,16 +59,16 @@ const TOP_TASKS: Record<Segment, Task[]> = {
 
 const NEEDS: Record<Segment, Need[]> = {
   "ca-nhan": [
-    { tag: "Bắt đầu", title: "Tôi cần một tài khoản dùng hằng ngày", body: "Đi từ nhu cầu sử dụng tới tài khoản thanh toán và Digital Plus, không cần dò theo cấu trúc nội bộ của ngân hàng.", to: "/ca-nhan#accounts" },
-    { tag: "Tích lũy", title: "Tôi muốn gửi tiết kiệm", body: "Xem nhóm sản phẩm tiết kiệm và mở nguồn lãi suất Vietbank đang công bố trước khi quyết định.", to: "/ca-nhan#savings" },
-    { tag: "Tín dụng", title: "Tôi đang cân nhắc vay", body: "Bắt đầu từ mục đích vay, sau đó kiểm tra điều kiện và trao đổi với kênh Vietbank chính thức.", to: "/ca-nhan#loans" },
-    { tag: "Thẻ", title: "Tôi muốn chọn thẻ theo cách chi tiêu", body: "Xem sản phẩm thật, thuộc tính có thể so sánh và nguồn điều kiện/biểu phí trước khi tiếp tục.", to: "/the#cards" },
+    { tag: "Bắt đầu", title: "Một tài khoản dùng hằng ngày", body: "Đi từ giao dịch thường ngày tới tài khoản thanh toán và Digital Plus.", to: "/ca-nhan#accounts" },
+    { tag: "Tích lũy", title: "Gửi tiết kiệm cho kế hoạch phía trước", body: "Khám phá hình thức tiết kiệm và kiểm tra lãi suất Vietbank đang công bố.", to: "/ca-nhan#savings" },
+    { tag: "Tín dụng", title: "Chuẩn bị cho một mục tiêu lớn", body: "Ước tính khoản vay và chuẩn bị trước khi trao đổi hồ sơ thực tế.", to: "/ca-nhan#loans" },
+    { tag: "Thẻ", title: "Chọn thẻ theo cách bạn chi tiêu", body: "Dùng Card Finder, so sánh sản phẩm và kiểm tra biểu phí trước khi quyết định.", to: "/the#cards" },
   ],
   "doanh-nghiep": [
-    { tag: "Vận hành", title: "Doanh nghiệp cần tài khoản thanh toán", body: "Đi tới tài khoản, biểu mẫu tổ chức và các bước tiếp theo phù hợp với vận hành doanh nghiệp.", to: "/doanh-nghiep#accounts" },
-    { tag: "Nguồn vốn", title: "Doanh nghiệp cần vốn", body: "Khám phá tín dụng và tài trợ vốn theo nhu cầu thay vì đọc một danh sách sản phẩm dài.", to: "/doanh-nghiep#credit" },
-    { tag: "Dòng tiền", title: "Tôi cần kiểm soát giao dịch và phê duyệt", body: "Tìm hiểu DigiBiz và vai trò của nền tảng trong quản trị giao dịch doanh nghiệp.", to: "/doanh-nghiep#cash-management" },
-    { tag: "Quốc tế", title: "Doanh nghiệp có giao dịch XNK", body: "Đi tới tài trợ thương mại, chuyển tiền quốc tế và tỷ giá theo đúng nhu cầu nghiệp vụ.", to: "/doanh-nghiep#trade" },
+    { tag: "Vận hành", title: "Tài khoản cho hoạt động hằng ngày", body: "Tìm tài khoản và tài liệu phục vụ thu, chi và vận hành doanh nghiệp.", to: "/doanh-nghiep#accounts" },
+    { tag: "Nguồn vốn", title: "Chuẩn bị nguồn lực cho tăng trưởng", body: "Đi tới tín dụng và tài trợ vốn theo nhu cầu hoạt động thực tế.", to: "/doanh-nghiep#credit" },
+    { tag: "Dòng tiền", title: "Kiểm soát giao dịch và phê duyệt", body: "Tìm hiểu DigiBiz cho quản trị tài khoản, lịch thanh toán và duyệt đa cấp.", to: "/doanh-nghiep#cash-management" },
+    { tag: "Quốc tế", title: "Kết nối giao dịch xuyên biên giới", body: "Đi tới tài trợ thương mại, chuyển tiền quốc tế và thông tin tỷ giá.", to: "/doanh-nghiep#trade" },
   ],
 }
 
@@ -90,6 +89,12 @@ export default function Home() {
   })
 
   const isPersonal = segment === "ca-nhan"
+  const digitalImage = isPersonal ? OFFICIAL_MEDIA.digitalPlusEvent : OFFICIAL_MEDIA.digiBizLaunch
+  const digitalHref = isPersonal ? OFFICIAL.digitalPlusExperience : OFFICIAL.digiBizLaunch
+  const digitalTitle = isPersonal ? "Digital Plus cho nhịp sống hằng ngày" : "DigiBiz cho nhịp vận hành doanh nghiệp"
+  const digitalBody = isPersonal
+    ? "Giao dịch, quản lý tài chính và bắt đầu tài khoản số trên nền tảng Vietbank dành cho khách hàng cá nhân."
+    : "Theo dõi tài khoản, lập lịch thanh toán và tổ chức phê duyệt theo cấu trúc doanh nghiệp trên nền tảng số Vietbank."
 
   useEffect(() => {
     try {
@@ -115,7 +120,7 @@ export default function Home() {
             <div className="mt-7">
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Bạn cần giải pháp cho</span>
               <div className="mt-2 inline-flex border border-line bg-surface p-1" role="group" aria-label="Chọn nhóm khách hàng">
-                {([ ["ca-nhan", "Cá nhân"], ["doanh-nghiep", "Doanh nghiệp"] ] as [Segment, string][]).map(([value, label]) => (
+                {([["ca-nhan", "Cá nhân"], ["doanh-nghiep", "Doanh nghiệp"]] as [Segment, string][]).map(([value, label]) => (
                   <button
                     key={value}
                     type="button"
@@ -149,7 +154,7 @@ export default function Home() {
             <div className="divide-y divide-line">
               <Link to="/ngan-hang-so#digital-plus" className="group grid min-h-16 grid-cols-[34px_1fr_auto] items-center gap-3 py-4">
                 <span className="text-xs text-amber tnum">01</span>
-                <span><strong className="block text-[14.5px] group-hover:text-navy">Digital Plus</strong><span className="mt-0.5 block text-[12.5px] text-ink-soft">Cá nhân · Vietbank Digital cũ dừng từ 03/06/2026</span></span>
+                <span><strong className="block text-[14.5px] group-hover:text-navy">Digital Plus</strong><span className="mt-0.5 block text-[12.5px] text-ink-soft">Cá nhân · ngân hàng số hiện hành</span></span>
                 <ChevronRight className="h-4 w-4 text-navy" aria-hidden="true" />
               </Link>
               <Link to="/ngan-hang-so#digibiz" className="group grid min-h-16 grid-cols-[34px_1fr_auto] items-center gap-3 py-4">
@@ -173,26 +178,26 @@ export default function Home() {
       </section>
 
       <section className="border-b border-line bg-soft">
-        <div className="mx-auto max-w-[1240px] px-6 py-14">
+        <div className="mx-auto max-w-[1240px] px-6 py-12 lg:py-14">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <SectionLabel n="02">Tác vụ nhanh — {isPersonal ? "Cá nhân" : "Doanh nghiệp"}</SectionLabel>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.5rem)] font-semibold tracking-tight">Chọn đúng dịch vụ theo nhu cầu của bạn</h2>
+              <h2 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.25rem)] font-semibold tracking-tight">Đi thẳng tới việc cần hoàn thành</h2>
             </div>
             <Link to={isPersonal ? "/ca-nhan" : "/doanh-nghiep"} className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
               Xem tất cả dịch vụ <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <div className="mt-7 grid border-y border-line bg-surface lg:grid-cols-2 lg:divide-x lg:divide-line">
+          <div className="mt-6 grid border-y border-line bg-surface lg:grid-cols-2 lg:divide-x lg:divide-line">
             {[TOP_TASKS[segment].slice(0, 3), TOP_TASKS[segment].slice(3)].map((column, columnIndex) => (
               <div key={columnIndex} className="divide-y divide-line">
                 {column.map(({ icon: Icon, label, hint, to }, itemIndex) => {
                   const number = String(columnIndex * 3 + itemIndex + 1).padStart(2, "0")
                   return (
-                    <Link key={label} to={to} className="group grid min-h-[88px] grid-cols-[34px_40px_1fr_auto] items-center gap-3 px-4 py-4 transition-colors hover:bg-navy-050 sm:px-5">
+                    <Link key={label} to={to} className="group grid min-h-[86px] grid-cols-[30px_38px_1fr_auto] items-center gap-3 px-4 py-4 transition-colors hover:bg-navy-050 sm:px-5">
                       <span className="text-xs font-medium text-amber tnum">{number}</span>
-                      <span className="grid h-10 w-10 place-items-center text-navy" aria-hidden="true"><Icon className="h-5 w-5" /></span>
+                      <span className="grid h-9 w-9 place-items-center text-navy" aria-hidden="true"><Icon className="h-5 w-5" /></span>
                       <span><strong className="block text-[15px] group-hover:text-navy">{label}</strong><span className="mt-1 block text-[12.5px] leading-snug text-ink-soft">{hint}</span></span>
                       <ArrowUpRight className="h-4 w-4 text-ink-soft transition-colors group-hover:text-navy" aria-hidden="true" />
                     </Link>
@@ -205,34 +210,62 @@ export default function Home() {
       </section>
 
       <section className="border-b border-line bg-paper">
-        <div className="mx-auto max-w-[1240px] px-6 py-16">
-          <SectionLabel n="03">Khám phá theo nhu cầu</SectionLabel>
-          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">Chọn tình huống gần với bạn nhất.</h2>
+        <div className="mx-auto max-w-[1240px] px-6 py-14 lg:py-16">
+          <div className="grid overflow-hidden border-y border-line bg-surface lg:grid-cols-[1.02fr_0.98fr]">
+            <a href={digitalHref} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[330px] overflow-hidden bg-soft lg:min-h-[470px]">
+              <img
+                src={digitalImage}
+                alt={isPersonal ? "Sự kiện Vietbank Digital Plus do Vietbank công bố" : "Sự kiện ra mắt Vietbank DigiBiz do Vietbank công bố"}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/95 via-[#032f67]/55 to-transparent px-6 pb-6 pt-24 text-white">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/70">Ảnh sự kiện thật · Nguồn Vietbank</p>
+                <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-white/85">{digitalTitle}</p>
+              </div>
+            </a>
 
-          <div className="mt-8 border-t border-line">
-            {NEEDS[segment].map((item, index) => (
-              <Link key={item.title} to={item.to} className="group grid gap-3 border-b border-line py-6 sm:grid-cols-[110px_1fr_auto] sm:items-center sm:gap-6">
-                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-soft"><span className="mr-2 text-amber tnum">{String(index + 1).padStart(2, "0")}</span>{item.tag}</span>
-                <span><strong className="block text-[17px] font-semibold tracking-tight group-hover:text-navy">{item.title}</strong><span className="mt-1.5 block max-w-2xl text-[14px] leading-relaxed text-ink-soft">{item.body}</span></span>
-                <ArrowRight className="hidden h-5 w-5 text-navy sm:block" aria-hidden="true" />
-              </Link>
-            ))}
+            <div className="flex flex-col justify-center px-6 py-8 lg:px-8 lg:py-10">
+              <SectionLabel n="03">{isPersonal ? "Tài chính theo nhịp sống" : "Tài chính theo nhịp vận hành"}</SectionLabel>
+              <h2 className="mt-3 max-w-xl font-display text-[clamp(1.8rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">{digitalTitle}</h2>
+              <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-ink-soft">{digitalBody}</p>
+
+              <div className="mt-6 border-t border-line">
+                {NEEDS[segment].map((item, index) => (
+                  <Link key={item.title} to={item.to} className="group grid gap-2 border-b border-line py-4 sm:grid-cols-[82px_1fr_auto] sm:items-center sm:gap-4">
+                    <span className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-ink-soft"><span className="mr-1.5 text-amber tnum">{String(index + 1).padStart(2, "0")}</span>{item.tag}</span>
+                    <span><strong className="block text-[15px] font-semibold group-hover:text-navy">{item.title}</strong><span className="mt-0.5 block text-[12.5px] leading-relaxed text-ink-soft">{item.body}</span></span>
+                    <ArrowRight className="hidden h-4 w-4 text-navy sm:block" aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-5">
+                {isPersonal ? (
+                  <ActionLink action={{ label: "Khám phá Digital Plus", to: "/ngan-hang-so#digital-plus" }} variant="secondary" size="sm" />
+                ) : (
+                  <ActionLink action={{ label: "Khám phá DigiBiz", to: "/ngan-hang-so#digibiz" }} variant="secondary" size="sm" />
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="border-b border-line bg-soft">
-        <div className="mx-auto max-w-[1240px] px-6 py-16">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="mx-auto max-w-[1240px] px-6 py-14">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div>
-              <SectionLabel n="04">Công cụ ngân hàng</SectionLabel>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-semibold leading-tight">Dữ liệu thay đổi theo thời điểm phải mở từ nguồn thật.</h2>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-ink-soft">Tỷ giá và lãi suất thay đổi theo thời điểm. Các liên kết bên cạnh mở trực tiếp nguồn Vietbank đang công bố.</p>
+              <SectionLabel n="04">Tỷ giá · lãi suất · công cụ</SectionLabel>
+              <h2 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.25rem)] font-semibold leading-tight">Thông tin thay đổi theo thời điểm mở từ nguồn thật.</h2>
+              <p className="mt-3 text-[14.5px] leading-relaxed text-ink-soft">Không sao chép số liệu biến động vào bản mẫu. Mỗi tác vụ mở đúng trang Vietbank đang quản lý.</p>
+              <div className="mt-5"><Link to="/ho-tro" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-semibold text-navy hover:underline">Mở Trung tâm hỗ trợ <ArrowRight className="h-4 w-4" /></Link></div>
             </div>
 
             <div className="border-y border-line bg-surface">
               {OFFICIAL_UTILITIES.map(({ index, icon: Icon, label, body, href }, itemIndex) => (
-                <a key={label} href={href} {...EXTERNAL_LINK_PROPS} className={`group grid min-h-[78px] grid-cols-[34px_40px_1fr_auto] items-center gap-3 px-4 py-4 hover:bg-navy-050 sm:px-5 ${itemIndex ? "border-t border-line" : ""}`}>
+                <a key={label} href={href} {...EXTERNAL_LINK_PROPS} className={`group grid min-h-[74px] grid-cols-[30px_38px_1fr_auto] items-center gap-3 px-4 py-4 hover:bg-navy-050 sm:px-5 ${itemIndex ? "border-t border-line" : ""}`}>
                   <span className="text-xs text-amber tnum">{index}</span>
                   <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
                   <span><strong className="block text-[14.5px] group-hover:text-navy">{label}</strong><span className="mt-0.5 block text-[12.5px] text-ink-soft">{body}</span></span>
@@ -245,11 +278,11 @@ export default function Home() {
       </section>
 
       <section className="border-b border-line bg-navy-700 text-white">
-        <div className="mx-auto grid max-w-[1240px] gap-8 px-6 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mx-auto grid max-w-[1240px] gap-8 px-6 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <div className="flex items-center gap-3 text-white/60"><span className="text-xs tnum text-yellow">05</span><span className="flex h-0.5 w-8 overflow-hidden" aria-hidden="true"><span className="w-1/2 bg-red" /><span className="w-1/2 bg-yellow" /></span><span className="text-xs font-semibold uppercase tracking-[0.16em]">An toàn trước hành động</span></div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3vw,2.5rem)] font-semibold leading-tight">Biết mình sắp chuyển tới đâu trước khi giao dịch.</h2>
-            <p className="mt-4 max-w-xl text-[14.5px] leading-relaxed text-white/70">Trang này không nhận mật khẩu, OTP hay dữ liệu giao dịch. Khi cần thực hiện giao dịch hoặc xem dữ liệu biến động, bạn sẽ được chuyển tới kênh Vietbank chính thức.</p>
+            <h2 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.25rem)] font-semibold leading-tight">Biết mình sắp chuyển tới đâu trước khi giao dịch.</h2>
+            <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-white/70">Trang này không nhận mật khẩu, OTP hay dữ liệu giao dịch. Khi cần thực hiện giao dịch hoặc xem dữ liệu biến động, bạn sẽ được chuyển tới kênh Vietbank chính thức.</p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
@@ -260,10 +293,10 @@ export default function Home() {
       </section>
 
       <section className="bg-paper">
-        <div className="mx-auto flex max-w-[1240px] flex-col items-start justify-between gap-6 px-6 py-14 lg:flex-row lg:items-center">
+        <div className="mx-auto flex max-w-[1240px] flex-col items-start justify-between gap-6 px-6 py-12 lg:flex-row lg:items-center">
           <div className="max-w-2xl">
             <SectionLabel n="06">Bước tiếp theo</SectionLabel>
-            <h2 className="mt-3 font-display text-[clamp(1.7rem,2.8vw,2.3rem)] font-semibold">Chọn đúng kênh trước khi tiếp tục</h2>
+            <h2 className="mt-3 font-display text-[clamp(1.65rem,2.8vw,2.15rem)] font-semibold">Chọn đúng kênh trước khi tiếp tục</h2>
             <p className="mt-3 text-[14.5px] leading-relaxed text-ink-soft">Cá nhân có thể tiếp tục với Digital Plus; doanh nghiệp sử dụng DigiBiz. Nếu chưa chắc kênh nào phù hợp, xem trang dịch vụ hoặc Trung tâm hỗ trợ.</p>
           </div>
           <div className="flex flex-wrap gap-3">
