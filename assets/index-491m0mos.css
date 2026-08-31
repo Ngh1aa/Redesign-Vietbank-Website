@@ -91,8 +91,6 @@
     --container-3xl: 48rem;
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
-    --text-lg: 1.125rem;
-    --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
@@ -619,10 +617,6 @@
     display: table;
   }
 
-  .aspect-\[4\/3\] {
-    aspect-ratio: 4 / 3;
-  }
-
   .h-0\.5 {
     height: calc(var(--spacing) * .5);
   }
@@ -713,6 +707,10 @@
 
   .min-h-\[88px\] {
     min-height: 88px;
+  }
+
+  .min-h-\[92px\] {
+    min-height: 92px;
   }
 
   .min-h-\[108px\] {
@@ -1161,6 +1159,10 @@
 
   .border-navy {
     border-color: var(--color-navy);
+  }
+
+  .border-red {
+    border-color: var(--color-red);
   }
 
   .border-white\/10 {
@@ -2248,6 +2250,10 @@
       grid-template-columns: 110px 1fr auto;
     }
 
+    .sm\:grid-cols-\[180px_1fr_auto\] {
+      grid-template-columns: 180px 1fr auto;
+    }
+
     .sm\:flex-row {
       flex-direction: row;
     }
@@ -2294,6 +2300,15 @@
       border-top-width: 0;
     }
 
+    .sm\:border-l {
+      border-left-style: var(--tw-border-style);
+      border-left-width: 1px;
+    }
+
+    .sm\:border-line {
+      border-color: var(--color-line);
+    }
+
     .sm\:p-5 {
       padding: calc(var(--spacing) * 5);
     }
@@ -2338,6 +2353,22 @@
 
     .md\:gap-8 {
       gap: calc(var(--spacing) * 8);
+    }
+
+    :where(.md\:divide-x > :not(:last-child)) {
+      --tw-divide-x-reverse: 0;
+      border-inline-style: var(--tw-border-style);
+      border-inline-start-width: calc(1px * var(--tw-divide-x-reverse));
+      border-inline-end-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
+    }
+
+    :where(.md\:divide-line > :not(:last-child)) {
+      border-color: var(--color-line);
+    }
+
+    .md\:border-t-0 {
+      border-top-style: var(--tw-border-style);
+      border-top-width: 0;
     }
 
     .md\:pr-3 {
@@ -2396,6 +2427,10 @@
 
     .lg\:grid-cols-\[0\.72fr_1\.28fr\] {
       grid-template-columns: .72fr 1.28fr;
+    }
+
+    .lg\:grid-cols-\[0\.75fr_1\.25fr\] {
+      grid-template-columns: .75fr 1.25fr;
     }
 
     .lg\:grid-cols-\[0\.95fr_1\.05fr\] {
