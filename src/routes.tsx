@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router"
+import { createHashRouter } from "react-router"
 import Layout from "./components/Layout"
 import Home from "./pages/Home"
 import CaNhan from "./pages/CaNhan"
@@ -10,7 +10,9 @@ import VeVietbank from "./pages/VeVietbank"
 import NhaDauTu from "./pages/NhaDauTu"
 import NotFound from "./pages/NotFound"
 
-export const router = createBrowserRouter([
+// GitHub Pages serves this project from a static subdirectory. Hash routing
+// keeps deep routes refresh-safe and preserves the existing public /#/ URLs.
+export const router = createHashRouter([
   {
     path: "/",
     Component: Layout,

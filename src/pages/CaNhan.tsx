@@ -10,39 +10,82 @@ import {
   GraduationCap,
   Briefcase,
   HeartHandshake,
+  ShieldCheck,
 } from "lucide-react"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
 import { Link } from "react-router"
-import { Section, SectionHead, FeatureRow, CTABand } from "../lib/sections"
+import { ActionLink, Section, SectionHead, FeatureRow, CTABand } from "../lib/sections"
+import { OFFICIAL } from "../lib/official"
 
 const PRODUCTS = [
-  { icon: Wallet, title: "Tài khoản thanh toán", body: "Tài khoản dùng hằng ngày, mở online bằng eKYC và kết nối ngay Digital Plus.", cues: ["Miễn phí duy trì", "Số tài khoản đẹp", "Chuyển tiền 24/7"], to: "/ca-nhan" },
-  { icon: PiggyBank, title: "Tiết kiệm", body: "Gửi tiết kiệm trực tuyến với kỳ hạn linh hoạt và lãi suất minh bạch.", cues: ["Kỳ hạn 1–24 tháng", "Lãi suất tới 6.3%/năm", "Tất toán trước hạn"], to: "/ca-nhan" },
-  { icon: CreditCard, title: "Thẻ", body: "Thẻ tín dụng và thanh toán với ưu đãi hoàn tiền, tích điểm rõ ràng.", cues: ["Hoàn tiền / tích điểm", "Mở online", "Quản lý trên app"], to: "/the" },
-  { icon: HomeIcon, title: "Vay mua nhà", body: "Vay mua, xây, sửa nhà — biết trước điều kiện, hồ sơ và lãi suất.", cues: ["Thời hạn tới 25 năm", "Giải ngân linh hoạt", "Ước tính khoản trả"], to: "/ca-nhan" },
-  { icon: Car, title: "Vay mua ô tô", body: "Tài trợ mua xe mới và xe đã qua sử dụng, thủ tục nhanh gọn.", cues: ["Tỷ lệ vay cao", "Duyệt nhanh", "Trả góp đều"], to: "/ca-nhan" },
-  { icon: Landmark, title: "Vay tiêu dùng", body: "Đáp ứng nhu cầu chi tiêu cá nhân với lãi suất và biểu phí công khai.", cues: ["Hồ sơ đơn giản", "Hạn mức rõ ràng", "Minh bạch chi phí"], to: "/ca-nhan" },
+  {
+    id: "accounts",
+    icon: Wallet,
+    title: "Tài khoản thanh toán",
+    body: "Tài khoản cho nhu cầu giao dịch hằng ngày; Vietbank hiện truyền thông luồng mở tài khoản online bằng eKYC trên Digital Plus.",
+    cues: ["Mở online với eKYC", "Kết nối Digital Plus", "Tài khoản cho giao dịch hằng ngày"],
+    to: "/ngan-hang-so#digital-plus",
+  },
+  {
+    id: "savings",
+    icon: PiggyBank,
+    title: "Tiền gửi tiết kiệm",
+    body: "Khám phá các hình thức tiết kiệm và kiểm tra lãi suất/điều kiện đang áp dụng trước khi quyết định gửi tiền.",
+    cues: ["Nhiều kỳ hạn", "Có kênh online", "Kiểm tra lãi suất hiện hành"],
+    to: "/ho-tro#rates",
+  },
+  {
+    id: "cards",
+    icon: CreditCard,
+    title: "Thẻ Vietbank",
+    body: "Thẻ tín dụng, thanh toán và trả trước; chọn theo mục đích sử dụng rồi đối chiếu biểu phí và ưu đãi đang hiệu lực.",
+    cues: ["Tín dụng", "Thanh toán", "Biểu phí & ưu đãi"],
+    to: "/the",
+  },
+  {
+    id: "loans",
+    icon: HomeIcon,
+    title: "Vay mua nhà",
+    body: "Tìm hiểu giải pháp vay cho nhu cầu mua, xây hoặc sửa nhà và chuẩn bị thông tin trước khi trao đổi với chuyên viên.",
+    cues: ["Mục đích vay rõ ràng", "Điều kiện & hồ sơ", "Trao đổi chuyên viên"],
+    to: "/ho-tro#contact",
+  },
+  {
+    id: "auto-loan",
+    icon: Car,
+    title: "Vay mua ô tô",
+    body: "Tìm hiểu lựa chọn tài trợ mua xe và các điều kiện áp dụng theo hồ sơ thực tế của khách hàng.",
+    cues: ["Xe phục vụ nhu cầu cá nhân", "Điều kiện theo hồ sơ", "Tư vấn trước đăng ký"],
+    to: "/ho-tro#contact",
+  },
+  {
+    id: "consumer-loan",
+    icon: Landmark,
+    title: "Vay tiêu dùng",
+    body: "Giải pháp tín dụng cho nhu cầu chi tiêu cá nhân; lãi suất, phí và điều kiện cần được kiểm tra theo chương trình đang áp dụng.",
+    cues: ["Nhu cầu tiêu dùng", "Thông tin chi phí", "Điều kiện theo từng sản phẩm"],
+    to: "/ho-tro#contact",
+  },
 ]
 
-/* Audience-fit matrix — answers "is this relevant for me?" per journey-driven layout */
 const AUDIENCE_FIT = [
   {
     icon: GraduationCap,
-    title: "Sinh viên & người mới đi làm",
-    body: "Tài khoản số miễn phí duy trì, thẻ ghi nợ quản lý trên app, không yêu cầu chứng minh thu nhập.",
-    cta: {label: "Mở tài khoản", to: "/ngan-hang-so"},
+    title: "Người mới bắt đầu quản lý tài chính",
+    body: "Ưu tiên tài khoản thanh toán, Digital Plus và thẻ thanh toán để xây dựng thói quen giao dịch số trước khi mở rộng sang các sản phẩm khác.",
+    cta: { label: "Bắt đầu với Digital Plus", to: "/ngan-hang-so#digital-plus" },
   },
   {
     icon: Briefcase,
-    title: "Người đi làm & gia đình trẻ",
-    body: "Tiết kiệm tích luỹ kỳ hạn linh hoạt, thẻ tín dụng hoàn tiền, vay mua nhà/ô tô với hồ sơ rõ ràng.",
-    cta: {label: "Khám phá sản phẩm", to: "/the"},
+    title: "Người đi làm & gia đình",
+    body: "Kết hợp tài khoản, tiết kiệm, thẻ và nhu cầu vay theo từng mục tiêu; luôn kiểm tra điều kiện, phí và khả năng chi trả trước khi đăng ký.",
+    cta: { label: "Xem danh mục sản phẩm", to: "/ca-nhan#accounts" },
   },
   {
     icon: HeartHandshake,
-    title: "Về hưu & tiết kiệm dài hạn",
-    body: "Tiết kiệm có kỳ hạn lãi suất ưu đãi, tất toán linh hoạt, hỗ trợ tận nhà qua hotline 24/7.",
-    cta: {label: "Tư vấn tiết kiệm", to: "/ho-tro"},
+    title: "Người ưu tiên tích lũy an toàn",
+    body: "Tập trung vào tiền gửi, khả năng tiếp cận hỗ trợ và thông tin lãi suất/điều kiện rõ ràng trước khi quyết định kỳ hạn.",
+    cta: { label: "Xem lãi suất & hỗ trợ", to: "/ho-tro#rates" },
   },
 ]
 
@@ -52,56 +95,62 @@ export default function CaNhan() {
       <PageHeader
         eyebrow="Khách hàng cá nhân"
         crumb="Cá nhân"
-        title="Giải pháp tài chính cho từng giai đoạn cuộc sống"
-        lead="Tài khoản, tiết kiệm, thẻ và vay vốn — chọn theo điều bạn cần, hiểu rõ chi phí trước khi đăng ký và bắt đầu ngay trên Digital Plus."
+        title="Bắt đầu từ nhu cầu tài chính của bạn"
+        lead="Tài khoản, tiết kiệm, thẻ và vay vốn được tổ chức theo điều bạn muốn làm; các bước có yếu tố lãi suất, phí hoặc phê duyệt luôn dẫn tới nguồn Vietbank hoặc tư vấn phù hợp."
       />
 
-      {/* Featured — Digital Plus split */}
-      <Section>
+      <Section id="start-online">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <SectionHead
               n="01"
-              eyebrow="Sản phẩm nổi bật"
-              title="Mở tài khoản & Digital Plus trong 5 phút"
-              lead="Định danh eKYC bằng CCCD gắn chip, không cần đến quầy. Có tài khoản là dùng được ngay chuyển tiền, tiết kiệm và thanh toán QR."
+              eyebrow="Bắt đầu online"
+              title="Mở tài khoản với eKYC trên Digital Plus"
+              lead="Vietbank đang truyền thông khả năng mở tài khoản online khoảng 5 phút với eKYC trong các chiến dịch 2026. Digital Plus là nền tảng số chính thức hiện nay cho khách hàng cá nhân."
             />
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/ngan-hang-so" className={`${BTN.primary} ${BTN_SIZE.lg}`}>
-                Mở tài khoản online <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Đặt lịch tư vấn
+              <ActionLink action={{ label: "Mở Digital Plus chính thức", href: OFFICIAL.digitalPlus }} />
+              <Link to="/ngan-hang-so#digital-plus" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
+                Xem trước tính năng
               </Link>
             </div>
+            <p className="mt-4 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
+              Điều kiện mở tài khoản thực tế phụ thuộc quy định Vietbank tại thời điểm đăng ký; trang redesign không mô phỏng kết quả phê duyệt.
+            </p>
           </div>
           <div className="relative overflow-hidden rounded-xl border border-line bg-navy-050">
             <img
               src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=900&h=650&fit=crop&auto=format"
-              alt="Khách hàng cá nhân mở tài khoản Vietbank trên điện thoại"
+              alt="Minh hoạ khách hàng sử dụng ngân hàng số trên điện thoại"
               className="h-full w-full object-cover"
             />
           </div>
         </div>
       </Section>
 
-      {/* Product list — editorial rows, not cards */}
       <Section tone="soft">
-        <SectionHead n="02" eyebrow="Danh mục sản phẩm" title="Chọn theo nhu cầu của bạn" />
+        <SectionHead
+          n="02"
+          eyebrow="Danh mục sản phẩm"
+          title="Chọn theo điều bạn muốn làm"
+          lead="Các mục dưới đây có URL neo riêng để menu, chiến dịch và kết quả tìm kiếm có thể đưa người dùng đến đúng nhu cầu thay vì đầu trang chung."
+        />
         <div className="mt-6 divide-y divide-line border-y border-line">
           {PRODUCTS.map((p) => (
-            <FeatureRow key={p.title} {...p} cta="Xem chi tiết" />
+            <div key={p.id} id={p.id} className="scroll-mt-28">
+              <FeatureRow icon={p.icon} title={p.title} body={p.body} cues={p.cues} to={p.to} cta="Tiếp tục" />
+            </div>
           ))}
         </div>
       </Section>
 
-      {/* Audience-fit — answers "is this relevant for me?" per journey-driven layout */}
       <Section>
         <SectionHead
           n="03"
-          eyebrow="Phù hợp với"
-          title="Giải pháp theo giai đoạn cuộc sống"
-          lead="Mỗi sản phẩm phù hợp với một nhóm nhu cầu khác nhau — chọn theo hoàn cảnh của bạn."
+          eyebrow="Gợi ý điểm bắt đầu"
+          title="Không cần hiểu thuật ngữ ngân hàng trước"
+          lead="Nhóm theo bối cảnh giúp định hướng ban đầu; quyết định cuối vẫn dựa trên nhu cầu, điều kiện sản phẩm và khả năng tài chính của từng khách hàng."
         />
         <div className="mt-6 grid gap-5 md:grid-cols-3">
           {AUDIENCE_FIT.map(({ icon: Icon, title, body, cta }) => (
@@ -125,18 +174,30 @@ export default function CaNhan() {
         </div>
       </Section>
 
-      {/* 3-step process — answers "what happens next?" per journey-driven layout */}
       <Section tone="soft">
         <SectionHead
           n="04"
-          eyebrow="Bắt đầu trong 3 bước"
-          title="Từ đăng ký đến sử dụng chưa đầy 10 phút"
+          eyebrow="Luồng mở tài khoản"
+          title="Biết trước điều gì xảy ra tiếp theo"
+          lead="Luồng dưới đây mô tả cách bắt đầu theo thông tin eKYC/Digital Plus công khai; không phải cam kết phê duyệt tài khoản."
         />
         <ol className="mt-6 grid gap-5 md:grid-cols-3">
           {[
-            {n: "01", title: "Đăng ký online", body: "Điền thông tin trên Digital Plus hoặc website Vietbank — không cần đến quầy."},
-            {n: "02", title: "eKYC bằng CCCD", body: "Chụp CCCD gắn chip và xác thực khuôn mặt. Hệ thống tự động đối chiếu."},
-            {n: "03", title: "Mở sản phẩm", body: "Chọn sản phẩm đầu tiên (tài khoản, tiết kiệm, thẻ) và kích hoạt ngay trên app."},
+            {
+              n: "01",
+              title: "Mở Digital Plus",
+              body: "Truy cập landing Vietbank Digital Plus hoặc kho ứng dụng chính thức từ trang Ngân hàng số.",
+            },
+            {
+              n: "02",
+              title: "Thực hiện định danh",
+              body: "Làm theo hướng dẫn eKYC trong luồng mở tài khoản và các bước xác thực mà ứng dụng yêu cầu.",
+            },
+            {
+              n: "03",
+              title: "Bắt đầu sử dụng",
+              body: "Sau khi hệ thống Vietbank hoàn tất luồng thực tế, người dùng tiếp tục với các tiện ích được cấp trên Digital Plus.",
+            },
           ].map((s) => (
             <li key={s.n} className="rounded-xl border border-line bg-surface p-6">
               <span className="text-[13px] font-semibold tnum text-amber">{s.n}</span>
@@ -148,19 +209,24 @@ export default function CaNhan() {
       </Section>
 
       <CTABand
-        title="Không chắc nên bắt đầu từ đâu?"
-        body="Đội ngũ Vietbank sẽ giúp bạn chọn đúng sản phẩm theo mục tiêu tài chính — hoàn toàn miễn phí."
-        primary={{ label: "Được tư vấn miễn phí", to: "/ho-tro" }}
-        secondary={{ label: "Tải Digital Plus", to: "/ngan-hang-so" }}
+        title="Muốn tự bắt đầu hay cần người hỗ trợ?"
+        body="Digital Plus phù hợp cho hành trình cá nhân online; nếu nhu cầu liên quan vay, điều kiện hoặc hồ sơ cụ thể, hãy dùng kênh hỗ trợ Vietbank."
+        primary={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }}
+        secondary={{ label: "Liên hệ Vietbank", href: OFFICIAL.contact }}
       />
 
       <Section>
-        <div className="flex items-center gap-4 rounded-xl border border-line bg-navy-050 px-6 py-5">
-          <Smartphone className="h-6 w-6 shrink-0 text-navy" />
-          <p className="text-[14.5px] leading-relaxed text-ink">
-            Khách hàng cá nhân giao dịch trực tuyến qua <span className="font-semibold text-navy">Digital Plus</span>.
-            Internet Banking cá nhân đã dừng từ 18/05/2026.
-          </p>
+        <div className="flex items-start gap-4 rounded-xl border border-line bg-navy-050 px-6 py-5">
+          <Smartphone className="mt-0.5 h-6 w-6 shrink-0 text-navy" />
+          <div>
+            <p className="text-[14.5px] leading-relaxed text-ink">
+              Khách hàng cá nhân được Vietbank hướng sang <span className="font-semibold text-navy">Digital Plus</span> cho ngân hàng số.
+              Internet Banking cá nhân dừng cung cấp từ 18/05/2026 và ứng dụng Vietbank Digital cũ dừng từ 03/06/2026.
+            </p>
+            <Link to="/ngan-hang-so#migration" className="mt-2 inline-flex text-[13.5px] font-semibold text-navy hover:underline">
+              Xem luồng chuyển đổi
+            </Link>
+          </div>
         </div>
       </Section>
     </>

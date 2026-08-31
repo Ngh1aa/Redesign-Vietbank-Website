@@ -1,154 +1,118 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router"
 import {
-  ChevronRight,
-  ChevronDown,
-  ArrowUpRight,
   ArrowRight,
-  Check,
-  Wallet,
-  PiggyBank,
+  ArrowUpRight,
+  Banknote,
+  Building2,
+  ChevronDown,
+  ChevronRight,
   CreditCard,
+  FileText,
+  Globe,
   Landmark,
+  MapPin,
+  Phone,
+  PiggyBank,
   Send,
   ShieldCheck,
-  Building2,
-  Banknote,
-  TrendingUp,
-  Globe,
   Smartphone,
-  Lock,
-  BellRing,
-  Phone,
-  MapPin,
-  Calculator,
-  Receipt,
-  X,
+  TrendingUp,
+  Wallet,
 } from "lucide-react"
 import { SectionLabel, BTN, BTN_SIZE, HOTLINE, HOTLINE_TEL } from "../lib/ui"
-import RatesPanel from "../components/RatesPanel"
+import { ActionLink } from "../lib/sections"
+import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
 
 type Segment = "ca-nhan" | "doanh-nghiep"
 
 const TOP_TASKS: Record<Segment, { icon: any; label: string; hint: string; to: string }[]> = {
   "ca-nhan": [
-    { icon: Wallet, label: "Mở tài khoản", hint: "Trực tuyến trong 5 phút", to: "/ca-nhan" },
-    { icon: PiggyBank, label: "Gửi tiết kiệm", hint: "Lãi suất tới 6.3%/năm", to: "/ca-nhan" },
-    { icon: CreditCard, label: "Mở thẻ", hint: "Tín dụng & thanh toán", to: "/the" },
-    { icon: Landmark, label: "Vay vốn", hint: "Mua nhà · tiêu dùng · ô tô", to: "/ca-nhan" },
-    { icon: Send, label: "Chuyển tiền", hint: "24/7 qua Digital Plus", to: "/ngan-hang-so" },
-    { icon: Smartphone, label: "Digital Plus", hint: "Ngân hàng số cá nhân", to: "/ngan-hang-so" },
+    { icon: Wallet, label: "Tài khoản", hint: "Tài khoản thanh toán", to: "/ca-nhan#accounts" },
+    { icon: PiggyBank, label: "Tiết kiệm", hint: "Xem sản phẩm & lãi suất", to: "/ca-nhan#savings" },
+    { icon: CreditCard, label: "Thẻ", hint: "Danh mục thẻ thật", to: "/the#cards" },
+    { icon: Landmark, label: "Vay vốn", hint: "Nhà · xe · tiêu dùng", to: "/ca-nhan#loans" },
+    { icon: Send, label: "Ngân hàng số", hint: "Digital Plus", to: "/ngan-hang-so#digital-plus" },
+    { icon: MapPin, label: "Điểm giao dịch", hint: "Chi nhánh / PGD", to: "/ho-tro#network" },
   ],
   "doanh-nghiep": [
-    { icon: Building2, label: "Tài khoản DN", hint: "Thanh toán & thu chi hộ", to: "/doanh-nghiep" },
-    { icon: Banknote, label: "Vay & tài trợ vốn", hint: "Vốn lưu động linh hoạt", to: "/doanh-nghiep" },
-    { icon: TrendingUp, label: "Quản lý dòng tiền", hint: "Thu hộ · chi hộ · payroll", to: "/doanh-nghiep" },
-    { icon: Globe, label: "Tài trợ thương mại", hint: "XNK & chuyển tiền quốc tế", to: "/doanh-nghiep" },
-    { icon: ShieldCheck, label: "Bảo lãnh", hint: "Bảo lãnh & ký quỹ", to: "/doanh-nghiep" },
-    { icon: Smartphone, label: "DigiBiz", hint: "Ngân hàng số doanh nghiệp", to: "/ngan-hang-so" },
+    { icon: Building2, label: "Tài khoản DN", hint: "Thanh toán & vận hành", to: "/doanh-nghiep#accounts" },
+    { icon: Banknote, label: "Tín dụng", hint: "Vốn & tài trợ", to: "/doanh-nghiep#credit" },
+    { icon: TrendingUp, label: "Dòng tiền", hint: "Quản trị tập trung", to: "/doanh-nghiep#cash-management" },
+    { icon: Globe, label: "Quốc tế", hint: "XNK & tài trợ thương mại", to: "/doanh-nghiep#trade" },
+    { icon: Smartphone, label: "DigiBiz", hint: "Ngân hàng số doanh nghiệp", to: "/ngan-hang-so#digibiz" },
+    { icon: FileText, label: "Biểu phí", hint: "Tài liệu doanh nghiệp", to: "/ho-tro#docs" },
   ],
 }
 
 const NEEDS: Record<Segment, { title: string; body: string; tag: string; cues: string[]; to: string }[]> = {
   "ca-nhan": [
-    { tag: "Tài khoản", title: "Tôi muốn mở tài khoản", body: "Tài khoản thanh toán cho chi tiêu hằng ngày, mở online và dùng ngay.", cues: ["Mở online eKYC", "Miễn phí duy trì", "Kết nối Digital Plus"], to: "/ca-nhan" },
-    { tag: "Tiết kiệm", title: "Tôi muốn gửi tiết kiệm", body: "Tiết kiệm trực tuyến, kỳ hạn linh hoạt, minh bạch lãi suất.", cues: ["Gửi từ Digital Plus", "Kỳ hạn 1–24 tháng", "Tất toán trước hạn"], to: "/ca-nhan" },
-    { tag: "Vay", title: "Tôi cần vay", body: "Vay mua nhà, mua xe, tiêu dùng — biết trước điều kiện và chi phí.", cues: ["Lãi suất minh bạch", "Hồ sơ rõ ràng", "Ước tính khoản trả"], to: "/ca-nhan" },
-    { tag: "Thẻ", title: "Tôi muốn mở thẻ", body: "So sánh thẻ theo hoàn tiền, tích điểm và hạn mức phù hợp.", cues: ["Hoàn tiền / tích điểm", "Mở online", "Quản lý trên app"], to: "/the" },
+    { tag: "Bắt đầu", title: "Tôi cần tài khoản dùng hằng ngày", body: "Xem tài khoản thanh toán, cách mở và điểm vào Digital Plus.", cues: ["Tài khoản thanh toán", "Digital Plus", "Biểu mẫu chính thức"], to: "/ca-nhan#accounts" },
+    { tag: "Tích lũy", title: "Tôi muốn gửi tiết kiệm", body: "Tìm sản phẩm tiết kiệm và mở trang lãi suất Vietbank đang công bố.", cues: ["Sản phẩm tiết kiệm", "Lãi suất hiện hành", "Kênh chính thức"], to: "/ca-nhan#savings" },
+    { tag: "Tín dụng", title: "Tôi cần vay", body: "Đi theo nhóm vay mua nhà, ô tô hoặc tiêu dùng và kiểm tra điều kiện ở nguồn Vietbank.", cues: ["Mục đích vay", "Hồ sơ", "Tư vấn Vietbank"], to: "/ca-nhan#loans" },
+    { tag: "Thẻ", title: "Tôi muốn chọn thẻ", body: "So sánh Visa My Style, Visa Luxury, Mastercard Happy, Lifecare và mở trang sản phẩm thật.", cues: ["Sản phẩm thật", "Biểu phí", "Ưu đãi theo thời điểm"], to: "/the#cards" },
   ],
   "doanh-nghiep": [
-    { tag: "Vốn", title: "Tôi cần vốn kinh doanh", body: "Vốn lưu động, thấu chi và tài trợ theo chuỗi cung ứng cho SME.", cues: ["Vốn lưu động", "Hạn mức thấu chi", "Tài trợ chuỗi"], to: "/doanh-nghiep" },
-    { tag: "Dòng tiền", title: "Tôi muốn quản lý dòng tiền", body: "Thu hộ, chi hộ, trả lương và đối soát tập trung trên DigiBiz.", cues: ["Chi lương hàng loạt", "Thu / chi hộ", "Đối soát tập trung"], to: "/doanh-nghiep" },
-    { tag: "Quốc tế", title: "Tôi xuất nhập khẩu", body: "L/C, nhờ thu và chuyển tiền quốc tế với tỷ giá cạnh tranh.", cues: ["L/C & nhờ thu", "Tỷ giá cạnh tranh", "Theo dõi trực tuyến"], to: "/doanh-nghiep" },
-    { tag: "Bảo lãnh", title: "Tôi cần bảo lãnh", body: "Bảo lãnh dự thầu, thực hiện hợp đồng và tạm ứng, phát hành nhanh.", cues: ["Phát hành nhanh", "Nhiều loại bảo lãnh", "Theo dõi online"], to: "/doanh-nghiep" },
+    { tag: "Vận hành", title: "Tôi cần tài khoản doanh nghiệp", body: "Đi từ tài khoản thanh toán tới biểu mẫu và kênh hỗ trợ dành cho tổ chức.", cues: ["Tài khoản", "Biểu mẫu tổ chức", "Chuyên viên hỗ trợ"], to: "/doanh-nghiep#accounts" },
+    { tag: "Vốn", title: "Tôi cần vốn kinh doanh", body: "Khám phá nhóm tín dụng doanh nghiệp, vốn lưu động và các lựa chọn tài trợ.", cues: ["Tín dụng", "Vốn lưu động", "Tư vấn theo nhu cầu"], to: "/doanh-nghiep#credit" },
+    { tag: "Dòng tiền", title: "Tôi muốn quản trị dòng tiền", body: "Tìm hiểu DigiBiz và các công cụ quản trị giao dịch, lịch thanh toán và phê duyệt.", cues: ["DigiBiz", "Phê duyệt", "Quản trị giao dịch"], to: "/doanh-nghiep#cash-management" },
+    { tag: "Quốc tế", title: "Tôi có giao dịch XNK", body: "Đi tới nhóm tài trợ thương mại và chuyển tiền quốc tế thay vì dò menu sản phẩm dài.", cues: ["Tài trợ thương mại", "Chuyển tiền quốc tế", "Tỷ giá"], to: "/doanh-nghiep#trade" },
   ],
 }
+
+const LATEST_NEWS = [
+  { date: "28/08/2026", title: "Cảnh giác với thủ đoạn giả mạo cơ quan nhà nước", tag: "An toàn" },
+  { date: "27/08/2026", title: "Thông báo thay đổi địa điểm Vietbank Bình Chánh", tag: "Mạng lưới" },
+  { date: "26/08/2026", title: "Điều chỉnh phí dịch vụ biến động số dư qua SMS dành cho KHCN", tag: "Thông báo" },
+  { date: "21/08/2026", title: "Điều chỉnh nâng hạn mức giao dịch trên Vietbank Digital Plus", tag: "Digital Plus" },
+]
 
 export default function Home() {
   const [segment, setSegment] = useState<Segment>(() => {
     try {
-      const saved = localStorage.getItem("vietbank.segment")
-      return saved === "doanh-nghiep" ? "doanh-nghiep" : "ca-nhan"
+      return localStorage.getItem("vietbank.segment") === "doanh-nghiep" ? "doanh-nghiep" : "ca-nhan"
     } catch {
       return "ca-nhan"
     }
   })
   const isPersonal = segment === "ca-nhan"
 
-  // Persist segment preference across sessions
   useEffect(() => {
     try {
       localStorage.setItem("vietbank.segment", segment)
     } catch {
-      /* localStorage may be blocked — non-critical */
+      // Preference persistence is optional.
     }
   }, [segment])
 
   return (
     <>
-      {/* ============ 00 PROMO / NOTICE STRIP ============ */}
-      <div
-        role="region"
-        aria-label="Thông báo quan trọng"
-        className="border-b border-line bg-navy-050"
-      >
-        <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-3 px-6 py-2 text-[12.5px] text-ink-soft">
-          <span className="flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-red" aria-hidden="true" />
-            <span className="font-semibold text-ink">02/09/2026 · 23:00–03:00</span>
-            Nâng cấp hệ thống Digital Plus — một số dịch vụ tạm gián đoạn.
-            <Link to="/ve-vietbank" className="hidden font-semibold text-navy hover:underline sm:inline">
-              Xem chi tiết
-            </Link>
-          </span>
-          <button
-            type="button"
-            aria-label="Đóng thông báo"
-            className="grid h-6 w-6 place-items-center rounded text-ink-soft transition-colors hover:bg-line hover:text-ink"
-            onClick={(e) => (e.currentTarget.closest('[role="region"]') as HTMLElement | null)?.remove()}
-          >
-            <X className="h-3.5 w-3.5" aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-
-      {/* ============ 01 HERO + INTENT ROUTER ============ */}
       <section className="border-b border-line">
-        <div className="mx-auto grid max-w-[1240px] items-stretch gap-0 px-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-[1240px] items-stretch px-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="reveal flex flex-col justify-center py-14 lg:py-20 lg:pr-14">
             <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[12.5px] font-medium text-ink-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-navy" />
-              Chuyển đổi số 2026 · Tăng trưởng — An toàn — Bền vững
+              Ngân hàng bán lẻ · Tăng trưởng — An toàn — Bền vững — Hiệu quả
             </div>
-            <h1 className="max-w-[680px] font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
-              Ngân hàng đồng hành cùng
-              <span className="text-navy"> mọi quyết định tài chính</span> của bạn.
+            <h1 className="max-w-[690px] font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+              Bắt đầu từ <span className="text-navy">việc bạn cần làm</span>, không phải từ danh mục ngân hàng.
             </h1>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-soft">
-              Từ tài khoản, tiết kiệm, thẻ đến vay vốn và ngân hàng số — Vietbank giúp bạn tìm đúng
-              giải pháp, hiểu rõ chi phí và bắt đầu chỉ trong vài phút.
+              Vietbank Redesign V6 định tuyến theo nhu cầu, tách rõ cá nhân và doanh nghiệp, đồng thời đưa các tác vụ nhạy cảm sang đúng kênh Vietbank chính thức.
             </p>
 
             <div className="mt-6">
-              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                Bạn đang cần ngân hàng cho
-              </span>
-              <div className="mt-2 inline-flex rounded-lg border border-line bg-surface p-1">
-                {(
-                  [
-                    ["ca-nhan", "Cá nhân"],
-                    ["doanh-nghiep", "Doanh nghiệp"],
-                  ] as [Segment, string][]
-                ).map(([val, lbl]) => (
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Bạn đang tìm giải pháp cho</span>
+              <div className="mt-2 inline-flex rounded-lg border border-line bg-surface p-1" role="group" aria-label="Chọn nhóm khách hàng">
+                {([ ["ca-nhan", "Cá nhân"], ["doanh-nghiep", "Doanh nghiệp"] ] as [Segment, string][]).map(([value, label]) => (
                   <button
-                    key={val}
-                    onClick={() => setSegment(val)}
-                    aria-pressed={segment === val}
-                    className={`rounded-md px-6 py-2.5 text-[14.5px] font-semibold transition-colors ${
-                      segment === val ? "bg-navy text-white" : "text-ink hover:text-navy"
-                    }`}
+                    key={value}
+                    type="button"
+                    onClick={() => setSegment(value)}
+                    aria-pressed={segment === value}
+                    className={`rounded-md px-6 py-2.5 text-[14.5px] font-semibold transition-colors ${segment === value ? "bg-navy text-white" : "text-ink hover:text-navy"}`}
                   >
-                    {lbl}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -156,31 +120,29 @@ export default function Home() {
 
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to={isPersonal ? "/ca-nhan" : "/doanh-nghiep"} className={`${BTN.primary} ${BTN_SIZE.lg}`}>
-                Khám phá sản phẩm {isPersonal ? "cá nhân" : "doanh nghiệp"}
-                <ArrowRight className="h-4 w-4" />
+                Khám phá {isPersonal ? "cá nhân" : "doanh nghiệp"} <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Được tư vấn miễn phí
-              </Link>
+              <Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>Trung tâm hỗ trợ</Link>
             </div>
           </div>
 
-          <div className="relative min-h-[360px] overflow-hidden bg-navy-050 lg:min-h-full">
+          <div className="relative min-h-[380px] overflow-hidden bg-navy-050 lg:min-h-full">
             <img
               src="https://images.unsplash.com/photo-1723864059860-636dfc060b9d?w=1000&h=1200&fit=crop&auto=format"
-              alt="Khách hàng sử dụng ứng dụng ngân hàng số Vietbank trên điện thoại"
+              alt="Khách hàng sử dụng điện thoại cho nhu cầu tài chính số"
               fetchPriority="high"
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/75 via-navy/10 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 rounded-lg border border-white/15 bg-white/95 p-4 backdrop-blur">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-soft">Vietbank Digital Plus</div>
-                  <div className="mt-0.5 font-display text-lg font-semibold">Chuyển tiền 24/7 · Miễn phí</div>
+                  <div className="text-xs font-semibold uppercase tracking-wide text-ink-soft">Kênh số cá nhân</div>
+                  <div className="mt-0.5 font-display text-lg font-semibold">Vietbank Digital Plus</div>
+                  <div className="mt-1 text-[12.5px] text-ink-soft">Vietbank Digital cũ đã dừng từ 03/06/2026.</div>
                 </div>
-                <Link to="/ngan-hang-so" aria-label="Tìm hiểu Digital Plus" className="grid h-10 w-10 place-items-center rounded-md bg-navy text-white">
+                <Link to="/ngan-hang-so#digital-plus" aria-label="Tìm hiểu Vietbank Digital Plus" className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-navy text-white">
                   <ArrowUpRight className="h-5 w-5" />
                 </Link>
               </div>
@@ -189,7 +151,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ 02 TOP TASKS ============ */}
       <section className="border-b border-line bg-soft">
         <div className="mx-auto max-w-[1240px] px-6 py-14">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -198,290 +159,134 @@ export default function Home() {
               <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight">Bạn muốn làm gì hôm nay?</h2>
             </div>
             <Link to={isPersonal ? "/ca-nhan" : "/doanh-nghiep"} className="flex items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
-              Xem tất cả dịch vụ <ChevronRight className="h-4 w-4" />
+              Xem trang tổng quan <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
-
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3 lg:grid-cols-6">
             {TOP_TASKS[segment].map(({ icon: Icon, label, hint, to }) => (
               <Link key={label} to={to} className="group flex flex-col gap-3 bg-surface p-5 transition-colors hover:bg-navy-050">
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy transition-colors group-hover:bg-navy group-hover:text-white">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <div className="text-[15px] font-semibold leading-tight">{label}</div>
-                  <div className="mt-1 text-[12.5px] leading-snug text-ink-soft">{hint}</div>
-                </div>
+                <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy transition-colors group-hover:bg-navy group-hover:text-white"><Icon className="h-5 w-5" /></span>
+                <div><div className="text-[15px] font-semibold leading-tight">{label}</div><div className="mt-1 text-[12.5px] leading-snug text-ink-soft">{hint}</div></div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ 03 NEED-BASED DISCOVERY ============ */}
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1240px] px-6 py-16">
           <SectionLabel n="03">Khám phá theo nhu cầu</SectionLabel>
-          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">
-            Không cần biết thuật ngữ ngân hàng — hãy bắt đầu từ điều bạn cần.
-          </h2>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {NEEDS[segment].map((n, i) => (
-              <article
-                key={n.title}
-                className="group flex flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-(--shadow-card-hover)"
-              >
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="rounded border border-line bg-soft px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink-soft">
-                      {n.tag}
-                    </span>
-                    <span className="text-xs tnum text-ink-soft">0{i + 1}</span>
-                  </div>
-                  <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">{n.title}</h3>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-ink-soft">{n.body}</p>
-                  <ul className="mt-4 flex flex-col gap-1.5 text-[14px] text-ink">
-                    {n.cues.map((c) => (
-                      <li key={c} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 shrink-0 text-navy" /> {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-6 flex items-center gap-4 border-t border-line pt-4 text-[14px] font-semibold">
-                  <Link to={n.to} className="flex items-center gap-1.5 text-navy hover:underline">
-                    Xem sản phẩm <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                  <Link to={n.to} className="flex items-center gap-1.5 text-ink-soft hover:text-navy">
-                    So sánh lựa chọn
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <p className="mt-6 flex items-center gap-2 text-[13px] text-ink-soft">
-            <ShieldCheck className="h-4 w-4 text-navy" />
-            Mỗi sản phẩm nêu rõ điều kiện, hồ sơ, lãi suất và biểu phí trước khi bạn đăng ký — minh bạch là quyền của bạn.
-          </p>
-        </div>
-      </section>
-
-      {/* ============ 04 RATES ============ */}
-      <section className="border-b border-line bg-soft">
-        <div className="mx-auto max-w-[1240px] px-6 py-16">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <SectionLabel n="04">Công cụ ngân hàng</SectionLabel>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">Tỷ giá &amp; Lãi suất</h2>
-            </div>
-          </div>
-          <div className="mt-6">
-            <RatesPanel />
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 05 DIGITAL ECOSYSTEM ============ */}
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-[1240px] px-6 py-16">
-          <SectionLabel n="05">Hệ sinh thái ngân hàng số</SectionLabel>
-          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">
-            Đúng ngân hàng số cho đúng nhu cầu.
-          </h2>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="flex flex-col justify-between rounded-xl border border-line bg-navy p-8 text-white">
-              <div>
-                <div className="flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-wide text-white/60">
-                  <Smartphone className="h-4 w-4 text-yellow" /> Cá nhân
-                </div>
-                <h3 className="mt-3 font-display text-3xl font-semibold">Vietbank Digital Plus</h3>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-white/75">
-                  Ngân hàng số cho khách hàng cá nhân: chuyển tiền 24/7, mở tiết kiệm, thanh toán QR,
-                  quản lý chi tiêu và kiểm soát bảo mật ngay trên điện thoại.
-                </p>
-                <ul className="mt-5 grid grid-cols-2 gap-2 text-[14px] text-white/85">
-                  {["Chuyển tiền miễn phí", "Mở tiết kiệm online", "Thanh toán QR", "Khoá thẻ tức thì"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-yellow" /> {f}
-                    </li>
-                  ))}
+          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">Chọn câu gần với tình huống của bạn nhất.</h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {NEEDS[segment].map((item) => (
+              <Link key={item.title} to={item.to} className="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-all hover:border-navy hover:shadow-[var(--shadow-card-hover)]">
+                <span className="w-fit rounded border border-line bg-soft px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">{item.tag}</span>
+                <h3 className="mt-4 font-display text-lg font-semibold tracking-tight group-hover:text-navy">{item.title}</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">{item.body}</p>
+                <ul className="mt-4 flex flex-1 flex-col gap-1.5 text-[13px] text-ink">
+                  {item.cues.map((cue) => <li key={cue} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-navy" />{cue}</li>)}
                 </ul>
-              </div>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#" className={`${BTN.onDark} ${BTN_SIZE.sm}`}>Tải Digital Plus</a>
-                <Link to="/ngan-hang-so" className={`${BTN.onDarkGhost} ${BTN_SIZE.sm}`}>Hướng dẫn sử dụng</Link>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between rounded-xl border border-line bg-surface p-8">
-              <div>
-                <div className="flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-wide text-ink-soft">
-                  <Building2 className="h-4 w-4 text-navy" /> Doanh nghiệp
-                </div>
-                <h3 className="mt-3 font-display text-3xl font-semibold text-navy">Vietbank DigiBiz</h3>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink-soft">
-                  Ngân hàng số doanh nghiệp: kiểm soát dòng tiền, thu chi hộ, trả lương, phê duyệt
-                  nhiều cấp và đối soát — liền mạch giữa web và mobile.
-                </p>
-                <ul className="mt-5 grid grid-cols-2 gap-2 text-[14px] text-ink">
-                  {["Chi lương hàng loạt", "Thu hộ / chi hộ", "Phê duyệt đa cấp", "Báo cáo dòng tiền"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-navy" /> {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link to="/ngan-hang-so" className={`${BTN.primary} ${BTN_SIZE.sm}`}>Tìm hiểu DigiBiz</Link>
-                <Link to="/ngan-hang-so" className={`${BTN.secondary} ${BTN_SIZE.sm}`}>Đăng nhập DigiBiz</Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-5 flex items-start gap-3 rounded-lg border border-line bg-navy-050 px-4 py-3.5 text-[13.5px] text-ink">
-            <BellRing className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-            <p className="leading-relaxed">
-              Ứng dụng <span className="font-medium">Vietbank Digital</span> đã ngừng hoạt động từ 03/06/2026 và Internet
-              Banking cá nhân dừng từ 18/05/2026. Khách hàng cá nhân vui lòng chuyển sang{" "}
-              <span className="font-medium text-navy">Digital Plus</span> — kênh ngân hàng số chính thức.{" "}
-              <Link to="/ngan-hang-so" className="font-semibold text-navy hover:underline">Xem hướng dẫn chuyển đổi</Link>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 06 TRUST & SECURITY ============ */}
-      <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-[1240px] px-6 py-16">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <SectionLabel n="06">Niềm tin & An toàn</SectionLabel>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">
-                An toàn giao dịch là ưu tiên hàng đầu.
-              </h2>
-              <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-ink-soft">
-                Vietbank chỉ liên hệ qua các kênh chính thức. Chúng tôi không bao giờ yêu cầu bạn
-                cung cấp mật khẩu, mã OTP hay thông tin đăng nhập qua điện thoại, tin nhắn hay email.
-              </p>
-              <div className="mt-6 flex flex-col gap-3">
-                <Link to="/ho-tro#security" className="flex items-center justify-between rounded-lg border border-line px-5 py-4 transition-colors hover:border-navy hover:bg-navy-050">
-                  <span className="flex items-center gap-3 font-semibold text-navy">
-                    <ShieldCheck className="h-5 w-5" /> Trung tâm an toàn & phòng chống lừa đảo
-                  </span>
-                  <ChevronRight className="h-4 w-4 text-ink-soft" />
-                </Link>
-                <a href={HOTLINE_TEL} className="flex items-center justify-between rounded-lg border border-line px-5 py-4 transition-colors hover:border-navy hover:bg-navy-050">
-                  <span className="flex items-center gap-3 font-semibold text-navy">
-                    <Phone className="h-5 w-5" /> Hotline chính thức {HOTLINE}
-                  </span>
-                  <ChevronRight className="h-4 w-4 text-ink-soft" />
-                </a>
-              </div>
-            </div>
-
-            <div className="flex flex-col divide-y divide-line rounded-xl border border-line bg-paper">
-              {[
-                { icon: Phone, title: `Một hotline duy nhất — ${HOTLINE}`, body: "Vietbank đã triển khai Voice Brandname; mọi cuộc gọi chính thức đều hiển thị tên thương hiệu. Đây là số hotline duy nhất, giúp bạn nhận diện và chống giả mạo." },
-                { icon: ShieldCheck, title: "Kênh chính thức", body: "Website vietbank.com.vn · ứng dụng Digital Plus / DigiBiz · Zalo OA và email chính thức. Vietbank không gửi link đăng nhập hay yêu cầu OTP qua tin nhắn." },
-                { icon: Lock, title: "Bảo vệ dữ liệu & tuân thủ", body: "Xác thực sinh trắc học và OTP động trên ứng dụng; chính sách bảo vệ dữ liệu cá nhân và tuân thủ AML/FATCA theo quy định hiện hành." },
-              ].map(({ icon: Icon, title, body }) => (
-                <div key={title} className="flex items-start gap-4 p-5">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy-050 text-navy">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h3 className="text-[15.5px] font-semibold">{title}</h3>
-                    <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">{body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 07 NEWS + FAQ ============ */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <div className="flex items-center justify-between gap-3">
-              <SectionLabel n="07">Tin tức & Thông báo</SectionLabel>
-              <span className="rounded border border-line bg-soft px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">
-                Nội dung minh hoạ
-              </span>
-            </div>
-            <div className="mt-6 flex flex-col divide-y divide-line border-y border-line">
-              {[
-                { tag: "Thông báo", date: "29/08/2026", title: "Nâng cấp hệ thống Digital Plus đêm 02/09 — một số dịch vụ tạm gián đoạn" },
-                { tag: "Khuyến mãi", date: "24/08/2026", title: "Hoàn tiền tới 8% cho chủ thẻ tín dụng Vietbank trong quý III" },
-                { tag: "Lãi suất", date: "20/08/2026", title: "Cập nhật biểu lãi suất tiết kiệm áp dụng từ ngày 20/08/2026" },
-                { tag: "An toàn", date: "18/08/2026", title: "Nhận diện kênh chính thức và Voice Brandname của Vietbank" },
-              ].map((n) => (
-                <Link key={n.title} to="/ve-vietbank" className="group flex items-start gap-4 py-4 transition-colors hover:bg-navy-050/60">
-                  <div className="flex w-24 shrink-0 flex-col">
-                    <span className="rounded border border-line bg-soft px-2 py-0.5 text-center text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">
-                      {n.tag}
-                    </span>
-                    <span className="mt-1.5 text-center text-[11px] tnum text-ink-soft">{n.date}</span>
-                  </div>
-                  <p className="text-[15.5px] font-medium leading-snug text-ink group-hover:text-navy">{n.title}</p>
-                  <ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-ink-soft transition-colors group-hover:text-navy" />
-                </Link>
-              ))}
-            </div>
-            <Link to="/ve-vietbank" className="mt-5 inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-navy hover:underline">
-              Tất cả tin tức <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div>
-            <SectionLabel n="—">Câu hỏi thường gặp</SectionLabel>
-            <div className="mt-6 overflow-hidden rounded-xl border border-line">
-              {[
-                { q: "Tôi mở tài khoản online cần những gì?", a: "Bạn cần CCCD gắn chip và một số điện thoại chính chủ. Quá trình định danh eKYC hoàn tất ngay trên Digital Plus, không cần đến quầy." },
-                { q: "Digital Plus khác gì với Vietbank Digital cũ?", a: "Digital Plus là ứng dụng ngân hàng số chính thức hiện nay cho khách hàng cá nhân. Ứng dụng Vietbank Digital cũ đã ngừng hoạt động; khách hàng chuyển sang Digital Plus theo hướng dẫn." },
-                { q: "Doanh nghiệp đăng ký DigiBiz như thế nào?", a: "Doanh nghiệp đăng ký trực tuyến hoặc tại chi nhánh. Đội ngũ tư vấn sẽ hỗ trợ thiết lập phân quyền phê duyệt và kết nối dịch vụ thu chi hộ." },
-                { q: "Làm sao để biết tin nhắn có phải từ Vietbank?", a: `Vietbank không gửi đường link đăng nhập qua SMS/email và không yêu cầu OTP. Khi nghi ngờ, hãy gọi hotline ${HOTLINE} để xác thực.` },
-              ].map((item) => (
-                <details key={item.q} className="group border-b border-line last:border-0">
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 bg-surface px-5 py-4 text-[15px] font-semibold transition-colors hover:bg-navy-050 [&::-webkit-details-marker]:hidden">
-                    {item.q}
-                    <ChevronDown className="h-4 w-4 shrink-0 text-navy transition-transform group-open:rotate-180" />
-                  </summary>
-                  <p className="bg-surface px-5 pb-5 text-[14.5px] leading-relaxed text-ink-soft">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ 08 SUPPORT / UTILITY BAND ============ */}
-      <section className="border-b border-line bg-soft">
-        <div className="mx-auto max-w-[1240px] px-6 py-10">
-          <div className="grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-3 md:divide-x md:divide-y-0">
-            {[
-              { icon: MapPin, title: "ATM & Điểm giao dịch", body: "Tìm điểm Vietbank gần bạn.", cta: "Mở bản đồ", to: "/ho-tro#network" },
-              { icon: Calculator, title: "Công cụ tính toán", body: "Lãi vay, lãi tiết kiệm và khoản trả góp.", cta: "Dùng công cụ", to: "/ho-tro" },
-              { icon: Receipt, title: "Biểu phí & Biểu mẫu", body: "Biểu phí dịch vụ và mẫu đơn cần thiết.", cta: "Xem tài liệu", to: "/ho-tro#docs" },
-            ].map(({ icon: Icon, title, body, cta, to }) => (
-              <Link key={title} to={to} className="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-navy-050">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy-050 text-navy transition-colors group-hover:bg-navy group-hover:text-white">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="text-[15.5px] font-semibold">{title}</h3>
-                  <p className="mt-0.5 text-[13px] leading-snug text-ink-soft">{body}</p>
-                  <span className="mt-1 inline-flex items-center gap-1 text-[13.5px] font-semibold text-navy group-hover:underline">
-                    {cta} <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-navy">Đi tiếp <ArrowRight className="h-4 w-4" /></span>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-soft">
+        <div className="mx-auto max-w-[1240px] px-6 py-16">
+          <SectionLabel n="04">Dữ liệu thay đổi theo thời điểm</SectionLabel>
+          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">Tỷ giá & lãi suất: mở nguồn Vietbank đang công bố.</h2>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-soft">V6 không đóng dấu “STATIC” lên số liệu giả rồi đặt cạnh CTA thật. Các thông tin tài chính biến động được chuyển sang công cụ chính thức.</p>
+          <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <article className="rounded-xl border border-line bg-surface p-6">
+              <TrendingUp className="h-6 w-6 text-navy" />
+              <h3 className="mt-4 text-lg font-semibold">Tỷ giá ngoại tệ & vàng</h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">Tra cứu theo ngày, xem biểu đồ và công cụ chuyển đổi trên Vietbank.</p>
+              <div className="mt-5"><ActionLink action={{ label: "Tra cứu tỷ giá Vietbank", href: OFFICIAL.personalFx }} variant="secondary" /></div>
+            </article>
+            <article className="rounded-xl border border-line bg-surface p-6">
+              <PiggyBank className="h-6 w-6 text-navy" />
+              <h3 className="mt-4 text-lg font-semibold">Lãi suất khách hàng cá nhân</h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">Xem biểu lãi suất huy động đang được Vietbank công bố tại thời điểm tra cứu.</p>
+              <div className="mt-5"><ActionLink action={{ label: "Xem lãi suất Vietbank", href: OFFICIAL.personalRates }} variant="secondary" /></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line">
+        <div className="mx-auto max-w-[1240px] px-6 py-16">
+          <SectionLabel n="05">Hệ sinh thái ngân hàng số</SectionLabel>
+          <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">Digital Plus cho cá nhân. DigiBiz cho doanh nghiệp.</h2>
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <article className="rounded-xl bg-navy p-8 text-white">
+              <Smartphone className="h-6 w-6 text-yellow" />
+              <div className="mt-3 text-[12px] font-semibold uppercase tracking-wide text-white/60">Khách hàng cá nhân</div>
+              <h3 className="mt-2 font-display text-3xl font-semibold">Vietbank Digital Plus</h3>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-white/75">Nền tảng số dành cho khách hàng cá nhân. Vietbank Digital cũ đã ngừng hoạt động từ 03/06/2026.</p>
+              <div className="mt-6 flex flex-wrap gap-3"><ActionLink action={{ label: "Trang Digital Plus", href: OFFICIAL.digitalPlus }} variant="onDark" size="sm" /><Link to="/ngan-hang-so#digital-plus" className={`${BTN.onDarkGhost} ${BTN_SIZE.sm}`}>So sánh nền tảng</Link></div>
+            </article>
+            <article className="rounded-xl border border-line bg-surface p-8">
+              <Building2 className="h-6 w-6 text-navy" />
+              <div className="mt-3 text-[12px] font-semibold uppercase tracking-wide text-ink-soft">Khách hàng doanh nghiệp</div>
+              <h3 className="mt-2 font-display text-3xl font-semibold text-navy">Vietbank DigiBiz</h3>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink-soft">Nền tảng ngân hàng số doanh nghiệp với quản trị giao dịch, phê duyệt và vận hành tài chính theo cấu trúc tổ chức.</p>
+              <div className="mt-6 flex flex-wrap gap-3"><ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} size="sm" /><Link to="/ngan-hang-so#digibiz" className={`${BTN.secondary} ${BTN_SIZE.sm}`}>Tìm hiểu trước</Link></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-surface">
+        <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionLabel n="06">Niềm tin & minh bạch</SectionLabel>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-tight tracking-tight">Các bằng chứng quan trọng nên dễ thấy.</h2>
+            <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-ink-soft">Vietbank công bố 127 điểm giao dịch, tầm nhìn ngân hàng bán lẻ uy tín hàng đầu Việt Nam và cổ phiếu VBB đã chính thức giao dịch trên HOSE từ 14/07/2026.</p>
+            <div className="mt-6 flex flex-wrap gap-3"><ActionLink action={{ label: "Về Vietbank", href: OFFICIAL.about }} variant="secondary" /><ActionLink action={{ label: "Nhà đầu tư", href: OFFICIAL.investor }} variant="ghost" /></div>
+          </div>
+          <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
+            {[ ["127", "điểm giao dịch được Vietbank công bố"], ["VBB", "niêm yết HOSE từ 14/07/2026"], ["205.000+ tỷ", "tổng tài sản tại 30/06/2026 theo công bố Vietbank"] ].map(([value, label]) => (
+              <div key={value} className="bg-surface p-6"><div className="font-display text-2xl font-semibold text-navy tnum">{value}</div><p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">{label}</p></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line">
+        <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="flex items-center justify-between gap-4"><SectionLabel n="07">Tin mới nhất</SectionLabel><a href={OFFICIAL.news} {...EXTERNAL_LINK_PROPS} className="text-[14px] font-semibold text-navy hover:underline">Tất cả tin Vietbank</a></div>
+            <div className="mt-6 flex flex-col divide-y divide-line border-y border-line">
+              {LATEST_NEWS.map((item) => (
+                <a key={item.title} href={OFFICIAL.news} {...EXTERNAL_LINK_PROPS} className="group flex items-start gap-4 py-4 hover:bg-navy-050/60">
+                  <div className="w-24 shrink-0"><span className="block rounded border border-line bg-soft px-2 py-0.5 text-center text-[10px] font-semibold uppercase tracking-wide text-ink-soft">{item.tag}</span><span className="mt-1.5 block text-center text-[11px] tnum text-ink-soft">{item.date}</span></div>
+                  <p className="text-[15px] font-medium leading-snug text-ink group-hover:text-navy">{item.title}</p><ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-ink-soft group-hover:text-navy" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <SectionLabel n="—">Câu hỏi trước khi đi tiếp</SectionLabel>
+            <div className="mt-6 overflow-hidden rounded-xl border border-line">
+              {[
+                { q: "Tôi là cá nhân thì đăng nhập Internet Banking cũ ở đâu?", a: "Vietbank đã thông báo dừng Internet Banking dành cho khách hàng cá nhân từ 18/05/2026. Hãy dùng Digital Plus và xem trang Ngân hàng số để đi đúng kênh." },
+                { q: "Tôi muốn xem thẻ nào đang thật sự có tại Vietbank?", a: "Trang Thẻ V6 dùng tên sản phẩm thật và có nút mở trực tiếp trang sản phẩm Vietbank, không còn Cashback / Travel / Classic minh hoạ." },
+                { q: "Tỷ giá và lãi suất trên concept có phải số liệu giao dịch thật?", a: "Không. V6 đã bỏ bảng số liệu mẫu ở Home/Hỗ trợ và dẫn tới trang tỷ giá, lãi suất Vietbank đang công bố." },
+                { q: "Tôi nghi ngờ một đường link Vietbank được gửi qua tin nhắn?", a: `Không nhập thông tin xác thực. Tự mở vietbank.com.vn hoặc gọi ${HOTLINE} để kiểm tra.` },
+              ].map((item) => (
+                <details key={item.q} className="group border-b border-line last:border-0"><summary className="flex cursor-pointer items-center justify-between gap-4 bg-surface px-5 py-4 text-[15px] font-semibold hover:bg-navy-050 [&::-webkit-details-marker]:hidden">{item.q}<ChevronDown className="h-4 w-4 shrink-0 text-navy transition-transform group-open:rotate-180" /></summary><p className="bg-surface px-5 pb-5 text-[14.5px] leading-relaxed text-ink-soft">{item.a}</p></details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-soft">
+        <div className="mx-auto flex max-w-[1240px] flex-col justify-between gap-6 px-6 py-12 lg:flex-row lg:items-center">
+          <div><SectionLabel n="08">Hỗ trợ nhanh</SectionLabel><h2 className="mt-3 font-display text-2xl font-semibold">Cần xác minh hoặc tìm tài liệu?</h2><p className="mt-2 max-w-xl text-[14.5px] leading-relaxed text-ink-soft">Hotline, chi nhánh, biểu mẫu và công cụ tra cứu đều được gom về một trung tâm.</p></div>
+          <div className="flex flex-wrap gap-3"><a href={HOTLINE_TEL} className={`${BTN.primary} ${BTN_SIZE.lg}`}><Phone className="h-4 w-4" /> {HOTLINE}</a><Link to="/ho-tro" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>Mở trung tâm hỗ trợ</Link></div>
         </div>
       </section>
     </>
