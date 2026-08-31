@@ -8,6 +8,7 @@ import The from "./pages/The"
 import HoTro from "./pages/HoTro"
 import VeVietbank from "./pages/VeVietbank"
 import NhaDauTu from "./pages/NhaDauTu"
+import UsabilityLab from "./pages/UsabilityLab"
 import NotFound from "./pages/NotFound"
 
 // GitHub Pages serves this project from a static subdirectory. Hash routing
@@ -25,6 +26,7 @@ export const router = createHashRouter([
       { path: "ho-tro", Component: HoTro },
       { path: "ve-vietbank", Component: VeVietbank },
       { path: "nha-dau-tu", Component: NhaDauTu },
+      { path: "validation", Component: UsabilityLab },
       { path: "*", Component: NotFound },
     ],
   },
