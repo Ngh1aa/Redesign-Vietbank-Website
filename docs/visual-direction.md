@@ -4,7 +4,7 @@
 
 **Institutional clarity × modern retail banking × Vietnamese digital utility.**
 
-The site should feel calm, precise and easy to scan, with real Vietbank product objects and official handoffs doing more work than decorative imagery. The existing service-ledger grammar remains, but the interface becomes more compact and mature after benchmarking production banking sites.
+The site should feel calm, precise and easy to scan, with real Vietbank product objects and official handoffs doing more work than decorative imagery. The existing service-ledger grammar remains, but individual page families now use different compositions so consistency does not become monotony.
 
 ## 1. Visual attributes
 
@@ -14,6 +14,7 @@ The site should feel calm, precise and easy to scan, with real Vietbank product 
 4. **Evidence-forward** — changing claims point to official Vietbank sources.
 5. **Vietbank-recognizable** — blue action system + small red/yellow dual accent + official logo.
 6. **Compact but calm** — less oversized type and less vertical repetition on inner pages.
+7. **Composition-aware** — every page role gets a distinct content rhythm instead of repeating one card template.
 
 ## 2. Layout grammar
 
@@ -24,8 +25,21 @@ The site should feel calm, precise and easy to scan, with real Vietbank product 
 - Default page rhythm: section keyline → container → section label → content composition.
 - Home may use a larger display headline; inner pages should not imitate campaign landing pages.
 - Product evaluation rows: `packshot → proposition → three key facts → detail/compare actions`.
-- About/IR: editorial columns, facts and dated evidence; avoid fake dashboard widgets.
+- About/IR: documentary/editorial columns, facts and dated evidence; avoid fake dashboard widgets.
 - Rounded corners stay modest and functional.
+
+### Page-family composition map
+
+| Page | Primary composition | Why |
+|---|---|---|
+| Home | task-first service index + varied feature bands | orientation and findability |
+| Cá nhân | daily-finance journey + documentary Digital Plus story | move from product taxonomy to life task |
+| Doanh nghiệp | operating-model story + DigiBiz documentary hero | reflect business workflows and roles |
+| Ngân hàng số | sequential product storytelling | Digital Plus and DigiBiz should not look like equal generic cards |
+| Thẻ | compact product rows + finder + compare | financial-product evaluation |
+| Hỗ trợ | utility command center + calculators + real network context | task completion and recovery |
+| Về Vietbank | documentary editorial + milestones | brand/institution storytelling without stock imagery |
+| Nhà đầu tư | disclosure editorial + dated metrics + real AGM media | trust, chronology and source discipline |
 
 ## 3. Typography hierarchy
 
@@ -62,10 +76,13 @@ Target visual balance is approximately:
 Use card-only first-party Vietbank packshots. Keep them proportional, neutral and compact; no lifestyle model photography in the decision row, no fake card data and no decorative 3D tilt.
 
 ### Digital banking
-Use verified Vietbank Digital Plus / DigiBiz visuals when available. Never fabricate banking UI screens.
+Use verified Vietbank event/product media only. Digital Plus and DigiBiz storytelling may use documentary launch imagery from Vietbank to add authenticity; never fabricate banking UI screens.
 
 ### Corporate / people / branch
 Use only verified Vietbank documentary/event assets when the image provides real context. No AI-generated or generic stock-like bank employees, offices or branches.
+
+### Investor relations
+Use verified Vietbank AGM/event photography when it explains governance context. Never imply live market data through decorative trading imagery.
 
 ## 6. Navigation direction
 
@@ -77,22 +94,23 @@ Production banking benchmarks consistently separate high-frequency utilities fro
 - keep Digital Plus as a strong official-channel handoff;
 - avoid fake site search until a real search source exists.
 
-## 7. Product-page direction
+## 7. Content and storytelling direction
 
-Card discovery should feel closer to a financial-product comparison surface than a campaign gallery:
+Reference research shows mature banking sites combine task clarity with product merchandising rather than repeating institutional service lists everywhere.
 
-1. choose need;
-2. see compact matching products;
-3. scan `miễn lãi / hạn mức / điểm nổi bật`;
-4. inspect official conditions;
-5. add 2–3 products to compare.
+- **Cá nhân:** use `today → near-term → major goal` mental progression.
+- **Doanh nghiệp:** organize around `operate → fund → control → trade`.
+- **Digital:** lead with why each platform exists, then capabilities and official access.
+- **Support:** put tools before department names.
+- **About:** use people/place/milestones to make brand tangible without invented lifestyle photography.
+- **IR:** distinguish `historic result | current disclosure | future plan` visually and verbally.
 
-Compare and detail remain different tasks and should be visually adjacent, not scattered across the row.
+Copy should be customer-facing and benefit-led, not read like UX documentation.
 
 ## 8. Motion
 
 - Motion supports orientation/feedback only.
-- Hover: color/keyline changes and restrained arrow movement.
+- Hover: color/keyline changes and restrained 1–2% image scale for documentary links.
 - Reduced-motion resolves to a complete static state.
 - No floating cards, parallax banking dashboards or 3D spins.
 
@@ -104,24 +122,25 @@ Compare and detail remain different tasks and should be visually adjacent, not s
 | ACB | compact filter + compare | result count + compact product rows | component styling |
 | HSBC VN | trust + utility discipline | global utility layer + source-forward conditions | global red identity |
 | DBS | “find what you need” task orientation | explicit task shortcuts, no fake search | full search/ecosystem model |
-| TPBank | digital product storytelling | verified app visual and channel split | lifestyle/campaign density |
+| TPBank | digital product storytelling + composition variety | stronger Digital Plus/DigiBiz storytelling and page-specific rhythm | purple identity, Gen-Z tone, campaign density |
 
 ## 10. Mobile adaptation
 
 - Primary navigation becomes the existing stacked mobile menu; corporate links remain accessible.
-- Product rows stack `packshot → content → facts → actions`.
-- Fact grid becomes one column when space is tight.
+- Product/story compositions stack media and content in meaningful reading order.
+- Documentary images keep usable focal areas and never carry essential text.
 - Comparison table keeps horizontal overflow only where semantic column comparison requires it.
 - Every key interactive control remains at least 44px tall.
+- Dense three/four-column editorial bands become bordered vertical rows rather than compressed desktop cards.
 
 ## 11. Do / Don’t
 
 ### Do
-- let real content and verified objects carry visual interest;
+- let real content and verified Vietbank objects/events carry visual interest;
 - keep utilities globally reachable;
 - expose official-source transitions;
 - use compact type hierarchy on inner pages;
-- make product comparison scan-friendly.
+- vary composition by page role while keeping tokens consistent.
 
 ### Don’t
 - add AI/stock-like lifestyle banking images;

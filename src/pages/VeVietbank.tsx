@@ -1,12 +1,19 @@
-import { ArrowUpRight, Building2, HeartHandshake, ShieldCheck, Target, TrendingUp } from "lucide-react"
+import { ArrowUpRight, Building2, ShieldCheck, Target, TrendingUp } from "lucide-react"
 import { PageHeader } from "../lib/ui"
 import { ActionLink, Section, SectionHead, CTABand } from "../lib/sections"
-import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
+import { EXTERNAL_LINK_PROPS, OFFICIAL, OFFICIAL_MEDIA } from "../lib/official"
 
 const VALUES = [
-  { icon: HeartHandshake, title: "Nhu cầu khách hàng là trung tâm", body: "Vietbank công bố định hướng thấu hiểu nhu cầu khách hàng để xây dựng sản phẩm và dịch vụ phù hợp." },
-  { icon: ShieldCheck, title: "An toàn & tuân thủ", body: "Ngân hàng nhấn mạnh an toàn, kiểm soát rủi ro và tuân thủ trong quá trình tăng trưởng." },
-  { icon: Target, title: "Hiệu quả bền vững", body: "Phương châm được Vietbank công bố: Tăng trưởng — An toàn — Bền vững — Hiệu quả." },
+  { n: "01", title: "Khách hàng là điểm bắt đầu", body: "Vietbank công bố định hướng thấu hiểu nhu cầu thực tế để xây dựng sản phẩm và dịch vụ phù hợp." },
+  { n: "02", title: "Tăng trưởng đi cùng an toàn", body: "Phương châm Tăng trưởng — An toàn — Bền vững — Hiệu quả đặt kỷ luật vận hành cạnh mục tiêu kinh doanh." },
+  { n: "03", title: "Chữ Tín trong quan hệ dài hạn", body: "Các hoạt động mạng lưới và truyền thông của Vietbank tiếp tục nhấn mạnh niềm tin, sự đồng hành và phát triển bền vững." },
+]
+
+const MILESTONES = [
+  { year: "2007", title: "Khởi đầu", body: "Vietbank được thành lập, đặt nền móng cho hành trình phát triển ngân hàng thương mại cổ phần." },
+  { year: "2024", title: "Mở rộng hiện diện", body: "Vietbank hoàn tất mở mới 14 điểm giao dịch, nâng mạng lưới lên 132 điểm trên toàn quốc." },
+  { year: "2025", title: "Tăng năng lực vốn", body: "Vốn điều lệ được Vietbank công bố tăng lên 10.769 tỷ đồng trong tiến trình phát triển." },
+  { year: "2026", title: "Bước vào HOSE", body: "Cổ phiếu VBB chính thức giao dịch trên HOSE từ ngày 14/07/2026." },
 ]
 
 const NEWS = [
@@ -22,149 +29,108 @@ export default function VeVietbank() {
       <PageHeader
         eyebrow="Về Vietbank"
         crumb="Về Vietbank"
-        title="Ngân hàng TMCP Việt Nam Thương Tín"
-        lead="Vietbank định hướng trở thành ngân hàng bán lẻ uy tín hàng đầu Việt Nam, với phương châm Tăng trưởng — An toàn — Bền vững — Hiệu quả."
+        title="Một ngân hàng Việt phát triển bằng niềm tin và kỷ luật"
+        lead="Vietbank định hướng trở thành ngân hàng bán lẻ uy tín hàng đầu Việt Nam, kết hợp tăng trưởng, an toàn, bền vững và hiệu quả trong hành trình phát triển."
       />
 
       <Section>
-        <div className="grid items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="flex flex-col justify-center">
+        <div className="grid overflow-hidden border-y border-line bg-surface lg:grid-cols-[1.05fr_0.95fr]">
+          <a href={OFFICIAL.branchLamDongStory} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[330px] overflow-hidden bg-soft lg:min-h-[460px]">
+            <img src={OFFICIAL_MEDIA.branchLamDongTeam} alt="Tập thể Vietbank Chi nhánh Lâm Đồng do Vietbank công bố" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="eager" decoding="async" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/92 via-[#032f67]/35 to-transparent px-6 pb-5 pt-24 text-white">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-white/70">Ảnh đội ngũ thật · Vietbank</p>
+              <p className="mt-1 text-[13px] text-white/82">Chi nhánh Lâm Đồng trong hoạt động mở rộng mạng lưới.</p>
+            </div>
+          </a>
+          <div className="flex flex-col justify-center px-6 py-9 lg:px-9 lg:py-12">
             <SectionHead
               n="01"
               eyebrow="Định hướng"
-              title="Một ngân hàng bán lẻ lấy khách hàng làm trọng tâm"
-              lead="Tầm nhìn, chính sách chất lượng và định hướng phục vụ được trình bày ngắn gọn, kèm đường dẫn tới nguồn Vietbank để đọc đầy đủ."
+              title="Lấy nhu cầu thật làm điểm xuất phát"
+              lead="Vietbank nhấn mạnh mô hình ngân hàng bán lẻ hiện đại, phát triển sản phẩm trên sự thấu hiểu khách hàng và duy trì các nguyên tắc an toàn, tuân thủ."
             />
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
-              Trên trang giới thiệu chính thức, Vietbank nhấn mạnh xây dựng ngân hàng bán lẻ hiện đại, tăng trưởng an toàn và hiệu quả; đồng thời phát triển sản phẩm dựa trên sự thấu hiểu nhu cầu khách hàng.
-            </p>
+            <blockquote className="mt-6 border-l-2 border-navy pl-5 text-[17px] font-medium leading-relaxed text-ink">“Tăng trưởng — An toàn — Bền vững — Hiệu quả”</blockquote>
+            <p className="mt-2 text-[13px] text-ink-soft">Phương châm được Vietbank công bố trong hệ thống giới thiệu thương hiệu.</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <ActionLink action={{ label: "Đọc tầm nhìn & giá trị cốt lõi", href: OFFICIAL.visionValues }} variant="secondary" />
-              <ActionLink action={{ label: "Xem giới thiệu Vietbank", href: OFFICIAL.about }} variant="ghost" />
+              <ActionLink action={{ label: "Tầm nhìn & giá trị cốt lõi", href: OFFICIAL.visionValues }} variant="secondary" />
+              <ActionLink action={{ label: "Quá trình phát triển", href: OFFICIAL.development }} variant="ghost" />
             </div>
           </div>
-
-          <aside className="border border-line bg-navy-050 p-6 sm:p-7" aria-label="Các điểm chính về Vietbank">
-            <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
-              <div>
-                <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Thông tin nổi bật</p>
-                <h2 className="mt-1 font-display text-xl font-semibold text-ink">Điểm vào để tìm hiểu Vietbank</h2>
-              </div>
-              <span className="flex h-1 w-12 overflow-hidden" aria-hidden="true"><span className="w-1/2 bg-red" /><span className="w-1/2 bg-yellow" /></span>
-            </div>
-            <div className="divide-y divide-line">
-              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
-                <span className="text-[13px] font-semibold text-amber tnum">01</span>
-                <div><strong className="block text-[15px] text-ink">Tầm nhìn & giá trị</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Định hướng thương hiệu, sứ mệnh và các giá trị cốt lõi Vietbank công bố.</p></div>
-              </div>
-              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
-                <span className="text-[13px] font-semibold text-amber tnum">02</span>
-                <div><strong className="block text-[15px] text-ink">Chính sách chất lượng</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Định hướng xây dựng ngân hàng bán lẻ đa năng, hiện đại và phù hợp chuẩn mực quốc tế.</p></div>
-              </div>
-              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
-                <span className="text-[13px] font-semibold text-amber tnum">03</span>
-                <div><strong className="block text-[15px] text-ink">Mạng lưới 127 điểm giao dịch</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Mạng lưới hiện diện tại các vùng kinh tế trọng điểm trên toàn quốc theo Vietbank.</p></div>
-              </div>
-            </div>
-          </aside>
         </div>
       </Section>
 
       <Section tone="soft">
-        <SectionHead n="02" eyebrow="Nguyên tắc phục vụ" title="Chuyển giá trị thương hiệu thành trải nghiệm số" />
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {VALUES.map(({ icon: Icon, title, body }) => (
-            <article key={title} className="rounded-xl border border-line bg-surface p-6">
-              <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy"><Icon className="h-5 w-5" /></span>
-              <h3 className="mt-4 text-[16px] font-semibold">{title}</h3>
-              <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">{body}</p>
-            </article>
-          ))}
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+          <SectionHead n="02" eyebrow="Giá trị trong trải nghiệm" title="Thương hiệu không chỉ nằm ở màu sắc" lead="Những giá trị Vietbank công bố cần được nhìn thấy trong cách website tổ chức thông tin, điều hướng và dẫn sang nguồn chính thức." />
+          <div className="border-y border-line bg-surface">
+            {VALUES.map((item, index) => (
+              <div key={item.n} className={`grid grid-cols-[42px_1fr] gap-3 px-5 py-4 ${index ? "border-t border-line" : ""}`}>
+                <span className="text-[12.5px] font-semibold text-amber tnum">{item.n}</span>
+                <div><h3 className="text-[15px] font-semibold">{item.title}</h3><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">{item.body}</p></div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
       <Section>
-        <SectionHead
-          n="03"
-          eyebrow="Quy mô hiện tại"
-          title="Số liệu có mốc thời gian rõ ràng"
-          lead="Các con số bên dưới chỉ dùng dữ liệu Vietbank đã công bố và ghi rõ thời điểm để người đọc dễ kiểm tra nguồn."
-        />
-        <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
-          <div className="bg-surface p-6">
-            <Building2 className="h-6 w-6 text-navy" />
-            <div className="mt-4 font-display text-3xl font-semibold text-navy tnum">127</div>
-            <p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">điểm giao dịch trên toàn quốc theo trang giới thiệu Vietbank.</p>
-          </div>
-          <div className="bg-surface p-6">
-            <TrendingUp className="h-6 w-6 text-navy" />
-            <div className="mt-4 font-display text-3xl font-semibold text-navy">VBB</div>
-            <p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">cổ phiếu Vietbank chính thức niêm yết HOSE từ 14/07/2026.</p>
-          </div>
-          <div className="bg-surface p-6">
-            <Target className="h-6 w-6 text-navy" />
-            <div className="mt-4 font-display text-3xl font-semibold text-navy tnum">205.000+ tỷ</div>
-            <p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">tổng tài sản tại 30/06/2026 theo công bố kết quả 6 tháng đầu năm.</p>
-          </div>
-        </div>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <ActionLink action={{ label: "Xem mạng lưới Vietbank", href: OFFICIAL.branches }} variant="secondary" />
-          <ActionLink action={{ label: "Đọc thông tin niêm yết VBB", href: OFFICIAL.hoseListing }} variant="ghost" />
-        </div>
+        <SectionHead n="03" eyebrow="Hành trình phát triển" title="Bốn mốc để hiểu Vietbank hôm nay" lead="Mốc thời gian được lấy từ nội dung Vietbank công bố; số liệu theo thời điểm luôn được ghi trong ngữ cảnh tương ứng." />
+        <ol className="mt-6 grid border-y border-line md:grid-cols-4 md:divide-x md:divide-line">
+          {MILESTONES.map((item, index) => (
+            <li key={item.year} className={`px-5 py-5 ${index ? "border-t border-line md:border-t-0" : ""}`}>
+              <div className="font-display text-2xl font-semibold text-navy tnum">{item.year}</div>
+              <h3 className="mt-2 text-[15px] font-semibold">{item.title}</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">{item.body}</p>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       <Section tone="soft">
+        <SectionHead n="04" eyebrow="Vietbank hôm nay" title="Ba dấu mốc dễ kiểm chứng" lead="Ưu tiên số liệu có nguồn và thời điểm rõ thay vì tạo dashboard doanh nghiệp giả." />
+        <div className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3">
+          <div className="bg-surface p-6"><Building2 className="h-5 w-5 text-navy" /><div className="mt-4 font-display text-3xl font-semibold text-navy tnum">132</div><p className="mt-1 text-[13px] leading-relaxed text-ink-soft">điểm giao dịch được Vietbank công bố sau kế hoạch mở rộng năm 2024.</p></div>
+          <div className="bg-surface p-6"><Target className="h-5 w-5 text-navy" /><div className="mt-4 font-display text-3xl font-semibold text-navy tnum">10.769 tỷ</div><p className="mt-1 text-[13px] leading-relaxed text-ink-soft">vốn điều lệ được ghi nhận trong quá trình phát triển năm 2025.</p></div>
+          <div className="bg-surface p-6"><TrendingUp className="h-5 w-5 text-navy" /><div className="mt-4 font-display text-3xl font-semibold text-navy">VBB · HOSE</div><p className="mt-1 text-[13px] leading-relaxed text-ink-soft">cổ phiếu Vietbank chính thức giao dịch trên HOSE từ 14/07/2026.</p></div>
+        </div>
+      </Section>
+
+      <Section>
         <div className="flex flex-wrap items-end justify-between gap-5">
-          <SectionHead
-            n="04"
-            eyebrow="Tin Vietbank"
-            title="Cập nhật gần đây"
-            lead="Danh sách dùng tiêu đề và ngày đang hiển thị trên kênh tin tức Vietbank; nhấn vào để tiếp tục xem nội dung trên nguồn chính thức."
-          />
+          <SectionHead n="05" eyebrow="Tin Vietbank" title="Cập nhật gần đây" lead="Tiêu đề/ngày giúp định hướng; nội dung đầy đủ tiếp tục trên kênh Vietbank chính thức." />
           <ActionLink action={{ label: "Xem tất cả tin Vietbank", href: OFFICIAL.news }} variant="secondary" size="sm" />
         </div>
-        <div className="mt-6 flex flex-col divide-y divide-line border-y border-line">
-          {NEWS.map((item) => (
-            <a key={item.title} href={OFFICIAL.news} {...EXTERNAL_LINK_PROPS} className="group flex items-start gap-4 py-4 transition-colors hover:bg-navy-050/60">
-              <div className="w-28 shrink-0">
-                <span className="block rounded border border-line bg-surface px-2 py-1 text-center text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-soft">{item.tag}</span>
-                <span className="mt-1.5 block text-center text-[12.5px] tnum text-ink-soft">{item.date}</span>
-              </div>
-              <p className="text-[15.5px] font-medium leading-snug text-ink group-hover:text-navy">{item.title}</p>
-              <ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-ink-soft group-hover:text-navy" />
+        <div className="mt-6 border-y border-line">
+          {NEWS.map((item, index) => (
+            <a key={item.title} href={OFFICIAL.news} {...EXTERNAL_LINK_PROPS} className={`group grid gap-3 py-4 transition-colors hover:bg-navy-050 sm:grid-cols-[110px_120px_1fr_auto] sm:items-center sm:px-3 ${index ? "border-t border-line" : ""}`}>
+              <span className="text-[12.5px] text-ink-soft tnum">{item.date}</span><span className="text-[12px] font-semibold uppercase tracking-[0.07em] text-ink-soft">{item.tag}</span><span className="text-[14.5px] font-medium group-hover:text-navy">{item.title}</span><ArrowUpRight className="h-4 w-4 text-navy" />
             </a>
           ))}
         </div>
       </Section>
 
-      <Section>
-        <SectionHead
-          n="05"
-          eyebrow="Minh bạch & quản trị"
-          title="Đi sâu theo đúng nguồn"
-          lead="Thông tin quản trị, công bố và đại hội cổ đông được dẫn sang luồng Nhà đầu tư để người đọc tiếp tục trên tài liệu Vietbank đang quản lý."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Quan hệ nhà đầu tư", body: "Công bố thông tin, báo cáo định kỳ, điều lệ và quản trị công ty.", action: { label: "Mở Quan hệ nhà đầu tư", href: OFFICIAL.investor } },
-            { title: "ĐHĐCĐ 2026", body: "Thông tin về Đại hội đồng cổ đông thường niên 2026 và các mục tiêu tăng trưởng đã thông qua.", action: { label: "Xem tài liệu ĐHĐCĐ 2026", href: OFFICIAL.agm2026 } },
-            { title: "Liên hệ & mạng lưới", body: "Địa chỉ, hotline, email và công cụ tìm chi nhánh/PGD do Vietbank quản lý.", action: { label: "Xem kênh liên hệ Vietbank", href: OFFICIAL.contact } },
-          ].map((item) => (
-            <article key={item.title} className="flex flex-col rounded-xl border border-line bg-surface p-6">
-              <ShieldCheck className="h-5 w-5 text-navy" />
-              <h3 className="mt-4 text-[16px] font-semibold">{item.title}</h3>
-              <p className="mt-1.5 flex-1 text-[14px] leading-relaxed text-ink-soft">{item.body}</p>
-              <div className="mt-4"><ActionLink action={item.action} variant="ghost" size="sm" /></div>
-            </article>
-          ))}
+      <Section tone="soft">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+          <SectionHead n="06" eyebrow="Minh bạch & quản trị" title="Đi sâu từ nguồn Vietbank" lead="Các tài liệu pháp lý, quản trị và cổ đông được giữ ở thư viện chính thức thay vì sao chép thành dữ liệu tĩnh khó cập nhật." />
+          <div className="grid border-y border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-line">
+            {[
+              ['Quan hệ nhà đầu tư','Công bố, báo cáo và quản trị',OFFICIAL.investor],
+              ['ĐHĐCĐ 2026','Kế hoạch và nghị quyết',OFFICIAL.agm2026],
+              ['Liên hệ & mạng lưới','Địa chỉ, hotline, chi nhánh',OFFICIAL.contact],
+            ].map(([title,body,href], index) => (
+              <a key={title} href={href} {...EXTERNAL_LINK_PROPS} className={`group px-5 py-5 transition-colors hover:bg-navy-050 ${index ? "border-t border-line sm:border-t-0" : ""}`}>
+                <ShieldCheck className="h-5 w-5 text-navy" /><h3 className="mt-3 text-[14.5px] font-semibold group-hover:text-navy">{title}</h3><p className="mt-1 text-[12.5px] leading-relaxed text-ink-soft">{body}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </Section>
 
       <CTABand
         title="Tìm hiểu Vietbank từ nguồn chính thức"
-        body="Trang này giúp bạn đi nhanh tới thông tin phù hợp; nội dung pháp lý, công bố doanh nghiệp và dữ liệu cập nhật được quản lý trên website Vietbank."
+        body="Trang này tạo bức tranh tổng quan; thông tin pháp lý, quản trị và dữ liệu cập nhật tiếp tục được quản lý trên website Vietbank."
         primary={{ label: "Xem giới thiệu Vietbank", href: OFFICIAL.about }}
-        secondary={{ label: "Mở Quan hệ nhà đầu tư", href: OFFICIAL.investor }}
+        secondary={{ label: "Quan hệ nhà đầu tư", href: OFFICIAL.investor }}
       />
     </>
   )

@@ -1,15 +1,14 @@
 import {
-  Smartphone,
+  ArrowRight,
   Building2,
-  BellRing,
-  QrCode,
-  Send,
-  Lock,
-  LineChart,
-  Check,
   CalendarClock,
-  Users,
+  Check,
   ExternalLink,
+  LineChart,
+  Lock,
+  Send,
+  Smartphone,
+  Users,
 } from "lucide-react"
 import { Link } from "react-router"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
@@ -17,28 +16,24 @@ import { ActionLink, Section, SectionHead, CTABand } from "../lib/sections"
 import { EXTERNAL_LINK_PROPS, OFFICIAL, OFFICIAL_MEDIA } from "../lib/official"
 
 const PLUS_FEATURES = [
-  { icon: Send, title: "Chuyển tiền & thanh toán", body: "Chuyển tiền, thanh toán và thiết lập lệnh định kỳ ngay trên ứng dụng." },
-  { icon: LineChart, title: "Quản lý tài chính", body: "Theo dõi chi tiêu, xem phân tích và quản lý tài chính cá nhân trên một nền tảng." },
-  { icon: QrCode, title: "Shake QR", body: "Truy cập nhanh thao tác QR bằng trải nghiệm “lắc nhẹ” được Vietbank giới thiệu trên Digital Plus." },
-  { icon: Lock, title: "Bảo mật đa lớp", body: "Mật khẩu, sinh trắc học và OTP là các lớp xác thực được Vietbank công bố cho nền tảng." },
+  { icon: Send, title: "Giao dịch hằng ngày", body: "Chuyển tiền, thanh toán và thiết lập lệnh định kỳ trên ứng dụng." },
+  { icon: LineChart, title: "Quản lý tài chính", body: "Theo dõi chi tiêu và các thông tin hỗ trợ quản lý tài chính cá nhân." },
+  { icon: Lock, title: "Bảo mật đa lớp", body: "Vietbank công bố các lớp xác thực gồm mật khẩu, sinh trắc học và OTP." },
 ]
 
 const BIZ_FEATURES = [
-  { icon: LineChart, title: "Quản lý tài khoản", body: "Theo dõi tài khoản, dòng tiền, chi tiêu và trạng thái giao dịch với dữ liệu tập trung." },
-  { icon: Building2, title: "Nền tảng hợp kênh", body: "DigiBiz được Vietbank giới thiệu là nền tảng hợp kênh, kết nối các kênh vận hành số." },
-  { icon: CalendarClock, title: "Lập lịch & người thụ hưởng", body: "Quản lý danh sách người thụ hưởng và lập lịch thanh toán theo quy trình doanh nghiệp." },
-  { icon: Users, title: "Phê duyệt & phân quyền", body: "Duyệt giao dịch đa cấp và tùy chỉnh quyền theo cấu trúc, vai trò của doanh nghiệp." },
+  { icon: LineChart, title: "Tài khoản & dòng tiền", body: "Theo dõi thông tin tài khoản, chi tiêu và trạng thái giao dịch tập trung." },
+  { icon: CalendarClock, title: "Lịch thanh toán", body: "Quản lý người thụ hưởng và lập lịch theo nhu cầu vận hành doanh nghiệp." },
+  { icon: Users, title: "Phân quyền & phê duyệt", body: "Duyệt giao dịch nhiều cấp và tùy chỉnh quyền theo cấu trúc tổ chức." },
 ]
 
 const PLATFORM_GUIDE = [
-  { feature: "Đối tượng", plus: "Khách hàng cá nhân", biz: "Khách hàng doanh nghiệp" },
-  { feature: "Điểm vào chính", plus: "Ứng dụng iOS / Android", biz: "digibiz.vietbank.com.vn" },
+  { feature: "Dành cho", plus: "Khách hàng cá nhân", biz: "Khách hàng doanh nghiệp" },
+  { feature: "Điểm vào", plus: "Ứng dụng iOS / Android", biz: "digibiz.vietbank.com.vn" },
   { feature: "Trọng tâm", plus: "Giao dịch & quản lý tài chính cá nhân", biz: "Quản trị tài chính & vận hành giao dịch" },
   { feature: "Lệnh định kỳ / lịch thanh toán", plus: "Có", biz: "Có" },
-  { feature: "Quản lý chi tiêu", plus: "Có", biz: "Quản lý dòng tiền doanh nghiệp" },
   { feature: "Phê duyệt đa cấp", plus: "Không áp dụng", biz: "Có" },
   { feature: "Phân quyền theo cấu trúc DN", plus: "Không áp dụng", biz: "Có" },
-  { feature: "Hỗ trợ", plus: "Hotline 1800 1122", biz: "Hotline / điểm giao dịch Vietbank" },
 ]
 
 export default function NganHangSo() {
@@ -47,93 +42,89 @@ export default function NganHangSo() {
       <PageHeader
         eyebrow="Ngân hàng số"
         crumb="Ngân hàng số"
-        title="Chọn đúng nền tảng số trước khi tiếp tục"
-        lead="Digital Plus dành cho khách hàng cá nhân; DigiBiz dành cho doanh nghiệp. Trang này giải thích sự khác nhau và đưa bạn tới đúng kênh Vietbank chính thức."
+        title="Hai nền tảng số, hai cách sử dụng khác nhau"
+        lead="Digital Plus đồng hành với tài chính cá nhân hằng ngày; DigiBiz tập trung vào vận hành tài chính doanh nghiệp. Chọn đúng kênh trước khi tiếp tục."
       />
 
       <Section>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article id="digital-plus" className="scroll-mt-28 flex flex-col overflow-hidden rounded-xl border border-line bg-navy text-white">
-            <figure className="border-b border-white/10 bg-white">
-              <img
-                src={OFFICIAL_MEDIA.digitalPlusLaunch}
-                alt="Hình ảnh giới thiệu Vietbank Digital Plus do Vietbank công bố"
-                width="800"
-                height="600"
-                loading="eager"
-                decoding="async"
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <figcaption className="bg-navy px-5 py-2.5 text-[12px] leading-relaxed text-white/65">
-                Hình ảnh Digital Plus từ bài công bố chính thức của Vietbank, 20/03/2026.
-              </figcaption>
-            </figure>
-            <div className="flex flex-1 flex-col p-8">
-              <div className="flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-wide text-white/60">
-                <Smartphone className="h-4 w-4 text-yellow" /> Cá nhân · Kênh chính thức
+        <article id="digital-plus" className="scroll-mt-28 overflow-hidden border-y border-line bg-navy text-white">
+          <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="flex flex-col justify-center px-6 py-9 lg:px-9 lg:py-12">
+              <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">
+                <Smartphone className="h-4 w-4 text-yellow" aria-hidden="true" /> Cá nhân · Vietbank Digital Plus
               </div>
-              <h2 className="mt-3 font-display text-3xl font-semibold">Vietbank Digital Plus</h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-white/75">
-                Nền tảng ngân hàng số Vietbank dành cho khách hàng cá nhân. Vietbank Digital cũ đã ngừng hoạt động từ 03/06/2026.
-              </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {PLUS_FEATURES.map(({ icon: Icon, title, body }) => (
-                  <div key={title}>
+              <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,3.5vw,3rem)] font-semibold leading-tight">Ngân hàng số cho nhịp sống hằng ngày</h2>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/76">Vietbank mô tả Digital Plus là nền tảng lấy khách hàng làm trọng tâm, kết hợp giao dịch, tiện ích và quản lý tài chính trong một trải nghiệm số.</p>
+              <div className="mt-7 grid border-y border-white/15 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
+                {PLUS_FEATURES.map(({ icon: Icon, title, body }, index) => (
+                  <div key={title} className={`py-4 sm:px-4 ${index ? "border-t border-white/15 sm:border-t-0" : ""}`}>
                     <Icon className="h-5 w-5 text-yellow" aria-hidden="true" />
-                    <h3 className="mt-2 text-[15px] font-semibold">{title}</h3>
-                    <p className="mt-1 text-[13.5px] leading-relaxed text-white/70">{body}</p>
+                    <h3 className="mt-2 text-[14.5px] font-semibold">{title}</h3>
+                    <p className="mt-1 text-[12.5px] leading-relaxed text-white/62">{body}</p>
                   </div>
                 ))}
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
-                <ActionLink action={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }} variant="onDark" size="sm" />
+                <ActionLink action={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }} variant="onDark" />
                 <ActionLink action={{ label: "App Store", href: OFFICIAL.digitalPlusIOS }} variant="onDarkGhost" size="sm" />
                 <ActionLink action={{ label: "Google Play", href: OFFICIAL.digitalPlusAndroid }} variant="onDarkGhost" size="sm" />
               </div>
-              <a href={OFFICIAL.digitalPlusLaunch} {...EXTERNAL_LINK_PROPS} className="mt-5 inline-flex w-fit items-center gap-1.5 text-[13.5px] font-semibold text-white/80 hover:text-white hover:underline">
-                Xem bài ra mắt Digital Plus <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
             </div>
-          </article>
+            <a href={OFFICIAL.digitalPlusExperience} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[330px] overflow-hidden bg-[#073d77] lg:min-h-[470px]">
+              <img src={OFFICIAL_MEDIA.digitalPlusEvent} alt="Sự kiện ra mắt Vietbank Digital Plus" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="eager" decoding="async" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/95 via-[#032f67]/45 to-transparent px-6 pb-5 pt-20">
+                <span className="text-[12px] font-semibold text-white/75">Ảnh sự kiện thật do Vietbank công bố · 30/03/2026</span>
+              </div>
+            </a>
+          </div>
+        </article>
+      </Section>
 
-          <article id="digibiz" className="scroll-mt-28 flex flex-col rounded-xl border border-line bg-surface p-8">
-            <div className="flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-wide text-ink-soft">
-              <Building2 className="h-4 w-4 text-navy" /> Doanh nghiệp · Kênh chính thức
+      <Section tone="soft">
+        <article id="digibiz" className="scroll-mt-28 grid overflow-hidden border-y border-line bg-surface lg:grid-cols-[0.95fr_1.05fr]">
+          <a href={OFFICIAL.digiBizLaunch} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[310px] overflow-hidden bg-soft lg:min-h-[430px]">
+            <img src={OFFICIAL_MEDIA.digiBizLaunch} alt="Sự kiện ra mắt Vietbank DigiBiz" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" decoding="async" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/90 via-[#032f67]/35 to-transparent px-6 pb-5 pt-20 text-white">
+              <span className="text-[12px] font-semibold">Ảnh sự kiện thật do Vietbank công bố · 03/07/2025</span>
             </div>
-            <h2 className="mt-3 font-display text-3xl font-semibold text-navy">Vietbank DigiBiz</h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">Nền tảng số dành cho doanh nghiệp, được Vietbank giới thiệu theo định hướng “Tối ưu vận hành – Tối đa hiệu quả”.</p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          </a>
+          <div className="flex flex-col justify-center px-6 py-9 lg:px-9 lg:py-12">
+            <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
+              <Building2 className="h-4 w-4 text-navy" aria-hidden="true" /> Doanh nghiệp · Vietbank DigiBiz
+            </div>
+            <h2 className="mt-3 max-w-xl font-display text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-tight text-ink">Tối ưu vận hành, không chỉ thực hiện giao dịch</h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">DigiBiz được Vietbank phát triển theo mô hình hợp kênh, tập trung vào quản trị tài chính, lịch thanh toán, người thụ hưởng và phê duyệt theo vai trò.</p>
+            <div className="mt-7 divide-y divide-line border-y border-line">
               {BIZ_FEATURES.map(({ icon: Icon, title, body }) => (
-                <div key={title}>
-                  <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
-                  <h3 className="mt-2 text-[15px] font-semibold">{title}</h3>
-                  <p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">{body}</p>
+                <div key={title} className="grid grid-cols-[36px_1fr] gap-3 py-4">
+                  <Icon className="mt-0.5 h-5 w-5 text-navy" aria-hidden="true" />
+                  <div><h3 className="text-[14.5px] font-semibold">{title}</h3><p className="mt-1 text-[13px] leading-relaxed text-ink-soft">{body}</p></div>
                 </div>
               ))}
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
-              <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} size="sm" />
-              <ActionLink action={{ label: "Thông tin DigiBiz", href: OFFICIAL.digiBizInfo }} variant="secondary" size="sm" />
+              <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} />
+              <ActionLink action={{ label: "Thông tin DigiBiz", href: OFFICIAL.digiBizInfo }} variant="secondary" />
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </Section>
 
-      <Section tone="soft">
-        <SectionHead n="01" eyebrow="Chọn nền tảng" title="So sánh theo công việc cần hoàn thành" lead="Digital Plus và DigiBiz phục vụ hai nhóm khách hàng khác nhau. So sánh dưới đây để chọn đúng kênh trước khi tiếp tục." />
-        <div className="mt-6 overflow-x-auto rounded-xl border border-line bg-surface">
+      <Section>
+        <SectionHead n="01" eyebrow="Chọn đúng kênh" title="Cá nhân hay doanh nghiệp?" lead="So sánh nhanh theo công việc cần hoàn thành; điều kiện sử dụng thực tế vẫn theo Vietbank tại thời điểm đăng ký." />
+        <div className="mt-6 overflow-x-auto border border-line bg-surface">
           <table className="w-full min-w-[720px] text-left">
-            <caption className="sr-only">So sánh Vietbank Digital Plus và Vietbank DigiBiz theo đối tượng sử dụng, điểm truy cập và nhóm tính năng.</caption>
+            <caption className="sr-only">So sánh Vietbank Digital Plus và Vietbank DigiBiz.</caption>
             <thead>
-              <tr className="border-b border-line bg-navy-050 text-[12.5px] uppercase tracking-wide text-ink-soft">
+              <tr className="border-b border-line bg-navy-050 text-[12px] uppercase tracking-[0.08em] text-ink-soft">
                 <th scope="col" className="px-5 py-3.5 font-semibold">Tiêu chí</th>
-                <th scope="col" className="px-5 py-3.5 font-semibold"><span className="inline-flex items-center gap-1.5"><Smartphone className="h-3.5 w-3.5 text-navy" /> Digital Plus</span></th>
-                <th scope="col" className="px-5 py-3.5 font-semibold"><span className="inline-flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-navy" /> DigiBiz</span></th>
+                <th scope="col" className="px-5 py-3.5 font-semibold text-ink">Digital Plus</th>
+                <th scope="col" className="px-5 py-3.5 font-semibold text-ink">DigiBiz</th>
               </tr>
             </thead>
-            <tbody className="text-[14.5px]">
-              {PLATFORM_GUIDE.map((row) => (
-                <tr key={row.feature} className="border-b border-line last:border-0">
+            <tbody className="text-[14px]">
+              {PLATFORM_GUIDE.map((row, index) => (
+                <tr key={row.feature} className={`border-b border-line last:border-0 ${index % 2 ? "bg-soft/45" : ""}`}>
                   <th scope="row" className="px-5 py-3.5 font-medium text-ink">{row.feature}</th>
                   <td className="px-5 py-3.5 text-ink-soft">{row.plus}</td>
                   <td className="px-5 py-3.5 text-ink-soft">{row.biz}</td>
@@ -142,32 +133,33 @@ export default function NganHangSo() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft"><Check className="mt-0.5 h-4 w-4 shrink-0 text-navy" /> Nội dung tính năng được đối chiếu với các nguồn Vietbank công khai; điều kiện dịch vụ thực tế vẫn theo Vietbank tại thời điểm sử dụng.</p>
+        <p className="mt-3 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft"><Check className="mt-0.5 h-4 w-4 shrink-0 text-navy" aria-hidden="true" /> Tính năng được đối chiếu với nguồn Vietbank công khai; không phải mô phỏng tài khoản hay quyền truy cập thực tế.</p>
       </Section>
 
-      <Section id="migration">
-        <SectionHead n="02" eyebrow="Chuyển đổi ứng dụng" title="Đang dùng kênh cá nhân cũ?" lead="Hai mốc dưới đây được Vietbank công bố cho khách hàng cá nhân." />
-        <div className="mt-6 flex flex-col gap-3">
-          {[
-            { date: "18/05/2026", text: "Vietbank dừng cung cấp Internet Banking dành cho khách hàng cá nhân và hướng người dùng sang Digital Plus." },
-            { date: "03/06/2026", text: "Ứng dụng Vietbank Digital cũ ngừng hoạt động; khách hàng cá nhân chuyển sang Vietbank Digital Plus." },
-          ].map((m) => (
-            <div key={m.date} className="flex items-start gap-3 rounded-lg border border-line bg-surface px-5 py-4">
-              <BellRing className="mt-0.5 h-5 w-5 shrink-0 text-red" aria-hidden="true" />
-              <p className="text-[14.5px] leading-relaxed text-ink"><span className="font-semibold tnum">{m.date}</span> — {m.text}</p>
-            </div>
-          ))}
+      <Section id="migration" tone="soft">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <SectionHead n="02" eyebrow="Chuyển đổi kênh cá nhân" title="Đang dùng Vietbank Digital cũ?" lead="Vietbank đã công bố hai mốc chuyển đổi quan trọng cho khách hàng cá nhân trong năm 2026." />
+          <div className="border-y border-line bg-surface">
+            {[
+              ['18/05/2026','Dừng Internet Banking dành cho khách hàng cá nhân và hướng sang Digital Plus.'],
+              ['03/06/2026','Ứng dụng Vietbank Digital cũ ngừng hoạt động; khách hàng chuyển sang Digital Plus.'],
+            ].map(([date,text], index) => (
+              <div key={date} className={`grid grid-cols-[110px_1fr] gap-4 px-5 py-4 ${index ? "border-t border-line" : ""}`}>
+                <span className="font-semibold text-navy tnum">{date}</span><p className="text-[14px] leading-relaxed text-ink-soft">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="mt-6 flex flex-wrap gap-3">
           <ActionLink action={{ label: "Xem thông báo chuyển đổi", href: OFFICIAL.digitalPlusMigration }} variant="secondary" />
-          <Link to="/ho-tro#security" className={`${BTN.ghost} ${BTN_SIZE.lg}`}>Kiểm tra kênh Vietbank chính thức</Link>
+          <Link to="/ho-tro#security" className={`${BTN.ghost} ${BTN_SIZE.lg}`}>Kiểm tra kênh chính thức <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </Section>
 
       <CTABand
-        title="Tiếp tục trên đúng kênh Vietbank"
-        body="Khách hàng cá nhân có thể tải Digital Plus; khách hàng doanh nghiệp có thể truy cập DigiBiz. Liên kết bên dưới mở kênh Vietbank chính thức."
-        primary={{ label: "Tải Digital Plus", href: OFFICIAL.digitalPlus }}
+        title="Chọn đúng nền tảng trước khi đăng nhập"
+        body="Khách hàng cá nhân dùng Digital Plus; khách hàng doanh nghiệp dùng DigiBiz. Các nút bên dưới mở trực tiếp kênh Vietbank chính thức."
+        primary={{ label: "Mở Digital Plus", href: OFFICIAL.digitalPlus }}
         secondary={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }}
       />
     </>
