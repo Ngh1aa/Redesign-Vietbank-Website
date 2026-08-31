@@ -105,7 +105,7 @@ export function SectionLabel({ n, children }: { n: string; children: React.React
         <span className="w-1/2 bg-red" />
         <span className="w-1/2 bg-yellow" />
       </span>
-      <span className="text-[12.5px] font-semibold uppercase tracking-[0.1em]">{children}</span>
+      <span className="text-[12.5px] font-semibold uppercase tracking-[0.08em]">{children}</span>
     </div>
   )
 }
@@ -123,15 +123,15 @@ export function PageHeader({
 }) {
   return (
     <section className="border-b border-line bg-surface">
-      <div className="mx-auto max-w-[1240px] px-6 py-10 lg:py-14">
-        <nav className="mb-6 flex items-center gap-1.5 text-[13px] text-ink-soft" aria-label="Breadcrumb">
+      <div className="mx-auto max-w-[1240px] px-6 py-8 lg:py-11">
+        <nav className="mb-5 flex items-center gap-1.5 text-[13px] text-ink-soft" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-navy">Trang chủ</Link>
-          <ChevronRight className="h-3.5 w-3.5" />
+          <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
           <span className="font-medium text-ink">{crumb}</span>
         </nav>
         <SectionLabel n="—">{eyebrow}</SectionLabel>
-        <h1 className="mt-3 max-w-[820px] font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.02em]">{title}</h1>
-        <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-ink-soft">{lead}</p>
+        <h1 className="mt-3 max-w-[800px] font-display text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.12] tracking-[-0.025em]">{title}</h1>
+        <p className="mt-3.5 max-w-3xl text-[16px] leading-[1.7] text-ink-soft">{lead}</p>
       </div>
     </section>
   )
