@@ -31,10 +31,11 @@ jobs:
   build-pages:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -65,7 +66,7 @@ jobs:
           grep -q "/Redesign-Vietbank-Website/assets/" dist-pages/app/index.html
 
       - name: Sync generated root artifact
-        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message || '', '[skip ci]') }}
+        if: ${{ (github.event_name != 'push' || !contains(github.event.head_commit.message || '', '[skip ci]')) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: |
           rm -rf assets
           cp -R dist-pages/assets ./assets
@@ -74,7 +75,7 @@ jobs:
           git add -A index.html assets main.js styles.css
 
       - name: Commit generated artifact
-        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message || '', '[skip ci]') }}
+        if: ${{ (github.event_name != 'push' || !contains(github.event.head_commit.message || '', '[skip ci]')) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: |
           if git diff --cached --quiet; then
             echo "Pages artifact is already current."
@@ -83,4 +84,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "build: sync V6 Pages artifact [skip ci]"
-          git push
+          TARGET_BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+          git push origin "HEAD:${TARGET_BRANCH}"
