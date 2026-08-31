@@ -48,6 +48,22 @@ export const OFFICIAL = {
     "https://www.vietbank.com.vn/ve-vietbank/tin-tuc/tin-vietbank/thong-bao-trien-khai-dich-vu-cuoc-goi-hien-thi-thuong-hieu-vietbank-voice-brandname",
 } as const
 
+/*
+ * First-party public product media. These are STATIC verified assets, not a
+ * product API. Text and actions must remain usable if an image is unavailable.
+ * Production brand lock should replace remote media with Vietbank-supplied,
+ * licensed assets managed by the real CMS/CDN contract.
+ */
+export const OFFICIAL_MEDIA = {
+  logo: "https://www.vietbank.com.vn/img/logo.png",
+  cardMyStyle: "https://static.vietbank.com.vn/web/CardWebsite/product/my%20style/my-style2.png",
+  cardHappy:
+    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20HAPPY/Master-Card-Credit-Happy-%28Standard%29-3.jpg",
+  cardLifecare:
+    "https://static.vietbank.com.vn/web/CardWebsite/product/MASTERCARD%20CREDIT%20LIFECARE/Mastercard-Lifecare-Credit-3.jpg",
+  cardVisaLuxury: "https://static.vietbank.com.vn/web/CardWebsite/product/Luxury/Platinum-Luxury2.png",
+} as const
+
 export const EXTERNAL_LINK_PROPS = {
   target: "_blank",
   rel: "noreferrer noopener",

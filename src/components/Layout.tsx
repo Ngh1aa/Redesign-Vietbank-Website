@@ -27,36 +27,36 @@ import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
 
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Vietbank Website Redesign V6 — Concept",
-    description: "Concept redesign website Vietbank: định tuyến theo nhu cầu, Digital Plus, DigiBiz, thẻ, hỗ trợ và các handoff tới kênh Vietbank chính thức.",
+    title: "Vietbank Website Redesign V7 — Concept",
+    description: "Vietbank redesign concept V7: service-ledger navigation, verified product objects, Digital Plus, DigiBiz and official Vietbank handoffs.",
   },
   "/ca-nhan": {
-    title: "Khách hàng cá nhân — Vietbank Redesign V6",
+    title: "Khách hàng cá nhân — Vietbank Redesign V7",
     description: "Concept trải nghiệm cá nhân Vietbank: tài khoản, tiết kiệm, thẻ, vay vốn và Digital Plus theo nhu cầu.",
   },
   "/doanh-nghiep": {
-    title: "Khách hàng doanh nghiệp — Vietbank Redesign V6",
+    title: "Khách hàng doanh nghiệp — Vietbank Redesign V7",
     description: "Concept trải nghiệm doanh nghiệp Vietbank: tài khoản, tín dụng, dòng tiền, tài trợ thương mại và DigiBiz.",
   },
   "/ngan-hang-so": {
-    title: "Digital Plus & DigiBiz — Vietbank Redesign V6",
+    title: "Digital Plus & DigiBiz — Vietbank Redesign V7",
     description: "Phân biệt Vietbank Digital Plus cho cá nhân và DigiBiz cho doanh nghiệp, kèm handoff tới các kênh chính thức.",
   },
   "/the": {
-    title: "Thẻ Vietbank — Redesign V6",
-    description: "Concept danh mục thẻ Vietbank dùng tên sản phẩm thật và liên kết tới trang sản phẩm, biểu phí và ưu đãi chính thức.",
+    title: "Thẻ Vietbank — Redesign V7",
+    description: "Danh mục thẻ Vietbank dùng hình ảnh sản phẩm thật, thuộc tính định hướng và liên kết tới trang sản phẩm, biểu phí, ưu đãi chính thức.",
   },
   "/ho-tro": {
-    title: "Hỗ trợ & tra cứu — Vietbank Redesign V6",
+    title: "Hỗ trợ & tra cứu — Vietbank Redesign V7",
     description: "Điểm vào tỷ giá, lãi suất, chi nhánh, biểu mẫu, hotline và kênh hỗ trợ Vietbank chính thức.",
   },
   "/ve-vietbank": {
-    title: "Về Vietbank — Redesign V6",
+    title: "Về Vietbank — Redesign V7",
     description: "Concept giới thiệu Vietbank dựa trên tầm nhìn, quy mô và các thông tin doanh nghiệp được công bố công khai.",
   },
   "/nha-dau-tu": {
-    title: "Quan hệ nhà đầu tư VBB — Vietbank Redesign V6",
-    description: "Concept IR Vietbank: mốc niêm yết VBB, dữ liệu công bố có ngày rõ ràng và handoff tới thư viện nhà đầu tư chính thức.",
+    title: "Quan hệ nhà đầu tư VBB — Vietbank Redesign V7",
+    description: "Concept IR Vietbank: dữ liệu công bố có ngày rõ ràng và handoff tới thư viện nhà đầu tư chính thức.",
   },
 }
 
@@ -67,7 +67,7 @@ export default function Layout() {
 
   useEffect(() => {
     const meta = ROUTE_META[pathname] || {
-      title: "Vietbank Website Redesign V6 — Concept",
+      title: "Vietbank Website Redesign V7 — Concept",
       description: "Independent website redesign concept with verified handoffs to Vietbank public channels.",
     }
     document.title = meta.title
@@ -251,7 +251,7 @@ export default function Layout() {
           </div>
 
           <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-[12.5px] text-white/60 sm:flex-row sm:items-center">
-            <p>© {new Date().getFullYear()} Vietbank Website Redesign Concept · Không phải website chính thức của Vietbank.</p>
+            <p>© {new Date().getFullYear()} Vietbank Website Redesign V7 Concept · Không phải website chính thức của Vietbank.</p>
             <div className="flex flex-wrap gap-5">
               <a href={OFFICIAL.website} {...EXTERNAL_LINK_PROPS} className="hover:text-white">Website Vietbank <ExternalLink className="ml-1 inline h-3 w-3" /></a>
               <a href={OFFICIAL.documents} {...EXTERNAL_LINK_PROPS} className="hover:text-white">Quy định & biểu mẫu</a>

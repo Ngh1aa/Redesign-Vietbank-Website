@@ -101,7 +101,10 @@ export function SectionLabel({ n, children }: { n: string; children: React.React
   return (
     <div className="flex items-center gap-3 text-ink-soft">
       <span className="text-xs tnum text-amber">{n}</span>
-      <span className="h-px w-8 bg-line" />
+      <span className="flex h-0.5 w-8 overflow-hidden" aria-hidden="true">
+        <span className="w-1/2 bg-red" />
+        <span className="w-1/2 bg-yellow" />
+      </span>
       <span className="text-xs font-semibold uppercase tracking-[0.16em]">{children}</span>
     </div>
   )
