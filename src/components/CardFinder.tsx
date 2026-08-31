@@ -175,7 +175,7 @@ export default function CardFinder() {
           <ActionLink action={{ label: "Xem toàn bộ danh mục thẻ", href: OFFICIAL.cards }} variant="secondary" size="sm" />
         </div>
 
-        <div className="mt-7 border-y border-line bg-surface px-4 py-5 sm:px-5">
+        <div className="mt-6 border-y border-line bg-surface px-4 py-5 sm:px-5">
           <div className="flex items-center gap-2 text-[13px] font-semibold text-ink">
             <SlidersHorizontal className="h-4 w-4 text-navy" aria-hidden="true" />
             Bạn quan tâm điều gì?
@@ -218,7 +218,7 @@ export default function CardFinder() {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-l-2 border-yellow bg-amber-soft/50 px-4 py-3 text-[13px] leading-relaxed text-ink-soft">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-l-2 border-yellow bg-amber-soft/50 px-4 py-3 text-[13px] leading-relaxed text-ink-soft">
           <p>
             Ưu tiên giao dịch nội địa hoặc rút tiền mặt tại ATM Vietbank? Thẻ tín dụng Vietbank NAPAS có hướng sử dụng khác với bốn thẻ quốc tế bên dưới.
           </p>
@@ -231,7 +231,7 @@ export default function CardFinder() {
           </a>
         </div>
 
-        <div className="mt-6 overflow-hidden border-y border-line bg-surface">
+        <div className="mt-5 overflow-hidden border-y border-line bg-surface">
           {filteredCards.length ? (
             filteredCards.map((card, rowIndex) => {
               const selected = comparedIds.includes(card.id)
@@ -239,37 +239,63 @@ export default function CardFinder() {
               return (
                 <article
                   key={card.name}
-                  className={`grid gap-6 py-7 md:grid-cols-[260px_1fr] md:items-center md:gap-9 ${
+                  className={`grid gap-5 py-6 md:grid-cols-[220px_1fr] md:items-center md:gap-8 ${
                     rowIndex ? "border-t border-line" : ""
                   }`}
                 >
-                  <div className="relative flex min-h-[170px] items-center justify-center bg-soft px-5 py-6">
+                  <div className="relative flex min-h-[145px] items-center justify-center bg-soft px-5 py-5">
                     <img
                       src={card.image}
                       alt={card.imageAlt}
                       loading="lazy"
                       decoding="async"
-                      className="max-h-[175px] w-full max-w-[250px] object-contain"
+                      className="max-h-[138px] w-full max-w-[205px] object-contain"
                     />
-                    <span className="absolute left-3 top-3 text-[12px] font-semibold tracking-[0.1em] text-ink-soft tnum" aria-hidden="true">
+                    <span className="absolute left-3 top-3 text-[11.5px] font-semibold tracking-[0.1em] text-ink-soft tnum" aria-hidden="true">
                       {card.index}
                     </span>
                   </div>
 
-                  <div className="px-1 pb-1 md:pr-2">
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span className="border-l-2 border-navy pl-3 text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
-                          {card.tag}
+                  <div className="px-1 pb-1 md:pr-3">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="border-l-2 border-navy pl-3 text-[11.5px] font-semibold uppercase tracking-[0.08em] text-ink-soft">
+                        {card.tag}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink-soft">
+                        <span className="flex h-0.5 w-6 overflow-hidden" aria-hidden="true">
+                          <span className="w-1/2 bg-red" />
+                          <span className="w-1/2 bg-yellow" />
                         </span>
-                        <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-ink-soft">
-                          <span className="flex h-0.5 w-6 overflow-hidden" aria-hidden="true">
-                            <span className="w-1/2 bg-red" />
-                            <span className="w-1/2 bg-yellow" />
-                          </span>
-                          Ảnh sản phẩm từ Vietbank
-                        </span>
+                        Packshot sản phẩm Vietbank
+                      </span>
+                    </div>
+
+                    <h2 className="mt-2.5 font-display text-[clamp(1.3rem,2vw,1.55rem)] font-semibold tracking-[-0.02em] text-ink">{card.name}</h2>
+                    <p className="mt-2 max-w-2xl text-[14.5px] leading-relaxed text-ink-soft">{card.desc}</p>
+
+                    <dl className="mt-4 grid gap-3 sm:grid-cols-3">
+                      <div className="border-t border-line pt-3">
+                        <dt className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Miễn lãi</dt>
+                        <dd className="mt-1 text-[14px] font-semibold text-ink">{card.interestFree}</dd>
                       </div>
+                      <div className="border-t border-line pt-3">
+                        <dt className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Hạn mức công bố</dt>
+                        <dd className="mt-1 text-[14px] font-semibold text-ink tnum">{card.creditLimit}</dd>
+                      </div>
+                      <div className="border-t border-line pt-3">
+                        <dt className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Điểm nổi bật</dt>
+                        <dd className="mt-1 text-[14px] font-semibold text-ink">{card.differentiator}</dd>
+                      </div>
+                    </dl>
+
+                    <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-4">
+                      <a
+                        href={card.href}
+                        {...EXTERNAL_LINK_PROPS}
+                        className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-semibold text-navy hover:underline"
+                      >
+                        Xem điều kiện trên Vietbank <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                      </a>
 
                       <button
                         type="button"
@@ -286,26 +312,6 @@ export default function CardFinder() {
                         {selected ? "Đã chọn so sánh" : "Thêm vào so sánh"}
                       </button>
                     </div>
-
-                    <h2 className="mt-3 font-display text-[clamp(1.35rem,2.5vw,1.8rem)] font-semibold tracking-tight text-ink">{card.name}</h2>
-                    <p className="mt-2 max-w-2xl text-[14.5px] leading-relaxed text-ink-soft">{card.desc}</p>
-
-                    <ul className="mt-4 grid gap-x-6 gap-y-2 text-[13.5px] text-ink sm:grid-cols-2">
-                      {card.points.map((point) => (
-                        <li key={point} className="flex items-start gap-2">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-navy" aria-hidden="true" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <a
-                      href={card.href}
-                      {...EXTERNAL_LINK_PROPS}
-                      className="mt-5 inline-flex min-h-11 items-center gap-1.5 font-semibold text-navy hover:underline"
-                    >
-                      Xem điều kiện trên Vietbank <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                    </a>
                   </div>
                 </article>
               )
