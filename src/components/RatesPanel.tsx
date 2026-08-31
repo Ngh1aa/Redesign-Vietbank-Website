@@ -1,6 +1,7 @@
 import { useState, useId } from "react"
-import { ChevronRight, Calculator } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { FX_RATES, SAVINGS_RATES, RATE_STAMP } from "../lib/data"
+import { EXTERNAL_LINK_PROPS, OFFICIAL } from "../lib/official"
 
 export default function RatesPanel() {
   const [tab, setTab] = useState<"fx" | "savings">("fx")
@@ -96,14 +97,13 @@ export default function RatesPanel() {
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[13px] text-ink-soft">
         <span>{RATE_STAMP}</span>
-        <div className="flex gap-4 font-semibold">
-          <a href="#" className="flex items-center gap-1.5 text-navy hover:underline">
-            <Calculator className="h-4 w-4" /> Công cụ tính lãi
-          </a>
-          <a href="#" className="flex items-center gap-1.5 text-navy hover:underline">
-            Bảng đầy đủ <ChevronRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
+        <a
+          href={OFFICIAL.personalRates}
+          {...EXTERNAL_LINK_PROPS}
+          className="flex items-center gap-1.5 font-semibold text-navy hover:underline"
+        >
+          Xem biểu lãi suất Vietbank <ChevronRight className="h-3.5 w-3.5" />
+        </a>
       </div>
     </div>
   )

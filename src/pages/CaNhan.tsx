@@ -116,7 +116,7 @@ export default function CaNhan() {
             </div>
             <p className="mt-4 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-soft">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
-              Điều kiện mở tài khoản thực tế phụ thuộc quy định Vietbank tại thời điểm đăng ký; trang redesign không mô phỏng kết quả phê duyệt.
+              Điều kiện mở tài khoản phụ thuộc quy định Vietbank tại thời điểm đăng ký. Trang này không mô phỏng kết quả phê duyệt.
             </p>
           </div>
           <div className="relative overflow-hidden rounded-xl border border-line bg-navy-050">
@@ -139,7 +139,7 @@ export default function CaNhan() {
         <div className="mt-6 divide-y divide-line border-y border-line">
           {PRODUCTS.map((p) => (
             <div key={p.id} id={p.id} className="scroll-mt-28">
-              <FeatureRow icon={p.icon} title={p.title} body={p.body} cues={p.cues} to={p.to} cta="Tiếp tục" />
+              <FeatureRow icon={p.icon} title={p.title} body={p.body} cues={p.cues} to={p.to} cta="Xem sản phẩm" />
             </div>
           ))}
         </div>
