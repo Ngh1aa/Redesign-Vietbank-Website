@@ -10,8 +10,8 @@ export default function The() {
       <PageHeader
         eyebrow="Thẻ Vietbank"
         crumb="Thẻ"
-        title="Tìm thẻ theo nhu cầu, rồi so cùng tiêu chí"
-        lead="Bắt đầu từ điều bạn muốn thẻ hỗ trợ, chọn 2–3 sản phẩm để so sánh và chỉ đưa ra quyết định sau khi kiểm tra điều kiện, biểu phí, ưu đãi trên kênh Vietbank chính thức."
+        title="Tìm thẻ phù hợp với cách bạn chi tiêu"
+        lead="Chọn nhu cầu, thu hẹp danh sách và so sánh 2–3 thẻ trên cùng tiêu chí. Điều kiện, biểu phí và ưu đãi cuối cùng luôn được kiểm tra trên kênh Vietbank chính thức."
       />
 
       <CardFinder />
