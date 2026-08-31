@@ -3,7 +3,6 @@ import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react"
 import { SectionLabel, BTN, BTN_SIZE } from "./ui"
 import { EXTERNAL_LINK_PROPS } from "./official"
 
-/* Consistent section shell — one container width, one padding rhythm, three surfaces. */
 export function Section({
   children,
   tone = "white",
@@ -13,8 +12,7 @@ export function Section({
   tone?: "white" | "soft" | "brand"
   id?: string
 }) {
-  const bg =
-    tone === "soft" ? "bg-soft" : tone === "brand" ? "bg-navy-700 text-white" : "bg-paper"
+  const bg = tone === "soft" ? "bg-soft" : tone === "brand" ? "bg-navy-700 text-white" : "bg-paper"
   return (
     <section id={id} className={`border-b border-line ${bg}`}>
       <div className="mx-auto max-w-[1240px] px-6 py-16">{children}</div>
@@ -36,15 +34,12 @@ export function SectionHead({
   return (
     <div className="max-w-2xl">
       <SectionLabel n={n}>{eyebrow}</SectionLabel>
-      <h2 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">
-        {title}
-      </h2>
+      <h2 className="mt-3 font-display text-[clamp(1.7rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">{title}</h2>
       {lead && <p className="mt-3 text-[15.5px] leading-relaxed text-ink-soft">{lead}</p>}
     </div>
   )
 }
 
-/* Editorial row — the default alternative to cards for scannable lists. */
 export function FeatureRow({
   icon: Icon,
   title,
@@ -61,10 +56,7 @@ export function FeatureRow({
   cta?: string
 }) {
   return (
-    <Link
-      to={to}
-      className="group flex flex-col gap-3 py-6 transition-colors sm:flex-row sm:items-start sm:gap-6"
-    >
+    <Link to={to} className="group flex flex-col gap-3 py-6 transition-colors sm:flex-row sm:items-start sm:gap-6">
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-navy-050 text-navy transition-colors group-hover:bg-navy group-hover:text-white">
         <Icon className="h-6 w-6" />
       </span>
@@ -73,10 +65,8 @@ export function FeatureRow({
         <p className="mt-1.5 max-w-2xl text-[14.5px] leading-relaxed text-ink-soft">{body}</p>
         {cues && (
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13.5px] text-ink">
-            {cues.map((c) => (
-              <span key={c} className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-navy" /> {c}
-              </span>
+            {cues.map((cue) => (
+              <span key={cue} className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-navy" /> {cue}</span>
             ))}
           </div>
         )}
@@ -94,11 +84,6 @@ export type ActionTarget = {
   href?: string
 }
 
-/**
- * One audited action renderer for both in-site navigation and real Vietbank
- * handoffs. External actions always open in a new tab and show the external
- * arrow so users know they are leaving the concept site.
- */
 export function ActionLink({
   action,
   variant = "primary",
@@ -127,7 +112,6 @@ export function ActionLink({
   )
 }
 
-/* Conversion band — strong deep-blue Type C. Use at most once per page. */
 export function CTABand({
   title,
   body,
@@ -140,7 +124,7 @@ export function CTABand({
   secondary?: ActionTarget
 }) {
   return (
-    <section className="border-b border-line bg-navy-700 text-white">
+    <section id="contact" className="scroll-mt-28 border-b border-line bg-navy-700 text-white">
       <div className="mx-auto flex max-w-[1240px] flex-col items-start justify-between gap-6 px-6 py-14 lg:flex-row lg:items-center">
         <div className="max-w-2xl">
           <h2 className="font-display text-[clamp(1.6rem,2.6vw,2.2rem)] font-semibold leading-tight">{title}</h2>
@@ -155,13 +139,10 @@ export function CTABand({
   )
 }
 
-/* Small stat cell for evidence bands. */
 export function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="px-6 py-6">
-      <div className="font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold tracking-tight text-navy tnum">
-        {value}
-      </div>
+      <div className="font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold tracking-tight text-navy tnum">{value}</div>
       <div className="mt-1 text-[13.5px] leading-snug text-ink-soft">{label}</div>
     </div>
   )
