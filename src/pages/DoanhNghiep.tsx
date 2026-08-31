@@ -1,96 +1,72 @@
 import {
-  Banknote,
-  TrendingUp,
-  Globe,
-  ShieldCheck,
-  Building2,
-  Receipt,
   ArrowRight,
-  Store,
+  Banknote,
+  Building2,
   Factory,
-  Briefcase,
+  Globe,
+  Receipt,
+  ShieldCheck,
+  Store,
+  TrendingUp,
+  Users,
 } from "lucide-react"
 import { Link } from "react-router"
 import { PageHeader, BTN, BTN_SIZE } from "../lib/ui"
-import { ActionLink, Section, SectionHead, FeatureRow, CTABand, Stat } from "../lib/sections"
-import { OFFICIAL } from "../lib/official"
+import { ActionLink, Section, SectionHead, CTABand } from "../lib/sections"
+import { EXTERNAL_LINK_PROPS, OFFICIAL, OFFICIAL_MEDIA } from "../lib/official"
 
-const SOLUTIONS = [
+const OPERATIONS = [
   {
     id: "accounts",
     icon: Building2,
-    title: "Tài khoản doanh nghiệp",
-    body: "Tài khoản thanh toán và các dịch vụ tài khoản phục vụ thu, chi và vận hành giao dịch của doanh nghiệp.",
-    cues: ["Tài khoản thanh toán", "Dịch vụ tài khoản", "Đối chiếu biểu phí"],
+    title: "Thu, chi và tài khoản vận hành",
+    body: "Tổ chức dòng tiền giao dịch hằng ngày, biểu mẫu tài khoản và các dịch vụ thanh toán theo nhu cầu doanh nghiệp.",
+    meta: "Tài khoản · Thu chi · Biểu phí",
     to: "/ho-tro#docs",
-    cta: "Xem biểu mẫu doanh nghiệp",
+    cta: "Xem tài liệu doanh nghiệp",
   },
   {
     id: "credit",
     icon: Banknote,
-    title: "Vay & tài trợ vốn",
-    body: "Nhóm giải pháp tín dụng cho nhu cầu vốn lưu động, đầu tư và hoạt động sản xuất kinh doanh theo hồ sơ thực tế.",
-    cues: ["Vốn kinh doanh", "Điều kiện theo hồ sơ", "Trao đổi chuyên viên"],
+    title: "Nguồn vốn cho tăng trưởng",
+    body: "Bắt đầu từ mục đích vốn lưu động, đầu tư hoặc mở rộng rồi trao đổi điều kiện theo hồ sơ thực tế với Vietbank.",
+    meta: "Vốn lưu động · Đầu tư · Tín dụng",
     to: "/ho-tro#contact",
     cta: "Trao đổi nhu cầu vốn",
   },
   {
     id: "cash-management",
     icon: TrendingUp,
-    title: "Quản lý dòng tiền với DigiBiz",
-    body: "Theo dõi tài khoản và giao dịch, lập lịch thanh toán, duyệt đa cấp và phân quyền theo cấu trúc doanh nghiệp.",
-    cues: ["Quản lý tài khoản", "Lập lịch thanh toán", "Phê duyệt & phân quyền"],
+    title: "Kiểm soát dòng tiền và phê duyệt",
+    body: "DigiBiz hỗ trợ theo dõi tài khoản, lập lịch thanh toán, quản lý người thụ hưởng và phê duyệt nhiều cấp.",
+    meta: "DigiBiz · Dòng tiền · Phân quyền",
     to: "/ngan-hang-so#digibiz",
-    cta: "Xem DigiBiz",
+    cta: "Khám phá DigiBiz",
   },
   {
     id: "trade",
     icon: Globe,
-    title: "Tài trợ thương mại & chuyển tiền quốc tế",
-    body: "Vietbank công khai các nhóm dịch vụ tài trợ thương mại và chuyển tiền quốc tế cho khách hàng doanh nghiệp.",
-    cues: ["Tài trợ thương mại", "Chuyển tiền quốc tế", "Thông tin tỷ giá"],
+    title: "Giao dịch và thương mại quốc tế",
+    body: "Đi tới nhóm tài trợ thương mại, chuyển tiền quốc tế và tỷ giá theo đúng nghiệp vụ doanh nghiệp cần xử lý.",
+    meta: "XNK · Chuyển tiền · Tỷ giá",
     to: "/ho-tro#rates",
-    cta: "Xem tỷ giá & hỗ trợ quốc tế",
-  },
-  {
-    id: "guarantee",
-    icon: ShieldCheck,
-    title: "Bảo lãnh trong nước",
-    body: "Nhóm sản phẩm bảo lãnh phục vụ nghĩa vụ và giao dịch doanh nghiệp; điều kiện được xác định theo từng nhu cầu/hồ sơ.",
-    cues: ["Nhu cầu bảo lãnh", "Hồ sơ doanh nghiệp", "Tư vấn theo trường hợp"],
-    to: "/ho-tro#contact",
-    cta: "Trao đổi nhu cầu bảo lãnh",
+    cta: "Xem tỷ giá & hỗ trợ",
   },
   {
     id: "payments",
     icon: Receipt,
-    title: "Thu ngân sách & dịch vụ thanh toán",
-    body: "Các dịch vụ doanh nghiệp bao gồm thu ngân sách nhà nước và nhóm tiện ích thanh toán theo danh mục Vietbank công bố.",
-    cues: ["Thu ngân sách", "Dịch vụ thanh toán", "Quy định & biểu mẫu"],
+    title: "Dịch vụ thanh toán & ngân sách",
+    body: "Tra cứu nhóm dịch vụ thanh toán, thu ngân sách và các quy định/biểu mẫu Vietbank đang công bố cho tổ chức.",
+    meta: "Thanh toán · Ngân sách · Biểu mẫu",
     to: "/ho-tro#docs",
-    cta: "Xem tài liệu thanh toán",
+    cta: "Mở trung tâm tài liệu",
   },
 ]
 
-const SEGMENTS = [
-  {
-    icon: Store,
-    title: "Hộ kinh doanh & SME",
-    body: "Ưu tiên khả năng nhận/chuyển tiền, theo dõi dòng tiền và tiếp cận vốn phù hợp với quy mô vận hành.",
-    cues: ["Tài khoản giao dịch", "DigiBiz", "Nhu cầu vốn"],
-  },
-  {
-    icon: Factory,
-    title: "Doanh nghiệp sản xuất",
-    body: "Thường cần phối hợp vốn lưu động, thanh toán nhà cung cấp và các công cụ tài trợ thương mại theo chu kỳ sản xuất.",
-    cues: ["Vốn lưu động", "Tài trợ thương mại", "Quản trị thanh toán"],
-  },
-  {
-    icon: Briefcase,
-    title: "Dịch vụ & thương mại",
-    body: "Tập trung vào quản trị nhiều khoản thu/chi, quy trình phê duyệt và khả năng theo dõi tài khoản minh bạch.",
-    cues: ["Quản lý dòng tiền", "Phê duyệt đa cấp", "Theo dõi giao dịch"],
-  },
+const BUSINESS_CONTEXTS = [
+  { icon: Store, title: "SME & thương mại", text: "Ưu tiên khả năng giao dịch nhanh, nhìn rõ dòng tiền và tiếp cận nguồn vốn phù hợp chu kỳ kinh doanh." },
+  { icon: Factory, title: "Sản xuất", text: "Kết hợp vốn lưu động, thanh toán nhà cung cấp và tài trợ thương mại theo chu kỳ sản xuất." },
+  { icon: Users, title: "Tổ chức nhiều cấp duyệt", text: "Đặt trọng tâm vào phân quyền, trạng thái giao dịch và quy trình phê duyệt minh bạch trên DigiBiz." },
 ]
 
 export default function DoanhNghiep() {
@@ -99,113 +75,131 @@ export default function DoanhNghiep() {
       <PageHeader
         eyebrow="Khách hàng doanh nghiệp"
         crumb="Doanh nghiệp"
-        title="Giải pháp tài chính theo cách doanh nghiệp vận hành"
-        lead="Từ tài khoản, nguồn vốn và dòng tiền đến tài trợ thương mại — chọn theo công việc cần hoàn thành, sau đó tiếp tục sang DigiBiz, tài liệu hoặc chuyên viên Vietbank phù hợp."
+        title="Tài chính đi cùng cách doanh nghiệp vận hành"
+        lead="Tài khoản, nguồn vốn, dòng tiền và giao dịch quốc tế được tổ chức theo công việc cần hoàn thành — không buộc doanh nghiệp dò qua một catalogue dài."
       />
+
+      <Section>
+        <div className="grid overflow-hidden border-y border-line bg-navy text-white lg:grid-cols-[1fr_1.05fr]">
+          <div className="flex flex-col justify-center px-6 py-9 lg:px-9 lg:py-12">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">Vietbank DigiBiz · Doanh nghiệp hiện đại</p>
+            <h2 className="mt-3 max-w-xl font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-tight">Tối ưu vận hành. Tối đa hiệu quả.</h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/76">Vietbank giới thiệu DigiBiz như một nền tảng hợp kênh cho quản trị tài chính, giao dịch, phê duyệt và phân quyền trong doanh nghiệp.</p>
+            <div className="mt-6 grid border-y border-white/15 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
+              {[['Hợp kênh','Mobile · Web · hệ sinh thái'],['Đa cấp','Duyệt giao dịch theo vai trò'],['Tập trung','Tài khoản · dòng tiền · trạng thái']].map(([title, text], index) => (
+                <div key={title} className={`py-4 sm:px-4 ${index ? 'border-t border-white/15 sm:border-t-0' : ''}`}>
+                  <strong className="block text-[14px] text-white">{title}</strong>
+                  <span className="mt-1 block text-[12.5px] leading-relaxed text-white/60">{text}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} variant="onDark" />
+              <Link to="/ngan-hang-so#digibiz" className={`${BTN.onDarkGhost} ${BTN_SIZE.lg}`}>Xem tính năng DigiBiz <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+          </div>
+
+          <a href={OFFICIAL.digiBizLaunch} {...EXTERNAL_LINK_PROPS} className="group relative min-h-[320px] overflow-hidden bg-[#0d4178] lg:min-h-[430px]">
+            <img
+              src={OFFICIAL_MEDIA.digiBizLaunch}
+              alt="Sự kiện ra mắt Vietbank DigiBiz do Vietbank công bố"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#032f67]/95 via-[#032f67]/55 to-transparent px-6 pb-5 pt-20">
+              <span className="text-[12px] font-semibold text-white/75">Ảnh sự kiện ra mắt DigiBiz · Vietbank, 03/07/2025</span>
+            </div>
+          </a>
+        </div>
+      </Section>
 
       <Section tone="soft">
         <SectionHead
           n="01"
-          eyebrow="Năng lực số đã công bố"
-          title="DigiBiz tập trung vào vận hành tài chính doanh nghiệp"
-          lead="Ba đặc tính dưới đây được Vietbank công bố cho DigiBiz và giúp doanh nghiệp hiểu nhanh cách nền tảng hỗ trợ vận hành."
+          eyebrow="Theo công việc"
+          title="Doanh nghiệp đang cần giải quyết điều gì?"
+          lead="Mỗi điểm vào dẫn đến một nhu cầu vận hành rõ ràng và giữ nguyên ranh giới giữa nội dung định hướng với hệ thống Vietbank thật."
         />
-        <div className="mt-6 grid divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <Stat value="Hợp kênh" label="Vietbank giới thiệu DigiBiz là nền tảng hợp kênh cho hoạt động tài chính doanh nghiệp." />
-          <Stat value="Đa cấp" label="Hỗ trợ duyệt giao dịch nhiều cấp và tùy chỉnh phân quyền theo cấu trúc doanh nghiệp." />
-          <Stat value="Thời gian thực" label="Định hướng theo dõi và quản lý thông tin tài khoản/giao dịch theo thời gian thực." />
+        <div className="mt-6 border-y border-line bg-surface">
+          {OPERATIONS.map(({ id, icon: Icon, title, body, meta, to, cta }, index) => (
+            <Link
+              key={id}
+              id={id}
+              to={to}
+              className={`group grid gap-4 px-4 py-5 transition-colors hover:bg-navy-050 sm:grid-cols-[44px_1fr_auto] sm:items-center sm:px-5 ${index ? "border-t border-line" : ""}`}
+            >
+              <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
+              <div>
+                <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-soft">{meta}</div>
+                <h3 className="mt-1 text-[17px] font-semibold tracking-tight group-hover:text-navy">{title}</h3>
+                <p className="mt-1 max-w-3xl text-[14px] leading-relaxed text-ink-soft">{body}</p>
+              </div>
+              <span className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold text-navy sm:justify-self-end">{cta} <ArrowRight className="h-4 w-4" /></span>
+            </Link>
+          ))}
         </div>
-        <p className="mt-3 text-[12.5px] leading-relaxed text-ink-soft">
-          Nguồn: thông tin ra mắt Vietbank DigiBiz ngày 03/07/2025. Điều kiện sử dụng thực tế theo Vietbank tại thời điểm đăng ký.
-        </p>
       </Section>
 
       <Section>
-        <SectionHead
-          n="02"
-          eyebrow="Giải pháp theo nhu cầu"
-          title="Doanh nghiệp đang cần giải quyết điều gì?"
-          lead="Mỗi nhóm dẫn thẳng tới nhu cầu tương ứng để doanh nghiệp không phải dò lại từ đầu trang."
-        />
-        <div className="mt-6 divide-y divide-line border-y border-line">
-          {SOLUTIONS.map((s) => (
-            <div key={s.id} id={s.id} className="scroll-mt-28">
-              <FeatureRow icon={s.icon} title={s.title} body={s.body} cues={s.cues} to={s.to} cta={s.cta} />
-            </div>
-          ))}
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+          <SectionHead
+            n="02"
+            eyebrow="Theo mô hình vận hành"
+            title="Một giải pháp không phù hợp cho mọi doanh nghiệp"
+            lead="Bối cảnh giúp định hướng nơi bắt đầu; hồ sơ và điều kiện thực tế vẫn được xác định theo từng doanh nghiệp."
+          />
+          <div className="grid border-y border-line sm:grid-cols-3 sm:divide-x sm:divide-line">
+            {BUSINESS_CONTEXTS.map(({ icon: Icon, title, text }, index) => (
+              <div key={title} className={`px-5 py-5 ${index ? "border-t border-line sm:border-t-0" : ""}`}>
+                <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
+                <h3 className="mt-3 text-[16px] font-semibold">{title}</h3>
+                <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-soft">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
       <Section tone="soft">
-        <SectionHead
-          n="03"
-          eyebrow="Theo mô hình vận hành"
-          title="Gợi ý điểm bắt đầu theo bối cảnh"
-          lead="Đây là định hướng khám phá, không phải điều kiện phê duyệt sản phẩm. Doanh nghiệp có thể phối hợp nhiều nhóm giải pháp cùng lúc."
-        />
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
-          {SEGMENTS.map(({ icon: Icon, title, body, cues }) => (
-            <article
-              key={title}
-              className="flex flex-col rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-(--shadow-card-hover)"
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-050 text-navy">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight">{title}</h3>
-              <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-ink-soft">{body}</p>
-              <ul className="mt-3 flex flex-col gap-1.5 text-[13.5px] text-ink">
-                {cues.map((c) => (
-                  <li key={c} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-navy" /> {c}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <aside className="order-2 border-y border-line bg-soft px-6 py-7 lg:order-1 lg:border lg:px-8" aria-label="Các năng lực nổi bật của DigiBiz">
-            <Building2 className="h-6 w-6 text-navy" aria-hidden="true" />
-            <h3 className="mt-4 font-display text-xl font-semibold">DigiBiz hỗ trợ vận hành gì?</h3>
-            <div className="mt-4 divide-y divide-line border-y border-line">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <SectionHead
+              n="03"
+              eyebrow="Kiểm soát giao dịch"
+              title="DigiBiz dành cho những quy trình có nhiều vai trò"
+              lead="Các năng lực được Vietbank công bố tập trung vào quản lý tài khoản, người thụ hưởng, lịch thanh toán và duyệt giao dịch nhiều cấp."
+            />
+            <div className="mt-6 divide-y divide-line border-y border-line">
               {[
-                ["01", "Theo dõi tài khoản", "Tập trung thông tin tài khoản, dòng tiền và trạng thái giao dịch."],
-                ["02", "Lập lịch thanh toán", "Quản lý người thụ hưởng và các lịch thanh toán theo nhu cầu doanh nghiệp."],
-                ["03", "Phê duyệt đa cấp", "Phân quyền và duyệt giao dịch theo vai trò trong tổ chức."],
-              ].map(([n, title, body]) => (
-                <div key={n} className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                ['01','Theo dõi tập trung','Xem thông tin tài khoản, dòng tiền và trạng thái giao dịch trong một nền tảng.'],
+                ['02','Lập và sắp lịch','Quản lý người thụ hưởng và các lịch thanh toán theo nhu cầu vận hành.'],
+                ['03','Duyệt theo vai trò','Tùy chỉnh phân quyền và phê duyệt nhiều cấp theo cấu trúc doanh nghiệp.'],
+              ].map(([n,title,body]) => (
+                <div key={n} className="grid grid-cols-[40px_1fr] gap-3 py-4">
                   <span className="text-[12.5px] font-semibold text-amber tnum">{n}</span>
-                  <span><strong className="block text-[14.5px]">{title}</strong><span className="mt-1 block text-[13.5px] leading-relaxed text-ink-soft">{body}</span></span>
+                  <div><h3 className="text-[15px] font-semibold">{title}</h3><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">{body}</p></div>
                 </div>
               ))}
             </div>
-          </aside>
-          <div className="order-1 lg:order-2">
-            <SectionHead
-              n="04"
-              eyebrow="Ngân hàng số doanh nghiệp"
-              title="Vietbank DigiBiz — từ tìm hiểu sang kênh vận hành chính thức"
-              lead="DigiBiz được Vietbank định vị như trợ lý tài chính số cho quản trị, giao dịch và kết nối hệ sinh thái kinh doanh. Trang này giúp bạn hiểu nền tảng trước khi mở kênh Vietbank chính thức."
-            />
-            <div className="mt-6 flex flex-wrap gap-3">
-              <ActionLink action={{ label: "Truy cập DigiBiz", href: OFFICIAL.digiBiz }} />
-              <Link to="/ngan-hang-so#digibiz" className={`${BTN.secondary} ${BTN_SIZE.lg}`}>
-                Xem tính năng DigiBiz <ArrowRight className="h-4 w-4" />
-              </Link>
+          </div>
+          <div className="border-l-2 border-navy bg-surface px-6 py-6">
+            <ShieldCheck className="h-6 w-6 text-navy" aria-hidden="true" />
+            <h3 className="mt-4 font-display text-xl font-semibold">Tác vụ có xác thực vẫn ở Vietbank</h3>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">Website này không mô phỏng đăng nhập, phân quyền hay phê duyệt giao dịch. Khi doanh nghiệp sẵn sàng thao tác, hãy chuyển sang DigiBiz hoặc liên hệ Vietbank.</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <ActionLink action={{ label: "Mở DigiBiz", href: OFFICIAL.digiBiz }} size="sm" />
+              <ActionLink action={{ label: "Thông tin DigiBiz", href: OFFICIAL.digiBizInfo }} variant="ghost" size="sm" />
             </div>
           </div>
         </div>
       </Section>
 
       <CTABand
-        title="Cần trao đổi theo ngành và quy mô?"
-        body="Sử dụng kênh liên hệ chính thức của Vietbank cho nhu cầu tín dụng, hồ sơ hoặc giải pháp doanh nghiệp; dùng DigiBiz khi bạn cần vào nền tảng số."
+        title="Cần giải pháp theo ngành, quy mô hoặc hồ sơ?"
+        body="Dùng kênh liên hệ Vietbank cho nhu cầu tín dụng và giải pháp cụ thể; dùng DigiBiz khi doanh nghiệp cần vào nền tảng số chính thức."
         primary={{ label: "Liên hệ Vietbank", href: OFFICIAL.contact }}
-        secondary={{ label: "Quy định & biểu mẫu", href: OFFICIAL.documents }}
+        secondary={{ label: "Mở DigiBiz", href: OFFICIAL.digiBiz }}
       />
     </>
   )
