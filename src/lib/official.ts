@@ -9,10 +9,15 @@
 
 export const OFFICIAL = {
   website: "https://www.vietbank.com.vn/",
-  contact: "https://www.vietbank.com.vn/about-vietbank/contact",
+  contact: "https://www.vietbank.com.vn/ve-vietbank/lien-he",
   branches: "https://www.vietbank.com.vn/chi-nhanh",
   personalFx: "https://www.vietbank.com.vn/ca-nhan/ho-tro/ty-gia",
   personalRates: "https://www.vietbank.com.vn/ca-nhan/ho-tro/lai-suat",
+  personalCalculator: "https://www.vietbank.com.vn/ca-nhan/ho-tro/cong-cu-tinh-toan",
+  businessCalculator: "https://www.vietbank.com.vn/doanh-nghiep/ho-tro/cong-cu-tinh-toan",
+  invoiceLookupPersonal: "https://www.vietbank.com.vn/tracuuhoadon/ca-nhan",
+  invoiceLookupBusiness: "https://www.vietbank.com.vn/tracuuhoadon/doanh-nghiep/thong-tin-khach-hang",
+  transactionTrace: "https://www.vietbank.com.vn/tra-soat-giao-dich/thong-tin-khach-hang",
   documents: "https://www.vietbank.com.vn/quy-dinh-va-bieu-mau/quy-dinh-chung",
   personalForms: "https://www.vietbank.com.vn/quy-dinh-va-bieu-mau/bieu-mau-khach-hang-ca-nhan",
   businessForms: "https://www.vietbank.com.vn/quy-dinh-va-bieu-mau/bieu-mau-khach-hang-to-chuc",
