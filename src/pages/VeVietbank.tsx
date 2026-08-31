@@ -3,6 +3,13 @@ import { Link } from "react-router"
 import { PageHeader } from "../lib/ui"
 import { Section, SectionHead, CTABand, Stat, InlineLink } from "../lib/sections"
 
+const ABOUT_NEWS = [
+  { tag: "Thông báo", date: "29/08/2026", title: "Nâng cấp hệ thống Digital Plus đêm 02/09 — một số dịch vụ tạm gián đoạn", to: "/ho-tro" },
+  { tag: "Sự kiện", date: "26/04/2026", title: "Đại hội đồng cổ đông thường niên 2026 — Nghị quyết đã được công bố", to: "/nha-dau-tu" },
+  { tag: "Cộng đồng", date: "15/04/2026", title: "Vietbank đồng hành chương trình tài chính cho sinh viên khởi nghiệp", to: "/nha-dau-tu" },
+  { tag: "Sản phẩm", date: "20/03/2026", title: "Ra mắt gói tài khoản số dành cho doanh nghiệp mới thành lập", to: "/doanh-nghiep" },
+]
+
 export default function VeVietbank() {
   return (
     <>
@@ -69,7 +76,7 @@ export default function VeVietbank() {
         <p className="mt-3 text-[12.5px] text-ink-soft">Số liệu trình bày mang tính minh hoạ cho mục đích thiết kế.</p>
       </Section>
 
-      {/* News */}
+      {/* News — distinct from Home, focused on company events */}
       <Section tone="soft">
         <div className="flex items-center justify-between gap-3">
           <SectionHead n="04" eyebrow="Tin tức & Thông báo" title="Cập nhật từ Vietbank" />
@@ -78,13 +85,8 @@ export default function VeVietbank() {
           </span>
         </div>
         <div className="mt-6 flex flex-col divide-y divide-line border-y border-line">
-          {[
-            { tag: "Thông báo", date: "29/08/2026", title: "Nâng cấp hệ thống Digital Plus đêm 02/09 — một số dịch vụ tạm gián đoạn" },
-            { tag: "Khuyến mãi", date: "24/08/2026", title: "Hoàn tiền tới 8% cho chủ thẻ tín dụng Vietbank trong quý III" },
-            { tag: "Lãi suất", date: "20/08/2026", title: "Cập nhật biểu lãi suất tiết kiệm áp dụng từ ngày 20/08/2026" },
-            { tag: "An toàn", date: "18/08/2026", title: "Nhận diện kênh chính thức và Voice Brandname của Vietbank" },
-          ].map((n) => (
-            <a key={n.title} href="#" className="group flex items-start gap-4 py-4 transition-colors hover:bg-navy-050/60">
+          {ABOUT_NEWS.map((n) => (
+            <Link key={n.title} to={n.to} className="group flex items-start gap-4 py-4 transition-colors hover:bg-navy-050/60">
               <div className="flex w-24 shrink-0 flex-col">
                 <span className="rounded border border-line bg-surface px-2 py-0.5 text-center text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">
                   {n.tag}
@@ -93,7 +95,7 @@ export default function VeVietbank() {
               </div>
               <p className="text-[15.5px] font-medium leading-snug text-ink group-hover:text-navy">{n.title}</p>
               <ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-ink-soft transition-colors group-hover:text-navy" />
-            </a>
+            </Link>
           ))}
         </div>
         <div className="mt-6">

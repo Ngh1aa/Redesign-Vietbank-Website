@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router"
 import {
   ChevronRight,
@@ -23,6 +23,7 @@ import {
   MapPin,
   Calculator,
   Receipt,
+  X,
 } from "lucide-react"
 import { SectionLabel, BTN, BTN_SIZE, HOTLINE, HOTLINE_TEL } from "../lib/ui"
 import RatesPanel from "../components/RatesPanel"
@@ -64,21 +65,62 @@ const NEEDS: Record<Segment, { title: string; body: string; tag: string; cues: s
 }
 
 export default function Home() {
-  const [segment, setSegment] = useState<Segment>("ca-nhan")
-  const [faqOpen, setFaqOpen] = useState<number | null>(0)
+  const [segment, setSegment] = useState<Segment>(() => {
+    try {
+      const saved = localStorage.getItem("vietbank.segment")
+      return saved === "doanh-nghiep" ? "doanh-nghiep" : "ca-nhan"
+    } catch {
+      return "ca-nhan"
+    }
+  })
   const isPersonal = segment === "ca-nhan"
+
+  // Persist segment preference across sessions
+  useEffect(() => {
+    try {
+      localStorage.setItem("vietbank.segment", segment)
+    } catch {
+      /* localStorage may be blocked — non-critical */
+    }
+  }, [segment])
 
   return (
     <>
+      {/* ============ 00 PROMO / NOTICE STRIP ============ */}
+      <div
+        role="region"
+        aria-label="Thông báo quan trọng"
+        className="border-b border-line bg-navy-050"
+      >
+        <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-3 px-6 py-2 text-[12.5px] text-ink-soft">
+          <span className="flex items-center gap-2">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-red" aria-hidden="true" />
+            <span className="font-semibold text-ink">02/09/2026 · 23:00–03:00</span>
+            Nâng cấp hệ thống Digital Plus — một số dịch vụ tạm gián đoạn.
+            <Link to="/ve-vietbank" className="hidden font-semibold text-navy hover:underline sm:inline">
+              Xem chi tiết
+            </Link>
+          </span>
+          <button
+            type="button"
+            aria-label="Đóng thông báo"
+            className="grid h-6 w-6 place-items-center rounded text-ink-soft transition-colors hover:bg-line hover:text-ink"
+            onClick={(e) => (e.currentTarget.closest('[role="region"]') as HTMLElement | null)?.remove()}
+          >
+            <X className="h-3.5 w-3.5" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
       {/* ============ 01 HERO + INTENT ROUTER ============ */}
       <section className="border-b border-line">
         <div className="mx-auto grid max-w-[1240px] items-stretch gap-0 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="reveal flex flex-col justify-center py-12 lg:py-16 lg:pr-14">
+          <div className="reveal flex flex-col justify-center py-14 lg:py-20 lg:pr-14">
             <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[12.5px] font-medium text-ink-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-navy" />
               Chuyển đổi số 2026 · Tăng trưởng — An toàn — Bền vững
             </div>
-            <h1 className="max-w-[680px] font-display text-[clamp(2rem,3.6vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+            <h1 className="max-w-[680px] font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
               Ngân hàng đồng hành cùng
               <span className="text-navy"> mọi quyết định tài chính</span> của bạn.
             </h1>
@@ -127,6 +169,8 @@ export default function Home() {
             <img
               src="https://images.unsplash.com/photo-1723864059860-636dfc060b9d?w=1000&h=1200&fit=crop&auto=format"
               alt="Khách hàng sử dụng ứng dụng ngân hàng số Vietbank trên điện thoại"
+              fetchPriority="high"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent" />
@@ -186,7 +230,7 @@ export default function Home() {
             {NEEDS[segment].map((n, i) => (
               <article
                 key={n.title}
-                className="group flex flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(11,42,107,0.18)]"
+                className="group flex flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-shadow hover:shadow-[var(--shadow-card-hover)]"
               >
                 <div>
                   <div className="flex items-center gap-2">
@@ -298,7 +342,7 @@ export default function Home() {
           </div>
 
           <div className="mt-5 flex items-start gap-3 rounded-lg border border-line bg-navy-050 px-4 py-3.5 text-[13.5px] text-ink">
-            <BellRing className="mt-0.5 h-4.5 w-4.5 shrink-0 text-red" />
+            <BellRing className="mt-0.5 h-4 w-4 shrink-0 text-red" />
             <p className="leading-relaxed">
               Ứng dụng <span className="font-medium">Vietbank Digital</span> đã ngừng hoạt động từ 03/06/2026 và Internet
               Banking cá nhân dừng từ 18/05/2026. Khách hàng cá nhân vui lòng chuyển sang{" "}
@@ -401,18 +445,14 @@ export default function Home() {
                 { q: "Digital Plus khác gì với Vietbank Digital cũ?", a: "Digital Plus là ứng dụng ngân hàng số chính thức hiện nay cho khách hàng cá nhân. Ứng dụng Vietbank Digital cũ đã ngừng hoạt động; khách hàng chuyển sang Digital Plus theo hướng dẫn." },
                 { q: "Doanh nghiệp đăng ký DigiBiz như thế nào?", a: "Doanh nghiệp đăng ký trực tuyến hoặc tại chi nhánh. Đội ngũ tư vấn sẽ hỗ trợ thiết lập phân quyền phê duyệt và kết nối dịch vụ thu chi hộ." },
                 { q: "Làm sao để biết tin nhắn có phải từ Vietbank?", a: `Vietbank không gửi đường link đăng nhập qua SMS/email và không yêu cầu OTP. Khi nghi ngờ, hãy gọi hotline ${HOTLINE} để xác thực.` },
-              ].map((item, i) => (
-                <div key={item.q} className="border-b border-line last:border-0">
-                  <button
-                    onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-                    aria-expanded={faqOpen === i}
-                    className="flex w-full items-center justify-between gap-4 bg-surface px-5 py-4 text-left text-[15px] font-semibold transition-colors hover:bg-navy-050"
-                  >
+              ].map((item) => (
+                <details key={item.q} className="group border-b border-line last:border-0">
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 bg-surface px-5 py-4 text-[15px] font-semibold transition-colors hover:bg-navy-050 [&::-webkit-details-marker]:hidden">
                     {item.q}
-                    <ChevronDown className={`h-4.5 w-4.5 shrink-0 text-navy transition-transform ${faqOpen === i ? "rotate-180" : ""}`} />
-                  </button>
-                  {faqOpen === i && <p className="bg-surface px-5 pb-5 text-[14.5px] leading-relaxed text-ink-soft">{item.a}</p>}
-                </div>
+                    <ChevronDown className="h-4 w-4 shrink-0 text-navy transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="bg-surface px-5 pb-5 text-[14.5px] leading-relaxed text-ink-soft">{item.a}</p>
+                </details>
               ))}
             </div>
           </div>

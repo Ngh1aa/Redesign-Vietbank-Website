@@ -9,10 +9,53 @@ import { ChevronRight } from "lucide-react"
 export const HOTLINE = "1800 1122"
 export const HOTLINE_TEL = "tel:18001122"
 
-export const NAV_LINKS: { label: string; to: string; caret?: boolean }[] = [
-  { label: "Cá nhân", to: "/ca-nhan", caret: true },
-  { label: "Doanh nghiệp", to: "/doanh-nghiep", caret: true },
-  { label: "Ngân hàng số", to: "/ngan-hang-so", caret: true },
+/**
+ * Top-level navigation. Mega-menu `children` are rendered as dropdown
+ * panels on desktop, inline lists on mobile.
+ */
+export type NavItem = {
+  label: string
+  to: string
+  caret?: boolean
+  children?: { label: string; to: string; hint?: string }[]
+}
+
+export const NAV_LINKS: NavItem[] = [
+  {
+    label: "Cá nhân",
+    to: "/ca-nhan",
+    caret: true,
+    children: [
+      { label: "Tài khoản thanh toán", to: "/ca-nhan", hint: "Mở online eKYC" },
+      { label: "Tiết kiệm", to: "/ca-nhan", hint: "Lãi suất tới 6.3%/năm" },
+      { label: "Thẻ", to: "/the", hint: "Hoàn tiền · Tích dặm" },
+      { label: "Vay vốn", to: "/ca-nhan", hint: "Mua nhà · ô tô · tiêu dùng" },
+      { label: "Ngân hàng số", to: "/ngan-hang-so", hint: "Digital Plus" },
+    ],
+  },
+  {
+    label: "Doanh nghiệp",
+    to: "/doanh-nghiep",
+    caret: true,
+    children: [
+      { label: "Tài khoản doanh nghiệp", to: "/doanh-nghiep", hint: "Thu chi hộ, nhiều tài khoản phụ" },
+      { label: "Vay & tài trợ vốn", to: "/doanh-nghiep", hint: "Vốn lưu động · thấu chi" },
+      { label: "Quản lý dòng tiền", to: "/doanh-nghiep", hint: "Chi lương · đối soát tập trung" },
+      { label: "Tài trợ thương mại", to: "/doanh-nghiep", hint: "L/C · nhờ thu · XNK" },
+      { label: "DigiBiz", to: "/ngan-hang-so", hint: "Ngân hàng số doanh nghiệp" },
+    ],
+  },
+  {
+    label: "Ngân hàng số",
+    to: "/ngan-hang-so",
+    caret: true,
+    children: [
+      { label: "Vietbank Digital Plus", to: "/ngan-hang-so", hint: "Cá nhân · 24/7" },
+      { label: "Vietbank DigiBiz", to: "/ngan-hang-so", hint: "Doanh nghiệp · web + mobile" },
+      { label: "Hướng dẫn chuyển đổi", to: "/ho-tro", hint: "Từ Internet Banking / Vietbank Digital" },
+      { label: "An toàn ngân hàng số", to: "/ho-tro#security", hint: "Phòng chống lừa đảo" },
+    ],
+  },
   { label: "Thẻ", to: "/the" },
   { label: "Hỗ trợ", to: "/ho-tro" },
   { label: "Về Vietbank", to: "/ve-vietbank" },
@@ -22,13 +65,15 @@ export const NAV_LINKS: { label: string; to: string; caret?: boolean }[] = [
 /* Standardised button system — Primary / Secondary / on-dark. Two sizes only. */
 export const BTN = {
   primary:
-    "inline-flex items-center justify-center gap-2 rounded-md bg-navy font-semibold text-white transition-colors hover:bg-navy-700",
+    "inline-flex items-center justify-center gap-2 rounded-md bg-navy font-semibold text-white transition-colors hover:bg-navy-700 active:bg-navy-700 disabled:opacity-50 disabled:cursor-not-allowed",
   secondary:
-    "inline-flex items-center justify-center gap-2 rounded-md border border-navy bg-surface font-semibold text-navy transition-colors hover:bg-navy-050",
+    "inline-flex items-center justify-center gap-2 rounded-md border border-navy bg-surface font-semibold text-navy transition-colors hover:bg-navy-050 active:bg-navy-050 disabled:opacity-50 disabled:cursor-not-allowed",
   onDark:
-    "inline-flex items-center justify-center gap-2 rounded-md bg-white font-semibold text-navy transition-colors hover:bg-white/90",
+    "inline-flex items-center justify-center gap-2 rounded-md bg-white font-semibold text-navy transition-colors hover:bg-white/90 active:bg-white/80 disabled:opacity-50 disabled:cursor-not-allowed",
   onDarkGhost:
-    "inline-flex items-center justify-center gap-2 rounded-md border border-white/25 font-semibold text-white transition-colors hover:bg-white/10",
+    "inline-flex items-center justify-center gap-2 rounded-md border border-white/25 font-semibold text-white transition-colors hover:bg-white/10 active:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed",
+  ghost:
+    "inline-flex items-center justify-center gap-2 rounded-md font-semibold text-navy transition-colors hover:bg-navy-050 active:bg-navy-050/70",
 }
 export const BTN_SIZE = {
   lg: "px-5 py-3 text-[15px]",
@@ -112,5 +157,133 @@ export function PageHeader({
         <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-ink-soft">{lead}</p>
       </div>
     </section>
+  )
+}
+
+/* ------------------------------------------------------------- */
+/*  FormField — accessible label + input + optional error/help   */
+/* ------------------------------------------------------------- */
+export function FormField({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  required = false,
+  error,
+  help,
+  multiline = false,
+  rows = 4,
+  autoComplete,
+  inputMode,
+  pattern,
+  value,
+  onChange,
+}: {
+  id: string
+  label: string
+  type?: string
+  placeholder?: string
+  required?: boolean
+  error?: string
+  help?: string
+  multiline?: boolean
+  rows?: number
+  autoComplete?: string
+  inputMode?: "text" | "email" | "tel" | "numeric" | "search" | "url"
+  pattern?: string
+  value?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+}) {
+  const errId = error ? `${id}-error` : undefined
+  const helpId = help ? `${id}-help` : undefined
+  const describedBy = [errId, helpId].filter(Boolean).join(" ") || undefined
+
+  return (
+    <div>
+      <label htmlFor={id} className="text-[13px] font-semibold text-ink">
+        {label}
+        {required && (
+          <>
+            {" "}
+            <span className="text-red" aria-hidden="true">
+              *
+            </span>
+          </>
+        )}
+        {required && <span className="sr-only">(bắt buộc)</span>}
+      </label>
+      {multiline ? (
+        <textarea
+          id={id}
+          rows={rows}
+          placeholder={placeholder}
+          required={required}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={describedBy}
+          autoComplete={autoComplete}
+          value={value}
+          onChange={onChange}
+          className="input-base mt-1.5 resize-y"
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={describedBy}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
+          pattern={pattern}
+          value={value}
+          onChange={onChange}
+          className="input-base mt-1.5"
+        />
+      )}
+      {help && !error && (
+        <p id={helpId} className="mt-1.5 text-[12.5px] text-ink-soft">
+          {help}
+        </p>
+      )}
+      {error && (
+        <p id={errId} role="alert" className="field-error">
+          <span aria-hidden="true">⚠</span> {error}
+        </p>
+      )}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------- */
+/*  LocaleSwitcher — VI / EN placeholder (real i18n is post-MVP) */
+/* ------------------------------------------------------------- */
+export function LocaleSwitcher({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`inline-flex items-center gap-1 text-[13px] ${className}`}
+      role="group"
+      aria-label="Chọn ngôn ngữ"
+    >
+      <button
+        aria-pressed="true"
+        aria-label="Tiếng Việt"
+        className="rounded px-1.5 py-0.5 font-semibold text-white"
+      >
+        VI
+      </button>
+      <span aria-hidden="true" className="text-white/50">
+        /
+      </span>
+      <button
+        aria-pressed="false"
+        aria-label="English"
+        className="rounded px-1.5 py-0.5 text-white/70 transition-colors hover:text-white"
+        disabled
+        title="Phiên bản tiếng Anh sắp ra mắt"
+      >
+        EN
+      </button>
+    </div>
   )
 }

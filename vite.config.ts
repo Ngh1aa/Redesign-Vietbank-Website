@@ -15,6 +15,11 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
+      // Workaround: lightningcss minifier in current toolchain fails on
+      // Tailwind v4 arbitrary values containing `clamp(...)`. Keep CSS
+      // unminified at the build level — file size impact is small for a
+      // marketing site and avoids the regression.
+      cssMinify: false,
     },
     plugins: [
       react(),

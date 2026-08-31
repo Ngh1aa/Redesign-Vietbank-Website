@@ -1,24 +1,32 @@
-import { useState } from "react"
+import { useState, useId } from "react"
 import { ChevronRight, Calculator } from "lucide-react"
 import { FX_RATES, SAVINGS_RATES, RATE_STAMP } from "../lib/data"
 
 export default function RatesPanel() {
   const [tab, setTab] = useState<"fx" | "savings">("fx")
+  const baseId = useId()
+  const fxId = `${baseId}-fx`
+  const svId = `${baseId}-savings`
 
   return (
     <div>
       <div className="flex justify-end">
-        <div className="inline-flex rounded-lg border border-line bg-surface p-1">
+        <div role="tablist" aria-label="Loại biểu lãi suất và tỷ giá" className="inline-flex rounded-lg border border-line bg-surface p-1">
           {(
             [
-              ["fx", "Tỷ giá ngoại tệ"],
-              ["savings", "Lãi suất tiết kiệm"],
-            ] as ["fx" | "savings", string][]
-          ).map(([val, lbl]) => (
+              ["fx", "Tỷ giá ngoại tệ", fxId],
+              ["savings", "Lãi suất tiết kiệm", svId],
+            ] as ["fx" | "savings", string, string][]
+          ).map(([val, lbl, panelId]) => (
             <button
               key={val}
+              role="tab"
+              type="button"
+              aria-selected={tab === val}
+              aria-controls={panelId}
+              id={`${baseId}-tab-${val}`}
+              tabIndex={tab === val ? 0 : -1}
               onClick={() => setTab(val)}
-              aria-pressed={tab === val}
               className={`rounded-md px-5 py-2.5 text-[14px] font-semibold transition-colors ${
                 tab === val ? "bg-navy text-white" : "text-ink-soft hover:text-navy"
               }`}
@@ -31,7 +39,12 @@ export default function RatesPanel() {
 
       <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface">
         {tab === "fx" ? (
-          <table className="w-full text-left tnum">
+          <table
+            id={fxId}
+            role="tabpanel"
+            aria-labelledby={`${baseId}-tab-fx`}
+            className="w-full text-left tnum"
+          >
             <thead>
               <tr className="border-b border-line bg-navy-050 text-[12px] uppercase tracking-wide text-ink-soft">
                 <th className="px-5 py-3.5 font-semibold">Ngoại tệ</th>
@@ -55,7 +68,12 @@ export default function RatesPanel() {
             </tbody>
           </table>
         ) : (
-          <table className="w-full text-left tnum">
+          <table
+            id={svId}
+            role="tabpanel"
+            aria-labelledby={`${baseId}-tab-savings`}
+            className="w-full text-left tnum"
+          >
             <thead>
               <tr className="border-b border-line bg-navy-050 text-[12px] uppercase tracking-wide text-ink-soft">
                 <th className="px-5 py-3.5 font-semibold">Kỳ hạn</th>
