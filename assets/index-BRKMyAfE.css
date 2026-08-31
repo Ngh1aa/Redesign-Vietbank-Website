@@ -13,7 +13,6 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
-      --tw-space-y-reverse: 0;
       --tw-divide-y-reverse: 0;
       --tw-border-style: solid;
       --tw-gradient-position: initial;
@@ -605,10 +604,6 @@
     display: inline;
   }
 
-  .inline-block {
-    display: inline-block;
-  }
-
   .inline-flex {
     display: inline-flex;
   }
@@ -711,10 +706,6 @@
 
   .min-h-\[92px\] {
     min-height: 92px;
-  }
-
-  .min-h-\[108px\] {
-    min-height: 108px;
   }
 
   .min-h-\[145px\] {
@@ -941,10 +932,6 @@
     grid-template-columns: 42px 1fr;
   }
 
-  .grid-cols-\[42px_1fr_auto\] {
-    grid-template-columns: 42px 1fr auto;
-  }
-
   .grid-cols-\[110px_1fr\] {
     grid-template-columns: 110px 1fr;
   }
@@ -1031,12 +1018,6 @@
 
   .gap-px {
     gap: 1px;
-  }
-
-  :where(.space-y-3 > :not(:last-child)) {
-    --tw-space-y-reverse: 0;
-    margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
-    margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
   }
 
   .gap-x-5 {
@@ -1221,16 +1202,6 @@
     }
   }
 
-  .bg-amber-soft\/60 {
-    background-color: #fff4d199;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-amber-soft\/60 {
-      background-color: color-mix(in oklab, var(--color-amber-soft) 60%, transparent);
-    }
-  }
-
   .bg-line {
     background-color: var(--color-line);
   }
@@ -1322,6 +1293,11 @@
 
   .from-\[\#032f67\]\/90 {
     --tw-gradient-from: oklab(31.5028% -.0238438 -.105901 / .9);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
+  .from-\[\#032f67\]\/92 {
+    --tw-gradient-from: oklab(31.5028% -.0238438 -.105901 / .92);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
@@ -1515,6 +1491,10 @@
     padding-top: calc(var(--spacing) * 20);
   }
 
+  .pt-24 {
+    padding-top: calc(var(--spacing) * 24);
+  }
+
   .pb-1 {
     padding-bottom: calc(var(--spacing) * 1);
   }
@@ -1541,6 +1521,10 @@
 
   .pl-4 {
     padding-left: calc(var(--spacing) * 4);
+  }
+
+  .pl-5 {
+    padding-left: calc(var(--spacing) * 5);
   }
 
   .text-center {
@@ -1765,6 +1749,11 @@
     letter-spacing: .06em;
   }
 
+  .tracking-\[0\.07em\] {
+    --tw-tracking: .07em;
+    letter-spacing: .07em;
+  }
+
   .tracking-\[0\.08em\] {
     --tw-tracking: .08em;
     letter-spacing: .08em;
@@ -1897,6 +1886,16 @@
     }
   }
 
+  .text-white\/82 {
+    color: #ffffffd1;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-white\/82 {
+      color: color-mix(in oklab, var(--color-white) 82%, transparent);
+    }
+  }
+
   .text-white\/85 {
     color: #ffffffd9;
   }
@@ -2010,10 +2009,6 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
-  }
-
-  .group-open\:rotate-180:is(:where(.group):is([open], :popover-open, :open) *) {
-    rotate: 180deg;
   }
 
   @media (hover: hover) {
@@ -2250,6 +2245,10 @@
       grid-template-columns: 110px 1fr auto;
     }
 
+    .sm\:grid-cols-\[110px_120px_1fr_auto\] {
+      grid-template-columns: 110px 120px 1fr auto;
+    }
+
     .sm\:grid-cols-\[180px_1fr_auto\] {
       grid-template-columns: 180px 1fr auto;
     }
@@ -2321,6 +2320,10 @@
       padding: calc(var(--spacing) * 7);
     }
 
+    .sm\:px-3 {
+      padding-inline: calc(var(--spacing) * 3);
+    }
+
     .sm\:px-4 {
       padding-inline: calc(var(--spacing) * 4);
     }
@@ -2341,6 +2344,10 @@
 
     .md\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .md\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .md\:grid-cols-\[220px_1fr\] {
@@ -2395,6 +2402,10 @@
 
     .lg\:min-h-\[430px\] {
       min-height: 430px;
+    }
+
+    .lg\:min-h-\[460px\] {
+      min-height: 460px;
     }
 
     .lg\:min-h-\[470px\] {
@@ -2811,12 +2822,6 @@ button:focus-visible, a:focus-visible {
 @property --tw-skew-y {
   syntax: "*";
   inherits: false
-}
-
-@property --tw-space-y-reverse {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
 }
 
 @property --tw-divide-y-reverse {
