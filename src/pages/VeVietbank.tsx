@@ -27,33 +27,46 @@ export default function VeVietbank() {
       />
 
       <Section>
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+        <div className="grid items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="flex flex-col justify-center">
             <SectionHead
               n="01"
               eyebrow="Định hướng"
               title="Một ngân hàng bán lẻ lấy khách hàng làm trọng tâm"
-              lead="V6 giữ câu chuyện corporate ngắn và có thể kiểm chứng: tầm nhìn, sứ mệnh, phương châm và các điểm vào chính thức để đọc sâu hơn."
+              lead="Tầm nhìn, chính sách chất lượng và định hướng phục vụ được trình bày ngắn gọn, kèm đường dẫn tới nguồn Vietbank để đọc đầy đủ."
             />
             <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
               Trên trang giới thiệu chính thức, Vietbank nhấn mạnh xây dựng ngân hàng bán lẻ hiện đại, tăng trưởng an toàn và hiệu quả; đồng thời phát triển sản phẩm dựa trên sự thấu hiểu nhu cầu khách hàng.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <ActionLink action={{ label: "Tầm nhìn & giá trị cốt lõi", href: OFFICIAL.visionValues }} variant="secondary" />
-              <ActionLink action={{ label: "Trang giới thiệu Vietbank", href: OFFICIAL.about }} variant="ghost" />
+              <ActionLink action={{ label: "Đọc tầm nhìn & giá trị cốt lõi", href: OFFICIAL.visionValues }} variant="secondary" />
+              <ActionLink action={{ label: "Xem giới thiệu Vietbank", href: OFFICIAL.about }} variant="ghost" />
             </div>
           </div>
-          <div className="relative min-h-[320px] overflow-hidden rounded-xl border border-line bg-navy-050">
-            <img
-              src="https://images.unsplash.com/photo-1554469384-e58fbe9b7e9a?w=900&h=650&fit=crop&auto=format"
-              alt="Không gian văn phòng và giao dịch ngân hàng hiện đại — ảnh minh hoạ cho concept"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/85 to-transparent p-6 pt-16 text-white">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">Ảnh minh hoạ concept</p>
-              <p className="mt-1 text-[14px] leading-relaxed text-white/80">Không đại diện cho một chi nhánh Vietbank cụ thể.</p>
+
+          <aside className="border border-line bg-navy-050 p-6 sm:p-7" aria-label="Các điểm chính về Vietbank">
+            <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
+              <div>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink-soft">Thông tin nổi bật</p>
+                <h2 className="mt-1 font-display text-xl font-semibold text-ink">Điểm vào để tìm hiểu Vietbank</h2>
+              </div>
+              <span className="flex h-1 w-12 overflow-hidden" aria-hidden="true"><span className="w-1/2 bg-red" /><span className="w-1/2 bg-yellow" /></span>
             </div>
-          </div>
+            <div className="divide-y divide-line">
+              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                <span className="text-[13px] font-semibold text-amber tnum">01</span>
+                <div><strong className="block text-[15px] text-ink">Tầm nhìn & giá trị</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Định hướng thương hiệu, sứ mệnh và các giá trị cốt lõi Vietbank công bố.</p></div>
+              </div>
+              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                <span className="text-[13px] font-semibold text-amber tnum">02</span>
+                <div><strong className="block text-[15px] text-ink">Chính sách chất lượng</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Định hướng xây dựng ngân hàng bán lẻ đa năng, hiện đại và phù hợp chuẩn mực quốc tế.</p></div>
+              </div>
+              <div className="grid grid-cols-[34px_1fr] gap-3 py-4">
+                <span className="text-[13px] font-semibold text-amber tnum">03</span>
+                <div><strong className="block text-[15px] text-ink">Mạng lưới 127 điểm giao dịch</strong><p className="mt-1 text-[13.5px] leading-relaxed text-ink-soft">Mạng lưới hiện diện tại các vùng kinh tế trọng điểm trên toàn quốc theo Vietbank.</p></div>
+              </div>
+            </div>
+          </aside>
         </div>
       </Section>
 
@@ -74,8 +87,8 @@ export default function VeVietbank() {
         <SectionHead
           n="03"
           eyebrow="Quy mô hiện tại"
-          title="Dùng số liệu có mốc thời gian rõ ràng"
-          lead="Thay vì các con số STATIC không nguồn, V6 chỉ hiển thị dữ liệu Vietbank đã công bố và ghi rõ thời điểm."
+          title="Số liệu có mốc thời gian rõ ràng"
+          lead="Các con số bên dưới chỉ dùng dữ liệu Vietbank đã công bố và ghi rõ thời điểm để người đọc dễ kiểm tra nguồn."
         />
         <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
           <div className="bg-surface p-6">
@@ -96,7 +109,7 @@ export default function VeVietbank() {
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <ActionLink action={{ label: "Xem mạng lưới Vietbank", href: OFFICIAL.branches }} variant="secondary" />
-          <ActionLink action={{ label: "Thông tin niêm yết VBB", href: OFFICIAL.hoseListing }} variant="ghost" />
+          <ActionLink action={{ label: "Đọc thông tin niêm yết VBB", href: OFFICIAL.hoseListing }} variant="ghost" />
         </div>
       </Section>
 
@@ -106,16 +119,16 @@ export default function VeVietbank() {
             n="04"
             eyebrow="Tin Vietbank"
             title="Cập nhật gần đây"
-            lead="Không tự biên tập sự kiện corporate. Danh sách dưới đây dùng tiêu đề và ngày đang hiển thị trên kênh tin tức Vietbank."
+            lead="Danh sách dùng tiêu đề và ngày đang hiển thị trên kênh tin tức Vietbank; nhấn vào để tiếp tục xem nội dung trên nguồn chính thức."
           />
-          <ActionLink action={{ label: "Mở trung tâm tin tức", href: OFFICIAL.news }} variant="secondary" size="sm" />
+          <ActionLink action={{ label: "Xem tất cả tin Vietbank", href: OFFICIAL.news }} variant="secondary" size="sm" />
         </div>
         <div className="mt-6 flex flex-col divide-y divide-line border-y border-line">
           {NEWS.map((item) => (
             <a key={item.title} href={OFFICIAL.news} {...EXTERNAL_LINK_PROPS} className="group flex items-start gap-4 py-4 transition-colors hover:bg-navy-050/60">
-              <div className="w-24 shrink-0">
-                <span className="block rounded border border-line bg-surface px-2 py-0.5 text-center text-[10.5px] font-semibold uppercase tracking-wide text-ink-soft">{item.tag}</span>
-                <span className="mt-1.5 block text-center text-[11px] tnum text-ink-soft">{item.date}</span>
+              <div className="w-28 shrink-0">
+                <span className="block rounded border border-line bg-surface px-2 py-1 text-center text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-soft">{item.tag}</span>
+                <span className="mt-1.5 block text-center text-[12.5px] tnum text-ink-soft">{item.date}</span>
               </div>
               <p className="text-[15.5px] font-medium leading-snug text-ink group-hover:text-navy">{item.title}</p>
               <ArrowUpRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-ink-soft group-hover:text-navy" />
@@ -129,13 +142,13 @@ export default function VeVietbank() {
           n="05"
           eyebrow="Minh bạch & quản trị"
           title="Đi sâu theo đúng nguồn"
-          lead="Thông tin quản trị, công bố và đại hội cổ đông thuộc luồng Nhà đầu tư; V6 không dựng danh sách lãnh đạo placeholder."
+          lead="Thông tin quản trị, công bố và đại hội cổ đông được dẫn sang luồng Nhà đầu tư để người đọc tiếp tục trên tài liệu Vietbank đang quản lý."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {[
-            { title: "Quan hệ nhà đầu tư", body: "Công bố thông tin, báo cáo định kỳ, điều lệ và quản trị công ty.", action: { label: "Mở IR Vietbank", href: OFFICIAL.investor } },
-            { title: "ĐHĐCĐ 2026", body: "Thông tin về Đại hội đồng cổ đông thường niên 2026 và các mục tiêu tăng trưởng đã thông qua.", action: { label: "Xem công bố", href: OFFICIAL.agm2026 } },
-            { title: "Liên hệ & mạng lưới", body: "Địa chỉ, hotline, email và công cụ tìm chi nhánh/PGD do Vietbank quản lý.", action: { label: "Kênh liên hệ", href: OFFICIAL.contact } },
+            { title: "Quan hệ nhà đầu tư", body: "Công bố thông tin, báo cáo định kỳ, điều lệ và quản trị công ty.", action: { label: "Mở Quan hệ nhà đầu tư", href: OFFICIAL.investor } },
+            { title: "ĐHĐCĐ 2026", body: "Thông tin về Đại hội đồng cổ đông thường niên 2026 và các mục tiêu tăng trưởng đã thông qua.", action: { label: "Xem tài liệu ĐHĐCĐ 2026", href: OFFICIAL.agm2026 } },
+            { title: "Liên hệ & mạng lưới", body: "Địa chỉ, hotline, email và công cụ tìm chi nhánh/PGD do Vietbank quản lý.", action: { label: "Xem kênh liên hệ Vietbank", href: OFFICIAL.contact } },
           ].map((item) => (
             <article key={item.title} className="flex flex-col rounded-xl border border-line bg-surface p-6">
               <ShieldCheck className="h-5 w-5 text-navy" />
@@ -149,9 +162,9 @@ export default function VeVietbank() {
 
       <CTABand
         title="Tìm hiểu Vietbank từ nguồn chính thức"
-        body="Concept này tối ưu cách định tuyến và trình bày. Thông tin pháp lý, công bố doanh nghiệp và dữ liệu cập nhật luôn tiếp tục trên website Vietbank."
-        primary={{ label: "Về Vietbank", href: OFFICIAL.about }}
-        secondary={{ label: "Quan hệ nhà đầu tư", href: OFFICIAL.investor }}
+        body="Trang này giúp bạn đi nhanh tới thông tin phù hợp; nội dung pháp lý, công bố doanh nghiệp và dữ liệu cập nhật được quản lý trên website Vietbank."
+        primary={{ label: "Xem giới thiệu Vietbank", href: OFFICIAL.about }}
+        secondary={{ label: "Mở Quan hệ nhà đầu tư", href: OFFICIAL.investor }}
       />
     </>
   )
