@@ -665,6 +665,10 @@
     height: calc(var(--spacing) * 7);
   }
 
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
@@ -765,6 +769,10 @@
     width: 410px;
   }
 
+  .w-auto {
+    width: auto;
+  }
+
   .w-fit {
     width: fit-content;
   }
@@ -805,10 +813,6 @@
     max-width: var(--container-xl);
   }
 
-  .max-w-xs {
-    max-width: var(--container-xs);
-  }
-
   .min-w-160 {
     min-width: calc(var(--spacing) * 160);
   }
@@ -843,6 +847,10 @@
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .resize {
+    resize: both;
   }
 
   .resize-y {
@@ -1220,6 +1228,10 @@
   .to-transparent {
     --tw-gradient-to: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
+  .object-contain {
+    object-fit: contain;
   }
 
   .object-cover {
@@ -1676,6 +1688,10 @@
     text-transform: uppercase;
   }
 
+  .italic {
+    font-style: italic;
+  }
+
   .tabular-nums {
     --tw-numeric-spacing: tabular-nums;
     font-variant-numeric: var(--tw-ordinal, ) var(--tw-slashed-zero, ) var(--tw-numeric-figure, ) var(--tw-numeric-spacing, ) var(--tw-numeric-fraction, );
@@ -1709,6 +1725,11 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+
+  .blur {
+    --tw-blur: blur(8px);
+    filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
   }
 
   .invert {
@@ -2040,10 +2061,6 @@
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 
-    .lg\:grid-cols-\[0\.8fr_1\.2fr\] {
-      grid-template-columns: .8fr 1.2fr;
-    }
-
     .lg\:grid-cols-\[0\.9fr_1\.1fr\] {
       grid-template-columns: .9fr 1.1fr;
     }
@@ -2062,10 +2079,6 @@
 
     .lg\:grid-cols-\[1fr_0\.9fr\] {
       grid-template-columns: 1fr .9fr;
-    }
-
-    .lg\:grid-cols-\[1fr_1\.2fr\] {
-      grid-template-columns: 1fr 1.2fr;
     }
 
     .lg\:flex-row {
