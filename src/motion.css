@@ -1,0 +1,101 @@
+/* Vietbank motion — transactional trust / calm financial confidence */
+:root {
+  --vb-motion-ease: cubic-bezier(.2,.8,.2,1);
+  --vb-motion-fast: 160ms;
+  --vb-motion-med: 320ms;
+  --vb-motion-slow: 560ms;
+}
+
+@keyframes vb-page-enter {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes vb-confirm-ring {
+  0% { box-shadow: 0 0 0 0 rgba(198, 32, 48, .16); }
+  100% { box-shadow: 0 0 0 10px rgba(198, 32, 48, 0); }
+}
+
+@keyframes vb-value-settle {
+  from { opacity: .45; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+#root > * { animation: vb-page-enter var(--vb-motion-slow) var(--vb-motion-ease) both; }
+
+header a,
+nav a,
+button,
+a[class*="btn"],
+[role="button"],
+[class*="card"],
+[class*="product"],
+[class*="offer"],
+[class*="account"],
+[class*="service"],
+[class*="feature"],
+[class*="compare"] {
+  transition:
+    transform var(--vb-motion-fast) var(--vb-motion-ease),
+    box-shadow var(--vb-motion-med) var(--vb-motion-ease),
+    border-color var(--vb-motion-fast) ease,
+    background-color var(--vb-motion-fast) ease,
+    color var(--vb-motion-fast) ease;
+}
+
+header a:hover,
+nav a:hover { transform: translateY(-1px); }
+button:active,
+a[class*="btn"]:active,
+[role="button"]:active { transform: translateY(1px) scale(.99); }
+
+/* Banking cards acknowledge intent without playful bounce. */
+main [class*="card"]:hover,
+main [class*="product"]:hover,
+main [class*="offer"]:hover,
+main [class*="service"]:hover { transform: translateY(-2px); }
+
+/* Financial values settle into place, supporting confidence and scanability. */
+:is([class*="amount"], [class*="balance"], [class*="rate"], [class*="price"], [class*="metric"], [class*="value"]) strong,
+:is([class*="amount"], [class*="balance"], [class*="rate"], [class*="price"], [class*="metric"], [class*="value"])[data-value] {
+  animation: vb-value-settle 440ms var(--vb-motion-ease) both;
+}
+
+/* Progress and comparison bars communicate change directionally. */
+:is([class*="progress"], [class*="meter"], [class*="bar"]) > * {
+  transform-origin: left center;
+  transition: width 560ms var(--vb-motion-ease), transform 560ms var(--vb-motion-ease);
+}
+
+input,
+select,
+textarea {
+  transition: border-color var(--vb-motion-fast) ease, box-shadow var(--vb-motion-fast) ease, background-color var(--vb-motion-fast) ease;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible { animation: vb-confirm-ring 720ms ease-out 1; }
+
+:is([class*="success"], [class*="confirmed"], [class*="approved"], [data-state="success"]) {
+  animation: vb-confirm-ring 760ms ease-out 1;
+}
+
+@media (max-width: 768px) {
+  #root > * { animation-duration: 360ms; }
+  main [class*="card"]:hover,
+  main [class*="product"]:hover,
+  main [class*="offer"]:hover,
+  main [class*="service"]:hover,
+  header a:hover,
+  nav a:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  #root > * { opacity: 1 !important; transform: none !important; }
+}
